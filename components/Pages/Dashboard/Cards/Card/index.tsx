@@ -26,7 +26,7 @@ export default function InfoCard({
   color,
 }: IProps) {
   return (
-    <Card className="w-72">
+    <Card className="h-40 w-72">
       <CardContent className="flex justify-between pt-6">
         <div>
           {/* FIRST TITLE*/}
