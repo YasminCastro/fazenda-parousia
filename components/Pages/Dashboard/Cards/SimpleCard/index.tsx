@@ -3,7 +3,6 @@ import {
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
 } from "@/components/ui/card";
 
 interface IProps {
@@ -11,22 +10,23 @@ interface IProps {
   value: string;
   color: string;
   icon: any;
-  footerValue?: string;
+  upFromYesterday?: number;
 }
 
 export default function SimpleCard({
   title,
   value,
-  footerValue,
+  upFromYesterday,
   icon,
   color,
 }: IProps) {
   return (
-    <Card className="h-40 w-72">
-      <CardContent className="flex justify-between pt-6">
-        <div>
+    <Card className="h-36 w-72">
+      <CardContent className="flex h-full items-center justify-between pt-6">
+        <div className="flex h-full flex-col justify-evenly">
           <CardDescription>{title}</CardDescription>
-          <p className="text-2xl font-bold">{value}</p>
+          <p className="text-3xl font-bold">{value}</p>
+          {upFromYesterday && <p>Card Footer</p>}
         </div>
         <div
           className={`flex h-14 w-14 items-center justify-center rounded-2xl`}
@@ -35,11 +35,6 @@ export default function SimpleCard({
           {icon}
         </div>
       </CardContent>
-      {footerValue && (
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
-      )}
     </Card>
   );
 }
