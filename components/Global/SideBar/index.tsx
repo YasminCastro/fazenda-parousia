@@ -9,12 +9,12 @@ import {
 } from "react-icons/fa6";
 import { IoSpeedometerOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
-import styles from "./Sidebar.module.css";
+import styles from "./styles.module.css";
 
 export default function SideBar() {
   const pathname = usePathname();
   return (
-    <div className="flex h-screen w-full max-w-60 flex-col items-center bg-card shadow-lg">
+    <div className="flex h-screen w-full min-w-60 max-w-60 flex-col items-center bg-card shadow-lg">
       {/* TITLE */}
       <h2 className="pt-7 text-xl font-bold text-blue-600">
         Pecuária Leiteira
