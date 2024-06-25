@@ -1,10 +1,10 @@
-import InfoCard from "./Card";
+import SimpleCard from "./SimpleCard";
 import { Milk } from "lucide-react";
 
 export default function Cards() {
   return (
     <div className="mt-7">
-      <InfoCard
+      <SimpleCard
         title="Receita do leite (R$)"
         value="40,689"
         icon={<Milk color="#8280ff" size={36} />}

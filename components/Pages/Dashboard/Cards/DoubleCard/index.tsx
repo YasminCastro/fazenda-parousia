@@ -16,7 +16,7 @@ interface IProps {
   footerValue?: string;
 }
 
-export default function InfoCard({
+export default function DoubleCard({
   title,
   value,
   footerValue,
@@ -32,7 +32,7 @@ export default function InfoCard({
           {/* FIRST TITLE*/}
           <div>
             <CardDescription>{title}</CardDescription>
-            <p>{value}</p>
+            <p className="text-2xl font-bold">{value}</p>
           </div>
           {/* SECOND TITLE*/}
           {title2 && (
@@ -43,7 +43,8 @@ export default function InfoCard({
           )}
         </div>
         <div
-          className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-[${color}]`}
+          className={`flex h-14 w-14 items-center justify-center rounded-2xl`}
+          style={{ backgroundColor: color }}
         >
           {icon}
         </div>
