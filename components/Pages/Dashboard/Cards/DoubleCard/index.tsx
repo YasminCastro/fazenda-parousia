@@ -18,7 +18,7 @@ export default function DoubleCard({
   value2,
 }: IProps) {
   return (
-    <Card className="h-40 w-full">
+    <Card className="h-40 w-full rounded-3xl">
       <CardContent className="flex h-full justify-between pt-6">
         <div className="grid-row-2 grid h-full">
           <div className="grid-row-2 grid h-full">
