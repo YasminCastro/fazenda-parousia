@@ -1,35 +1,32 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription } from "@/components/ui/card";
+
+import { TrendingDown, TrendingUp } from "lucide-react";
 
 interface IProps {
   title: string;
   value: string;
   color: string;
   icon: any;
-  upFromYesterday?: number;
+  fromYesterday?: string;
 }
 
 export default function SimpleCard({
   title,
   value,
-  upFromYesterday,
+  fromYesterday,
   icon,
   color,
 }: IProps) {
   return (
-    <Card className="h-36 w-72">
-      <CardContent className="flex h-full items-center justify-between pt-6">
-        <div className="flex h-full flex-col justify-evenly">
+    <Card className="h-40 w-full rounded-3xl">
+      <CardContent className="flex h-full justify-between pt-6">
+        <div className="grid-row-3 grid h-full">
           <CardDescription>{title}</CardDescription>
           <p className="text-3xl font-bold">{value}</p>
-          {upFromYesterday && <p>Card Footer</p>}
+          {fromYesterday && <UpFromYesterday fromYesterday={fromYesterday} />}
         </div>
         <div
-          className={`flex h-14 w-14 items-center justify-center rounded-2xl`}
+          className={`flex h-14 w-14 items-center justify-center rounded-3xl`}
           style={{ backgroundColor: color }}
         >
           {icon}
@@ -38,3 +35,16 @@ export default function SimpleCard({
     </Card>
   );
 }
+
+const UpFromYesterday = ({ fromYesterday }: { fromYesterday: string }) => {
+  return (
+    <div className="flex items-center space-x-2">
+      {fromYesterday.includes("acima") ? (
+        <TrendingUp color="#00B69B" />
+      ) : (
+        <TrendingDown color="#b6003d" />
+      )}
+      <p className="text-sm">{fromYesterday}</p>
+    </div>
+  );
+};
