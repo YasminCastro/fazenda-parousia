@@ -13,7 +13,7 @@ import {
 
 export default function Cards() {
   return (
-    <div className="mt-7 grid grid-cols-4 gap-4">
+    <div className="mt-4 grid grid-cols-4 gap-4">
       <SimpleCard
         title="Receita do leite (R$)"
         value="40,689"

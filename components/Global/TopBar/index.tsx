@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 export default function TopBar() {
   return (
     <div className={`bg-card ${styles.noLeftShadow}`}>
-      <div className="flex h-16 items-center">
+      <div className="flex h-14 items-center">
         {/* SEARCH BAR */}
         <div className="relative mx-20 h-10 w-80">
           <IoSearch className="absolute left-3 top-1/2 z-10 -translate-y-1/2 transform text-gray-500" />
