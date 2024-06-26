@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import {
-  FaPowerOff,
-  FaGear,
-  FaChartLine,
-  FaMoneyBillWave,
-} from "react-icons/fa6";
-import { IoSpeedometerOutline } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import styles from "./styles.module.css";
+
+import {
+  Gauge,
+  LineChart,
+  CircleDollarSign,
+  Power,
+  Settings,
+} from "lucide-react";
 
 export default function SideBar() {
   const pathname = usePathname();
@@ -20,37 +21,37 @@ export default function SideBar() {
         Pecuária Leiteira
       </h2>
       {/* NAV */}
-      <nav className="flex w-full flex-col gap-2 p-6">
+      <nav className="flex w-full flex-col p-6">
         <Link
           href="/dashboard"
           className={`${styles.navLink} ${pathname === "/dashboard" ? styles.navLinkActive : styles.navLinkDefault}`}
         >
-          <IoSpeedometerOutline />
+          <Gauge />
           Dashboard
         </Link>
         <Link
           href="/performance"
           className={`${styles.navLink} ${pathname === "/performance" ? styles.navLinkActive : styles.navLinkDefault}`}
         >
-          <FaChartLine />
+          <LineChart />
           Desempenho
         </Link>
         <Link
           href="/economic"
           className={`${styles.navLink} ${pathname === "/economic" ? styles.navLinkActive : styles.navLinkDefault}`}
         >
-          <FaMoneyBillWave />
+          <CircleDollarSign />
           Econômico
         </Link>
       </nav>
       {/* SETTINGS */}
       <div className="mt-auto flex w-full flex-col items-start gap-4 border-t px-10 py-4">
         <Link href="/setting" className={styles.bottomButtons}>
-          <FaGear />
+          <Settings />
           Configurações
         </Link>
         <Link href="/" className={styles.bottomButtons}>
-          <FaPowerOff /> Sair
+          <Power /> Sair
         </Link>
       </div>
     </div>
