@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import DoubleCard from "./DoubleCard";
 import SimpleCard from "./SimpleCard";
 import {
@@ -10,8 +13,26 @@ import {
   IterationCw,
   List,
 } from "lucide-react";
+import api from "@/lib/api";
 
 export default function Cards() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/api/cards");
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!data) return <div> CARREGANDO....</div>;
+
   return (
     <div className="mt-4 grid grid-cols-4 gap-4">
       <SimpleCard
