@@ -26,8 +26,6 @@ export function ComboboxHeader() {
 
   const { batch, setSelectedBatch, selectedBatch } = useBatch();
 
-  console.log(batch, selectedBatch);
-
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

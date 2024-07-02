@@ -40,8 +40,8 @@ export const BatchProvider: React.FC<{ children?: React.ReactNode }> = ({
   }, []);
 
   useEffect(() => {
-    console.log("BATCH CHANGED", batch);
-  }, [batch]);
+    console.log("BATCH CHANGED", selectedBatch);
+  }, [selectedBatch]);
 
   const value = useMemo(
     () => ({
