@@ -3,8 +3,8 @@ import { Card, CardContent, CardDescription } from "@/components/ui/card";
 interface IProps {
   title: string;
   title2: string;
-  value: string;
-  value2: string;
+  value: number;
+  value2: number;
   color: string;
   icon: any;
 }

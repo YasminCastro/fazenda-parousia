@@ -47,7 +47,7 @@ const dashboardCardsMapping: any = [
     title: "Custo - Alimentação (R$)",
     kpi: "Custo alimentação",
     title2: "Custo/kg de leite",
-    kpi2: "",
+    kpi2: "Margem sobre alimentação (R$/kg)",
   },
   {
     cardType: "double",

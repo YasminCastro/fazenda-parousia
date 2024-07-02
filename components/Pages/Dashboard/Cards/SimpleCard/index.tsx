@@ -4,7 +4,7 @@ import { TrendingDown, TrendingUp } from "lucide-react";
 
 interface IProps {
   title: string;
-  value: string;
+  value: number;
   color: string;
   icon: any;
   fromYesterday?: string;

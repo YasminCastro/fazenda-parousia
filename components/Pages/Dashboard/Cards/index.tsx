@@ -18,9 +18,9 @@ import { useBatch } from "@/providers/BatchContext";
 
 interface ICard {
   title: string;
-  value: string;
+  value: number;
   title2?: string;
-  value2?: string;
+  value2?: number;
   cardType: "simple" | "double";
 }
 
@@ -49,13 +49,13 @@ export default function Cards() {
       {data.map((card: ICard) => {
         const { icon, color } = getIconAndColor(card.title);
 
-        if (card.cardType === "double" && card.title2 && card.value2) {
+        if (card.cardType === "double" && card.title2) {
           return (
             <DoubleCard
               title={card.title}
               value={card.value}
               title2={card.title2}
-              value2={card.value2}
+              value2={card.value2 || 0}
               icon={icon}
               color={color}
             />
