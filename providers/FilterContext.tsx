@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
+import { DateRange } from "react-day-picker";
 
 interface BatchCombobox {
   value: string;
@@ -16,6 +17,8 @@ interface IValue {
   selectedBatch: string;
   setSelectedBatch: React.Dispatch<React.SetStateAction<string>>;
   batch: BatchCombobox[];
+  date: DateRange | undefined;
+  setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
 }
 
 const FilterContext = createContext({} as IValue);
@@ -24,7 +27,12 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const [selectedBatch, setSelectedBatch] = useState("Fazenda");
-  const [batch, setBatch] = useState([{ value: "Fazenda", label: "Fazenda" }]);
+  const [batch, setBatch] = useState<BatchCombobox[]>([
+    { value: "Fazenda", label: "Fazenda" },
+  ]);
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(),
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,8 +52,10 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
       batch,
       setSelectedBatch,
       selectedBatch,
+      date,
+      setDate,
     }),
-    [batch, setSelectedBatch, selectedBatch],
+    [batch, setSelectedBatch, selectedBatch, date, setDate],
   );
 
   return (
