@@ -40,7 +40,7 @@ export default function Cards() {
     };
 
     fetchData();
-  }, []);
+  }, [selectedBatch]);
 
   if (!data) return <div> CARREGANDO....</div>;
 
