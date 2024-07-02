@@ -18,21 +18,26 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
-const farms = [
-  {
-    value: "general",
-    label: "Geral",
-  },
-  {
-    value: "loteA",
-    label: "Lote A",
-  },
-];
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export function ComboboxHeader() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("general");
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("farm");
+  const [batch, setBach] = useState([{ value: "farm", label: "Fazenda" }]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/farms");
+        setBach(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -43,7 +48,7 @@ export function ComboboxHeader() {
           aria-expanded={open}
           className="w-36 justify-between bg-slate-50 text-gray-400"
         >
-          {farms.find((farm) => farm.value === value)?.label}
+          {batch.find((farm) => farm.value === value)?.label}
           <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -53,7 +58,7 @@ export function ComboboxHeader() {
           <CommandList>
             <CommandEmpty>Nenhuma fazenda encontrada.</CommandEmpty>
             <CommandGroup>
-              {farms.map((farm) => (
+              {batch.map((farm) => (
                 <CommandItem
                   key={farm.value}
                   value={farm.value}

@@ -13,7 +13,7 @@ import {
   IterationCw,
   List,
 } from "lucide-react";
-import api from "@/lib/api";
+import axios from "axios";
 
 export default function Cards() {
   const [data, setData] = useState(null);
@@ -21,7 +21,7 @@ export default function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get("/api/cards");
+        const response = await axios.get("/api/cards");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
