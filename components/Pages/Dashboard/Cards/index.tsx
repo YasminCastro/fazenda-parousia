@@ -87,7 +87,7 @@ const getIconAndColor = (title: string) => {
         icon: <ShoppingCart color="#fec53d" size={36} />,
         color: "#fef2d6",
       };
-    case "Margem sob alimentação (R$)":
+    case "Margem sobre alimentação (R$)":
       return {
         icon: <TrendingUp color="#4ad991" size={36} />,
         color: "#d9f7e7",
