@@ -1,8 +1,8 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { IoSearch } from "react-icons/io5";
 import styles from "./styles.module.css";
+import { Search } from "lucide-react";
 
 export default function TopBar() {
   return (
@@ -10,7 +10,10 @@ export default function TopBar() {
       <div className="flex h-14 items-center">
         {/* SEARCH BAR */}
         <div className="relative mx-20 h-10 w-80">
-          <IoSearch className="absolute left-3 top-1/2 z-10 -translate-y-1/2 transform text-gray-500" />
+          <Search
+            size={16}
+            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 transform text-gray-500"
+          />
           <Input
             type="text"
             placeholder="Buscar"
