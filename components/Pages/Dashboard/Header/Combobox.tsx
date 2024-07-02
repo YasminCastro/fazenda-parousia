@@ -18,26 +18,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { useBatch } from "@/providers/BatchContext";
 
 export function ComboboxHeader() {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("farm");
-  const [batch, setBach] = useState([{ value: "farm", label: "Fazenda" }]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/farms");
-        setBach(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const { batch, setSelectedBatch, selectedBatch } = useBatch();
 
-    fetchData();
-  }, []);
+  console.log(batch, selectedBatch);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -48,7 +37,7 @@ export function ComboboxHeader() {
           aria-expanded={open}
           className="w-36 justify-between bg-slate-50 text-gray-400"
         >
-          {batch.find((farm) => farm.value === value)?.label}
+          {batch.find((farm) => farm.value === selectedBatch)?.label}
           <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -63,14 +52,18 @@ export function ComboboxHeader() {
                   key={farm.value}
                   value={farm.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    setSelectedBatch(
+                      currentValue === selectedBatch ? "" : currentValue,
+                    );
                     setOpen(false);
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === farm.value ? "opacity-100" : "opacity-0",
+                      selectedBatch === farm.value
+                        ? "opacity-100"
+                        : "opacity-0",
                     )}
                   />
                   {farm.label}
