@@ -11,6 +11,7 @@ import {
   Power,
   Settings,
 } from "lucide-react";
+import { DatePicker } from "../DatePicker";
 
 export default function SideBar() {
   const pathname = usePathname();
@@ -45,9 +46,12 @@ export default function SideBar() {
         </Link>
       </nav>
       {/* DATE FILTER */}
-      <div></div>
+
+      <div className="mb-6 mt-auto">
+        <DatePicker />
+      </div>
       {/* SETTINGS */}
-      <div className="mt-auto flex w-full flex-col items-start gap-4 border-t px-10 py-4">
+      {/* <div className="mt-auto flex w-full flex-col items-start gap-4 border-t px-10 py-4">
         <Link href="/setting" className={styles.bottomButtons}>
           <Settings />
           Configurações
@@ -55,7 +59,7 @@ export default function SideBar() {
         <Link href="/" className={styles.bottomButtons}>
           <Power /> Sair
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
