@@ -4,13 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./styles.module.css";
 
-import {
-  Gauge,
-  LineChart,
-  CircleDollarSign,
-  Power,
-  Settings,
-} from "lucide-react";
+import { Gauge, LineChart, CircleDollarSign } from "lucide-react";
 import { DatePicker } from "../DatePicker";
 
 export default function SideBar() {

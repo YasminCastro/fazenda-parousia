@@ -1,5 +1,9 @@
-import AverageDailyProduction from "./AverageDailyProduction";
+import MastiteGraph from "./Mastite";
 
 export default function Graphs() {
-  return <AverageDailyProduction />;
+  return (
+    <div className="h-1/2">
+      <MastiteGraph />
+    </div>
+  );
 }

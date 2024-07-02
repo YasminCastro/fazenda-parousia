@@ -8,7 +8,7 @@ import { FilterProvider } from "@/providers/FilterContext";
 export default function PageDashboard() {
   return (
     <FilterProvider>
-      <main className="flex h-screen bg-accent">
+      <main className="flex bg-accent">
         <SideBar />
         <div className="flex flex-1 flex-col">
           <SearchBar />
