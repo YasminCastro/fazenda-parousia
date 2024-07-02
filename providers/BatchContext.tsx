@@ -39,10 +39,6 @@ export const BatchProvider: React.FC<{ children?: React.ReactNode }> = ({
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log("BATCH CHANGED", selectedBatch);
-  }, [selectedBatch]);
-
   const value = useMemo(
     () => ({
       batch,
