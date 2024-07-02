@@ -18,9 +18,9 @@ interface IValue {
   batch: BatchCombobox[];
 }
 
-const BatchContext = createContext({} as IValue);
+const FilterContext = createContext({} as IValue);
 
-export const BatchProvider: React.FC<{ children?: React.ReactNode }> = ({
+export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const [selectedBatch, setSelectedBatch] = useState("Fazenda");
@@ -49,8 +49,8 @@ export const BatchProvider: React.FC<{ children?: React.ReactNode }> = ({
   );
 
   return (
-    <BatchContext.Provider value={value}>{children}</BatchContext.Provider>
+    <FilterContext.Provider value={value}>{children}</FilterContext.Provider>
   );
 };
 
-export const useBatch = (): IValue => useContext(BatchContext);
+export const useFilterContext = (): IValue => useContext(FilterContext);

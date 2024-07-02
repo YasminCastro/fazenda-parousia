@@ -19,12 +19,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useState } from "react";
-import { useBatch } from "@/providers/BatchContext";
+import { useFilterContext } from "@/providers/FilterContext";
 
 export function ComboboxHeader() {
   const [open, setOpen] = useState(false);
 
-  const { batch, setSelectedBatch, selectedBatch } = useBatch();
+  const { batch, setSelectedBatch, selectedBatch } = useFilterContext();
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

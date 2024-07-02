@@ -14,7 +14,7 @@ import {
   List,
 } from "lucide-react";
 import axios from "axios";
-import { useBatch } from "@/providers/BatchContext";
+import { useFilterContext } from "@/providers/FilterContext";
 
 interface ICard {
   title: string;
@@ -27,7 +27,7 @@ interface ICard {
 export default function Cards() {
   const [data, setData] = useState([]);
 
-  const { selectedBatch } = useBatch();
+  const { selectedBatch } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {

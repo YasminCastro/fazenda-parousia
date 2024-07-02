@@ -3,11 +3,11 @@
 import SearchBar from "@/components/Global/TopBar";
 import SideBar from "@/components/Global/SideBar";
 import Dashboard from "@/components/Pages/Dashboard";
-import { BatchProvider } from "@/providers/BatchContext";
+import { FilterProvider } from "@/providers/FilterContext";
 
 export default function PageDashboard() {
   return (
-    <BatchProvider>
+    <FilterProvider>
       <main className="flex h-screen bg-accent">
         <SideBar />
         <div className="flex flex-1 flex-col">
@@ -15,6 +15,6 @@ export default function PageDashboard() {
           <Dashboard />
         </div>
       </main>
-    </BatchProvider>
+    </FilterProvider>
   );
 }
