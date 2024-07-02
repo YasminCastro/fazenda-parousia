@@ -23,8 +23,8 @@ const BatchContext = createContext({} as IValue);
 export const BatchProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [selectedBatch, setSelectedBatch] = useState("farm");
-  const [batch, setBatch] = useState([{ value: "farm", label: "Fazenda" }]);
+  const [selectedBatch, setSelectedBatch] = useState("Fazenda");
+  const [batch, setBatch] = useState([{ value: "Fazenda", label: "Fazenda" }]);
 
   useEffect(() => {
     const fetchData = async () => {

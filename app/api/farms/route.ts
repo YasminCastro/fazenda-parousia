@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    let batchParsed = [{ value: "farm", label: "Fazenda" }];
+    let batchParsed = [{ value: "Fazenda", label: "Fazenda" }];
 
     const { data } = await api.get("/data");
     const batchs = Object.keys(data[0]).filter((key) => key.startsWith("Lote"));
