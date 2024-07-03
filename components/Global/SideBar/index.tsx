@@ -10,7 +10,7 @@ import { DatePicker } from "../DatePicker";
 export default function SideBar() {
   const pathname = usePathname();
   return (
-    <div className="flex h-screen w-full max-w-60 flex-col items-center bg-card shadow-lg">
+    <div className="fixed flex h-screen w-full max-w-60 flex-col items-center bg-card shadow-lg">
       {/* TITLE */}
       <h2 className="pt-7 text-xl font-bold text-blue-600">
         Pecuária Leiteira

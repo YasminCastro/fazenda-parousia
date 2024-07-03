@@ -10,7 +10,7 @@ export default function PageDashboard() {
     <FilterProvider>
       <main className="flex bg-accent">
         <SideBar />
-        <div className="flex flex-1 flex-col">
+        <div className="ml-60 flex flex-1 flex-col">
           <SearchBar />
           <Dashboard />
         </div>
