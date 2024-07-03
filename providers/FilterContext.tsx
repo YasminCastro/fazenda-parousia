@@ -13,12 +13,24 @@ interface BatchCombobox {
   label: string;
 }
 
+type CardType =
+  | "milkRevenue"
+  | "foodCost"
+  | "foodMargin"
+  | "investmentReturn"
+  | "milkProduction"
+  | "animalCount"
+  | "foodEfficiency"
+  | "mastite";
+
 interface IValue {
   selectedBatch: string;
   setSelectedBatch: React.Dispatch<React.SetStateAction<string>>;
   batch: BatchCombobox[];
   date: DateRange | undefined;
   setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
+  selectedCard: CardType;
+  setSelectedCard: React.Dispatch<React.SetStateAction<CardType>>;
 }
 
 const FilterContext = createContext({} as IValue);
@@ -33,6 +45,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
   });
+  const [selectedCard, setSelectedCard] = useState<CardType>("mastite");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,8 +67,18 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
       selectedBatch,
       date,
       setDate,
+      selectedCard,
+      setSelectedCard,
     }),
-    [batch, setSelectedBatch, selectedBatch, date, setDate],
+    [
+      batch,
+      setSelectedBatch,
+      selectedBatch,
+      date,
+      setDate,
+      selectedCard,
+      setSelectedCard,
+    ],
   );
 
   return (
