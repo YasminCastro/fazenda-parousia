@@ -18,8 +18,8 @@ export default function SimpleCard({
   color,
 }: IProps) {
   return (
-    <Card className="h-40 w-full rounded-3xl">
-      <CardContent className="flex h-full justify-between pt-6">
+    <Card className="h-36 w-full rounded-3xl">
+      <CardContent className="flex h-full justify-between p-5">
         <div className="grid-row-3 grid h-full">
           <CardDescription>{title}</CardDescription>
           <p className="text-3xl font-bold">{value}</p>
