@@ -14,7 +14,8 @@ import {
   List,
 } from "lucide-react";
 import axios from "axios";
-import { useFilterContext } from "@/providers/FilterContext";
+import { CardType, useFilterContext } from "@/providers/FilterContext";
+import styles from "./styles.module.css";
 
 interface ICard {
   title: string;
@@ -22,12 +23,17 @@ interface ICard {
   title2?: string;
   value2?: number;
   cardType: "simple" | "double";
+  key: CardType;
 }
 
 export default function Cards() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<ICard[]>([]);
 
-  const { selectedBatch } = useFilterContext();
+  const { selectedBatch, setSelectedCard } = useFilterContext();
+
+  const handleCardClick = (cardKey: CardType) => {
+    setSelectedCard(cardKey);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,24 +57,40 @@ export default function Cards() {
 
         if (card.cardType === "double" && card.title2) {
           return (
-            <DoubleCard
-              title={card.title}
-              value={card.value}
-              title2={card.title2}
-              value2={card.value2 || 0}
-              icon={icon}
-              color={color}
-            />
+            <button
+              className={`${styles.buttonWrapper}`}
+              onClick={() => {
+                handleCardClick(card.key);
+              }}
+              key={card.key}
+            >
+              <DoubleCard
+                title={card.title}
+                value={card.value}
+                title2={card.title2}
+                value2={card.value2 || 0}
+                icon={icon}
+                color={color}
+              />
+            </button>
           );
         }
 
         return (
-          <SimpleCard
-            title={card.title}
-            value={card.value}
-            icon={icon}
-            color={color}
-          />
+          <button
+            className={`${styles.buttonWrapper}`}
+            onClick={() => {
+              handleCardClick(card.key);
+            }}
+            key={card.key}
+          >
+            <SimpleCard
+              title={card.title}
+              value={card.value}
+              icon={icon}
+              color={color}
+            />
+          </button>
         );
       })}
     </div>

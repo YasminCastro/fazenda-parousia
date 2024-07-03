@@ -41,6 +41,7 @@ const dashboardCardsMapping: any = [
     cardType: "simple",
     title: "Receita do leite (R$)",
     kpi: "Receita do Leite (R$)",
+    key: "milkRevenue",
   },
   {
     cardType: "double",
@@ -48,6 +49,7 @@ const dashboardCardsMapping: any = [
     kpi: "Custo alimentação",
     title2: "Custo/kg de leite",
     kpi2: "Margem sobre alimentação (R$/kg)",
+    key: "foodCost",
   },
   {
     cardType: "double",
@@ -55,26 +57,31 @@ const dashboardCardsMapping: any = [
     kpi: "Margem sobre alimentação (R$/vaca/dia)",
     title2: "Margem/kg de leite",
     kpi2: "Margem sobre alimentação (R$/kg)",
+    key: "foodMargin",
   },
   {
     cardType: "simple",
     title: "Retorno sobre investimento (%)",
     kpi: "Retorno Investimento (%)",
+    key: "investmentReturn",
   },
   {
     cardType: "simple",
     title: "Produção do leite (kg)",
     kpi: "Média de produção (kg/vaca/dia)",
+    key: "milkProduction",
   },
   {
     cardType: "simple",
     title: "Quantidade de animais",
     kpi: "Número de Animais",
+    key: "animalCount",
   },
   {
     cardType: "simple",
     title: "Eficiência alimentar",
     kpi: "Eficiência Alimentar",
+    key: "foodEfficiency",
   },
   {
     cardType: "double",
@@ -82,5 +89,6 @@ const dashboardCardsMapping: any = [
     kpi: "Vacas Mastite",
     title2: "Carência",
     kpi2: "Vacas Carência Mastite",
+    key: "mastite",
   },
 ];

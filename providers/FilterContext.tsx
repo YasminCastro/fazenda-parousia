@@ -13,7 +13,7 @@ interface BatchCombobox {
   label: string;
 }
 
-type CardType =
+export type CardType =
   | "milkRevenue"
   | "foodCost"
   | "foodMargin"
