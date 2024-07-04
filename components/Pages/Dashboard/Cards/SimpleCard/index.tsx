@@ -1,4 +1,5 @@
 import { Card, CardContent, CardDescription } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { TrendingDown, TrendingUp } from "lucide-react";
 
@@ -17,6 +18,26 @@ export default function SimpleCard({
   icon,
   color,
 }: IProps) {
+  if (!title || !value) {
+    return (
+      <Card className="h-36 w-full rounded-3xl">
+        <CardContent className="flex h-full justify-between p-5">
+          <div className="grid-row-3 grid h-full">
+            <Skeleton className="h-4 w-40" />
+            <Skeleton className="h-8 w-36" />
+            {fromYesterday && <UpFromYesterday fromYesterday={fromYesterday} />}
+          </div>
+          <div
+            className={`flex h-14 w-14 items-center justify-center rounded-3xl`}
+            style={{ backgroundColor: color }}
+          >
+            {icon}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="h-36 w-full rounded-3xl">
       <CardContent className="flex h-full justify-between p-5">

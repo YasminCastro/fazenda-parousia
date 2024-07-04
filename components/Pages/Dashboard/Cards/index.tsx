@@ -26,8 +26,10 @@ interface ICard {
   key: CardType;
 }
 
+const defaultData = [{}, {}, {}, {}, {}, {}, {}, {}];
+
 export default function Cards() {
-  const [data, setData] = useState<ICard[]>([]);
+  const [data, setData] = useState<ICard[]>(defaultData as ICard[]);
 
   const { selectedBatch, setSelectedCard } = useFilterContext();
 
@@ -48,12 +50,10 @@ export default function Cards() {
     fetchData();
   }, [selectedBatch]);
 
-  if (!data) return <div> CARREGANDO....</div>;
-
   return (
     <div className="mt-4 grid grid-cols-4 gap-4">
-      {data.map((card: ICard) => {
-        const { icon, color } = getIconAndColor(card.title);
+      {data.map((card: ICard, index) => {
+        const { icon, color } = getIconAndColor(index);
 
         if (card.cardType === "double" && card.title2) {
           return (
@@ -97,44 +97,44 @@ export default function Cards() {
   );
 }
 
-const getIconAndColor = (title: string) => {
-  switch (title) {
-    case "Receita do leite (R$)":
+const getIconAndColor = (index: number) => {
+  switch (index) {
+    case 0:
       return {
         icon: <DollarSign color="#8280ff" size={36} />,
         color: "#e4e4ff",
       };
-    case "Custo - Alimentação (R$)":
+    case 1:
       return {
         icon: <ShoppingCart color="#fec53d" size={36} />,
         color: "#fef2d6",
       };
-    case "Margem sobre alimentação (R$)":
+    case 2:
       return {
         icon: <TrendingUp color="#4ad991" size={36} />,
         color: "#d9f7e7",
       };
-    case "Retorno sobre investimento (%)":
+    case 3:
       return {
         icon: <IterationCw color="#ff9871" size={36} />,
         color: "#ffded2",
       };
-    case "Produção do leite (kg)":
+    case 4:
       return {
         icon: <Milk color="#8280ff" size={36} />,
         color: "#e4e4ff",
       };
-    case "Quantidade de animais":
+    case 5:
       return {
         icon: <List color="#fec53d" size={36} />,
         color: "#fef2d6",
       };
-    case "Eficiência alimentar":
+    case 6:
       return {
         icon: <Activity color="#4ad991" size={36} />,
         color: "#d9f7e7",
       };
-    case "Mastite":
+    case 7:
       return {
         icon: <BriefcaseMedical color="#ff9871" size={36} />,
         color: "#ffded2",
