@@ -24,7 +24,7 @@ export default function SideBar() {
           <Gauge />
           Dashboard
         </Link>
-        <Link
+        {/* <Link
           href="/performance"
           className={`${styles.navLink} ${pathname === "/performance" ? styles.navLinkActive : styles.navLinkDefault}`}
         >
@@ -37,7 +37,7 @@ export default function SideBar() {
         >
           <CircleDollarSign />
           Econômico
-        </Link>
+        </Link> */}
       </nav>
       {/* DATE FILTER */}
 

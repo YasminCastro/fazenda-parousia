@@ -4,7 +4,7 @@ import Header from "./Header";
 
 export default function Dashboard() {
   return (
-    <div className="m-8">
+    <div className="m-8 h-screen">
       <Header />
       <Cards />
       <Graphs />
