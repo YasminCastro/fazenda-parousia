@@ -3,6 +3,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { TrendingDown, TrendingUp } from "lucide-react";
 
+import styles from "../styles.module.css";
+
 interface IProps {
   title: string;
   value: number;
@@ -20,17 +22,14 @@ export default function SimpleCard({
 }: IProps) {
   if (!title || !value) {
     return (
-      <Card className="h-36 w-full rounded-3xl">
-        <CardContent className="flex h-full justify-between p-5">
+      <Card className={styles.cardContainer}>
+        <CardContent className={styles.cardContent}>
           <div className="grid-row-3 grid h-full">
             <Skeleton className="h-4 w-40" />
             <Skeleton className="h-8 w-36" />
             {fromYesterday && <UpFromYesterday fromYesterday={fromYesterday} />}
           </div>
-          <div
-            className={`flex h-14 w-14 items-center justify-center rounded-3xl`}
-            style={{ backgroundColor: color }}
-          >
+          <div className={styles.cardIcon} style={{ backgroundColor: color }}>
             {icon}
           </div>
         </CardContent>
@@ -39,17 +38,14 @@ export default function SimpleCard({
   }
 
   return (
-    <Card className="h-36 w-full rounded-3xl">
-      <CardContent className="flex h-full justify-between p-5">
+    <Card className={styles.cardContainer}>
+      <CardContent className={styles.cardContent}>
         <div className="grid-row-3 grid h-full">
           <CardDescription>{title}</CardDescription>
           <p className="text-3xl font-bold">{value}</p>
           {fromYesterday && <UpFromYesterday fromYesterday={fromYesterday} />}
         </div>
-        <div
-          className={`flex h-14 w-14 items-center justify-center rounded-3xl`}
-          style={{ backgroundColor: color }}
-        >
+        <div className={styles.cardIcon} style={{ backgroundColor: color }}>
           {icon}
         </div>
       </CardContent>

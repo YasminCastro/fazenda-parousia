@@ -1,3 +1,15 @@
 .buttonWrapper {
   @apply m-0 w-full border-none bg-none p-0 text-left;
 }
+
+.cardIcon {
+  @apply flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-3xl;
+}
+
+.cardContainer {
+  @apply h-36 w-full rounded-3xl;
+}
+
+.cardContent {
+  @apply flex h-full justify-between p-5;
+}
