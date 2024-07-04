@@ -7,7 +7,9 @@ export default function Dashboard() {
     <div className="m-8 h-screen">
       <Header />
       <Cards />
-      <Graphs />
+      <div className="h-1/2">
+        <Graphs />
+      </div>
     </div>
   );
 }

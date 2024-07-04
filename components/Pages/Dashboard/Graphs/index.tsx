@@ -5,16 +5,10 @@ import { useEffect } from "react";
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
 
-  useEffect(() => {
-    console.log("Selected Card in useEffect:", selectedCard);
-  }, [selectedCard]);
+  useEffect(() => {}, [selectedCard]);
 
   if (selectedCard === "mastite") {
-    return (
-      <div className="h-1/2">
-        <MastiteGraph />
-      </div>
-    );
+    return <MastiteGraph />;
   }
   return <div className="h-1/2"></div>;
 }
