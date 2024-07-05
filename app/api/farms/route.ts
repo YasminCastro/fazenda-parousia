@@ -10,7 +10,7 @@ export async function GET() {
     const batchs = Object.keys(data[0]).filter((key) => key.startsWith("Lote"));
 
     for (let bach of batchs) {
-      const value = bach.trim();
+      const value = bach.replaceAll(" ", "");
       batchParsed.push({ value, label: bach });
     }
 
