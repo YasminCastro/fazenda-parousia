@@ -1,4 +1,6 @@
+import { formatXAxis } from "@/utils/formatXAxis";
 import axios from "axios";
+import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import {
   BarChart,
@@ -28,6 +30,7 @@ export default function MilkRevenueGraph() {
 
     fetchData();
   }, []);
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
@@ -42,7 +45,7 @@ export default function MilkRevenueGraph() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date_record" />
+        <XAxis dataKey="date_record" tickFormatter={formatXAxis} />
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />

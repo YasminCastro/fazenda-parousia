@@ -1,4 +1,5 @@
 import { useFilterContext } from "@/providers/FilterContext";
+import { formatXAxis } from "@/utils/formatXAxis";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
@@ -43,7 +44,7 @@ export default function MastiteGraph() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date_record" />
+        <XAxis dataKey="date_record" tickFormatter={formatXAxis} />
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
