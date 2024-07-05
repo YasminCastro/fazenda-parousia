@@ -13,9 +13,9 @@ interface GroupedData {
   [key: string]: string | number;
 }
 
-export async function GET() {
+export async function MilkRevenue() {
   try {
-    const { data } = await api.get<KPIData[]>("/mastite");
+    const { data } = await api.get<KPIData[]>("/graph/receita-leite");
 
     const groupedData = data.reduce<Record<string, GroupedData>>(
       (acc: any, current: any) => {

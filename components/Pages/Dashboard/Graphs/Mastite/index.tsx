@@ -14,25 +14,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { date: "1", uv: 300, pv: 456 },
-  { date: "2", uv: 145, pv: 230 },
-  { date: "3", uv: 100, pv: 345 },
-  { date: "4", uv: 8, pv: 450 },
-  { date: "5", uv: 100, pv: 321 },
-  { date: "6", uv: 9, pv: 235 },
-  { date: "7", uv: 53, pv: 267 },
-  { date: "8", uv: 252, pv: 378 },
-  { date: "9", uv: 79, pv: 210 },
-];
-
 export default function MastiteGraph() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/mastite`);
+        const response = await axios.get(`/api/graph/mastite`);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
