@@ -15,7 +15,7 @@ interface GroupedData {
 
 export async function GET() {
   try {
-    const { data } = await api.get<KPIData[]>("/graph/mastite");
+    const { data } = await api.get<KPIData[]>("/mastite");
 
     const groupedData = data.reduce<Record<string, GroupedData>>(
       (acc: any, current: any) => {

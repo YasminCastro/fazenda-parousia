@@ -3,9 +3,13 @@ import api from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 interface KPIData {
-  name_kpi: string;
   date_record: string;
-  value: number;
+  loteA: number;
+  loteB: number;
+  loteC: number;
+  loteD: number;
+  loteE: number;
+  loteN: number;
 }
 
 interface GroupedData {
@@ -13,33 +17,17 @@ interface GroupedData {
   [key: string]: string | number;
 }
 
-export async function MilkRevenue() {
+export async function GET() {
   try {
-    const { data } = await api.get<KPIData[]>("/graph/receita-leite");
+    const { data } = await api.get<KPIData[]>("/receita-leite");
 
-    const groupedData = data.reduce<Record<string, GroupedData>>(
-      (acc: any, current: any) => {
-        const { name_kpi, date_record, value } = current;
-
-        if (!acc[date_record]) {
-          acc[date_record] = { date_record };
-        }
-
-        acc[date_record][name_kpi] = value;
-        return acc;
-      },
-      {},
-    );
-
-    const result = Object.values(groupedData);
-
-    result.sort((a, b) => {
+    data.sort((a, b) => {
       return (
         new Date(a.date_record).getTime() - new Date(b.date_record).getTime()
       );
     });
 
-    return Response.json(result);
+    return Response.json(data);
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
   }
