@@ -62,7 +62,7 @@ export default function Cards() {
               onClick={() => {
                 handleCardClick(card.key);
               }}
-              key={card.key}
+              key={`${card.key}-${index}`}
             >
               <DoubleCard
                 title={card.title}
@@ -82,7 +82,7 @@ export default function Cards() {
             onClick={() => {
               handleCardClick(card.key);
             }}
-            key={card.key}
+            key={`${card.key}-${index}`}
           >
             <SimpleCard
               title={card.title}
