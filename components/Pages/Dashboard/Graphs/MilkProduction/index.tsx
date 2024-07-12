@@ -75,6 +75,7 @@ export default function MilkProductionGraph() {
                 stackId="a"
                 name={item.label}
                 fill={getBarColor(index)}
+                key={item.label}
               />
             );
           })}

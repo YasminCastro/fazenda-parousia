@@ -75,6 +75,7 @@ export default function MilkRevenueGraph() {
                 stackId="a"
                 name={item.label}
                 fill={getBarColor(index)}
+                key={item.label}
               />
             );
           })}
