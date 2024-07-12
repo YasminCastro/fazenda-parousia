@@ -38,6 +38,13 @@ def get_producao_leite():
     df =  df.sort_values('Data')
     return df.to_json(orient='records')
 
+@app.get('/quantidade-animais')
+def get_quantidade_animais():
+    df = pd.read_json('quantidade-animais.json')
+    df['date_record'] = pd.to_datetime(df['Data'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('Data')
+    return df.to_json(orient='records')
+
 
 if __name__ == '__main__':
    app.run(host="0.0.0.0",port=8001, threaded=True, debug=True)
