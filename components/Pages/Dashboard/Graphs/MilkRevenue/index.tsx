@@ -65,7 +65,6 @@ export default function MilkRevenueGraph() {
         )}
         {selectedBatch === "Fazenda" &&
           batch.map((item, index) => {
-            console.log(item);
             if (item.value === "Fazenda") {
               return;
             }
