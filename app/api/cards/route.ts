@@ -77,7 +77,7 @@ const dashboardCardsMapping: any = [
     cardType: "simple",
     title: "Quantidade de animais",
     kpi: "Número de Animais",
-    key: "animalCount",
+    key: "numberOfAnimals",
   },
   {
     cardType: "simple",

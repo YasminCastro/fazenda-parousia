@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import MilkRevenueGraph from "./MilkRevenue";
 import MilkProductionGraph from "./MilkProduction";
 import { Card } from "@/components/ui/card";
+import NumberOfAnimalsGraph from "./NumberOfAnimals";
 
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
@@ -19,6 +20,7 @@ export default function Graphs() {
         {selectedCard === "mastite" && <MastiteGraph />}
         {selectedCard === "milkRevenue" && <MilkRevenueGraph />}
         {selectedCard === "milkProduction" && <MilkProductionGraph />}
+        {selectedCard === "numberOfAnimals" && <NumberOfAnimalsGraph />}
       </div>
     </Card>
   );
@@ -32,6 +34,8 @@ const getGraphTitle = (key: string) => {
       return "Receita do leite (R$)";
     case "milkProduction":
       return "Produção do leite (kg)";
+    case "numberOfAnimals":
+      return "Quantidade de animais";
     default:
       return "";
   }

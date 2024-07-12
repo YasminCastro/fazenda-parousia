@@ -19,7 +19,7 @@ export type CardType =
   | "foodMargin"
   | "investmentReturn"
   | "milkProduction"
-  | "animalCount"
+  | "numberOfAnimals"
   | "foodEfficiency"
   | "mastite";
 
