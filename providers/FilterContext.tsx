@@ -26,7 +26,7 @@ export type CardType =
 interface IValue {
   selectedBatch: string;
   setSelectedBatch: React.Dispatch<React.SetStateAction<string>>;
-  batch: BatchCombobox[];
+  batches: BatchCombobox[];
   date: DateRange | undefined;
   setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
   selectedCard: CardType;
@@ -39,7 +39,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const [selectedBatch, setSelectedBatch] = useState("all");
-  const [batch, setBatch] = useState<BatchCombobox[]>([
+  const [batches, setBatches] = useState<BatchCombobox[]>([
     { value: "all", label: "Fazenda" },
   ]);
   const [date, setDate] = useState<DateRange | undefined>({
@@ -51,7 +51,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
     const fetchData = async () => {
       try {
         const response = await axios.get("/api/farm");
-        setBatch(response.data);
+        setBatches(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -62,7 +62,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   const value = useMemo(
     () => ({
-      batch,
+      batches,
       setSelectedBatch,
       selectedBatch,
       date,
@@ -71,7 +71,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
       setSelectedCard,
     }),
     [
-      batch,
+      batches,
       setSelectedBatch,
       selectedBatch,
       date,

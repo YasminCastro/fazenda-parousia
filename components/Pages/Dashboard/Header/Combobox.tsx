@@ -24,7 +24,7 @@ import { useFilterContext } from "@/providers/FilterContext";
 export function ComboboxHeader() {
   const [open, setOpen] = useState(false);
 
-  const { batch, setSelectedBatch, selectedBatch } = useFilterContext();
+  const { batches, setSelectedBatch, selectedBatch } = useFilterContext();
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -35,7 +35,7 @@ export function ComboboxHeader() {
           aria-expanded={open}
           className="w-36 justify-between bg-slate-50 text-gray-400"
         >
-          {batch.find((farm) => farm.value === selectedBatch)?.label}
+          {batches.find((farm) => farm.value === selectedBatch)?.label}
           <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -45,7 +45,7 @@ export function ComboboxHeader() {
           <CommandList>
             <CommandEmpty>Nenhuma fazenda encontrada.</CommandEmpty>
             <CommandGroup>
-              {batch.map((farm) => (
+              {batches.map((farm) => (
                 <CommandItem
                   key={farm.value}
                   value={farm.value}

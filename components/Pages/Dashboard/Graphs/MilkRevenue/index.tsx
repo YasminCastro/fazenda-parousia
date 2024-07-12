@@ -19,7 +19,7 @@ import {
 
 export default function MilkRevenueGraph() {
   const [data, setData] = useState([]);
-  const { batch, selectedBatch } = useFilterContext();
+  const { batches, selectedBatch } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,11 +61,11 @@ export default function MilkRevenueGraph() {
             dataKey="value"
             stackId="a"
             name={formatBatchName(selectedBatch)}
-            fill={getBarColorByName(batch, selectedBatch)}
+            fill={getBarColorByName(batches, selectedBatch)}
           />
         )}
         {selectedBatch === "all" &&
-          batch.map((item, index) => {
+          batches.map((item, index) => {
             if (item.value === "all") {
               return;
             }
