@@ -1,4 +1,5 @@
 import { useFilterContext } from "@/providers/FilterContext";
+import formatBatchName from "@/utils/formatBatchName";
 import { formatXAxis } from "@/utils/formatXAxis";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -22,10 +23,9 @@ export default function MilkRevenueGraph() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let url = "/api/graph/milk-revenue";
-        if (selectedBatch !== "Fazenda") url += `?batch=${selectedBatch}`;
-
-        const response = await axios.get(url);
+        const response = await axios.get(
+          `/api/graph/milk-revenue?batch=${selectedBatch}`,
+        );
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -55,22 +55,22 @@ export default function MilkRevenueGraph() {
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush dataKey="date_record" height={30} stroke={getBarColor(0)} />
-        {selectedBatch !== "Fazenda" && (
+        {selectedBatch !== "all" && (
           <Bar
             dataKey="value"
             stackId="a"
-            name={selectedBatch}
+            name={formatBatchName(selectedBatch)}
             fill="#8280ff"
           />
         )}
-        {selectedBatch === "Fazenda" &&
+        {selectedBatch === "all" &&
           batch.map((item, index) => {
-            if (item.value === "Fazenda") {
+            if (item.value === "all") {
               return;
             }
             return (
               <Bar
-                dataKey={item.value}
+                dataKey={formatBatchName(item.value, true)}
                 stackId="a"
                 name={item.label}
                 fill={getBarColor(index)}

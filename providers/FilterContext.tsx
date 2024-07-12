@@ -60,10 +60,6 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(selectedBatch);
-  }, [selectedBatch]);
-
   const value = useMemo(
     () => ({
       batch,
