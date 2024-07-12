@@ -1,33 +1,43 @@
 import api from "@/lib/api";
+import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
 interface KPIData {
   date_record: string;
-  loteA: number;
-  loteB: number;
-  loteC: number;
-  loteD: number;
-  loteE: number;
-  loteN: number;
+  LoteA?: number;
+  LoteB?: number;
+  LoteC?: number;
+  LoteD?: number;
+  LoteE?: number;
+  LoteN?: number;
 }
 
-interface GroupedData {
-  date_record: string;
-  [key: string]: string | number;
-}
-
-export async function GET() {
+type Batch = "LoteA" | "LoteB" | "LoteC" | "LoteD" | "LoteE" | "LoteN";
+export async function GET(request: NextRequest) {
   try {
+    const url = new URL(request.nextUrl);
+    const batch = url.searchParams.get("batch") as Batch;
+
     const { data } = await api.get<KPIData[]>("/receita-leite");
 
-    data.sort((a, b) => {
+    let response: KPIData[] = data;
+    if (batch) {
+      response = response.map((item: KPIData) => {
+        return {
+          date_record: item.date_record,
+          value: item[batch],
+        };
+      });
+    }
+
+    response.sort((a, b) => {
       return (
         new Date(a.date_record).getTime() - new Date(b.date_record).getTime()
       );
     });
 
-    return Response.json(data);
+    return Response.json(response);
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
   }

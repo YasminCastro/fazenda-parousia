@@ -7,9 +7,7 @@ import MilkProductionGraph from "./MilkProduction";
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
 
-  useEffect(() => {
-    console.log(selectedCard);
-  }, [selectedCard]);
+  useEffect(() => {}, [selectedCard]);
 
   if (selectedCard === "mastite") {
     return <MastiteGraph />;

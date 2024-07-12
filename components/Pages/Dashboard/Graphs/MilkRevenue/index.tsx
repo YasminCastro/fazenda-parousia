@@ -1,7 +1,6 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import { formatXAxis } from "@/utils/formatXAxis";
 import axios from "axios";
-import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import {
   BarChart,
@@ -23,7 +22,10 @@ export default function MilkRevenueGraph() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/graph/milk-revenue`);
+        let url = "/api/graph/milk-revenue";
+        if (selectedBatch !== "Fazenda") url += `?batch=${selectedBatch}`;
+
+        const response = await axios.get(url);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -31,7 +33,7 @@ export default function MilkRevenueGraph() {
     };
 
     fetchData();
-  }, []);
+  }, [selectedBatch]);
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -52,12 +54,18 @@ export default function MilkRevenueGraph() {
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="date_record" height={30} stroke="#8884d8" />
+        <Brush dataKey="date_record" height={30} stroke={getBarColor(0)} />
         {selectedBatch !== "Fazenda" && (
-          <Bar dataKey="" stackId="a" name="" fill="#8280ff" />
+          <Bar
+            dataKey="value"
+            stackId="a"
+            name={selectedBatch}
+            fill="#8280ff"
+          />
         )}
         {selectedBatch === "Fazenda" &&
           batch.map((item, index) => {
+            console.log(item);
             if (item.value === "Fazenda") {
               return;
             }
