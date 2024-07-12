@@ -6,9 +6,11 @@ export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.nextUrl);
-    const batch = url.searchParams.get("batch");
+    let batch = url.searchParams.get("batch");
 
     if (!batch) throw new Error("Invalid batch");
+
+    if (batch !== "Fazenda") batch = batch.slice(0, -1) + " " + batch.slice(-1);
 
     const { data } = await api.get("/data");
 
