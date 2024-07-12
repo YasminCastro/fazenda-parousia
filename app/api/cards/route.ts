@@ -6,11 +6,11 @@ export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.nextUrl);
-    let batch = url.searchParams.get("batch");
+    let batchKey = url.searchParams.get("batch");
 
-    if (!batch) throw new Error("Invalid batch");
+    if (!batchKey) throw new Error("Invalid batch");
 
-    if (batch !== "Fazenda") batch = batch.slice(0, -1) + " " + batch.slice(-1);
+    if (batchKey !== "all") batchKey = `Lote ${batchKey.toUpperCase()}`;
 
     const { data } = await api.get("/data");
 
@@ -20,13 +20,13 @@ export async function GET(request: NextRequest) {
       let newKPI = { ...card };
       const foundKPI = data.find((kpi: any) => kpi.KPI === card.kpi);
       if (foundKPI) {
-        newKPI.value = foundKPI[batch];
+        newKPI.value = foundKPI[batchKey];
       }
 
       if (card.cardType === "double" && card.kpi2) {
         const foundKPI2 = data.find((kpi: any) => kpi.KPI === card.kpi2);
         if (foundKPI2) {
-          newKPI.value2 = foundKPI2[batch];
+          newKPI.value2 = foundKPI2[batchKey];
         }
       }
       dashboardCards.push(newKPI);

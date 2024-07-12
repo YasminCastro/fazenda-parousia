@@ -38,9 +38,9 @@ const FilterContext = createContext({} as IValue);
 export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [selectedBatch, setSelectedBatch] = useState("Fazenda");
+  const [selectedBatch, setSelectedBatch] = useState("all");
   const [batch, setBatch] = useState<BatchCombobox[]>([
-    { value: "Fazenda", label: "Fazenda" },
+    { value: "all", label: "Fazenda" },
   ]);
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
@@ -50,7 +50,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/farms");
+        const response = await axios.get("/api/farm");
         setBatch(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -59,6 +59,10 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log(selectedBatch);
+  }, [selectedBatch]);
 
   const value = useMemo(
     () => ({
