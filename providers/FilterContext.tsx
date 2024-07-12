@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { DateRange } from "react-day-picker";
 
-interface BatchCombobox {
+export interface BatchCombobox {
   value: string;
   label: string;
 }

@@ -1,7 +1,7 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import formatBatchName from "@/utils/formatBatchName";
 import { formatXAxis } from "@/utils/formatXAxis";
-import getBarColor from "@/utils/getGraphColors";
+import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
@@ -55,13 +55,13 @@ export default function MilkProductionGraph() {
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="date_record" height={30} stroke="#8884d8" />
+        <Brush dataKey="date_record" height={30} stroke="#3b82f6" />
         {selectedBatch !== "all" && (
           <Bar
             dataKey="value"
             stackId="a"
             name={formatBatchName(selectedBatch)}
-            fill="#8280ff"
+            fill={getBarColorByName(batch, selectedBatch)}
           />
         )}
         {selectedBatch === "all" &&
