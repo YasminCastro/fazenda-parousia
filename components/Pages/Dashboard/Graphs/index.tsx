@@ -8,9 +8,7 @@ import { Card } from "@/components/ui/card";
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
 
-  useEffect(() => {
-    console.log(selectedCard);
-  }, [selectedCard]);
+  useEffect(() => {}, [selectedCard]);
 
   return (
     <Card className="mt-4 flex h-full w-full flex-col rounded-3xl p-3">
