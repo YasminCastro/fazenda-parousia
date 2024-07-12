@@ -1,33 +1,35 @@
 import api from "@/lib/api";
+import formatBatchName from "@/utils/formatBatchName";
+import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-interface KPIData {
-  date_record: string;
-  loteA: number;
-  loteB: number;
-  loteC: number;
-  loteD: number;
-  loteE: number;
-  loteN: number;
-}
-
-interface GroupedData {
-  date_record: string;
-  [key: string]: string | number;
-}
-
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const { data } = await api.get<KPIData[]>("/producao-leite");
+    const url = new URL(request.nextUrl);
+    const batch = url.searchParams.get("batch");
 
-    data.sort((a, b) => {
+    let key = "";
+
+    if (batch && batch !== "all") {
+      key = formatBatchName(batch, true);
+    }
+
+    const { data } = await api.get("/producao-leite");
+
+    const response = data.map((item: any) => {
+      if (batch === "all") return item;
+
+      return { date_record: item.date_record, value: item[key] };
+    });
+
+    response.sort((a: any, b: any) => {
       return (
         new Date(a.date_record).getTime() - new Date(b.date_record).getTime()
       );
     });
 
-    return Response.json(data);
+    return Response.json(response);
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
   }
