@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
     let array = Object.entries(data[0])
       .filter(([key, value]) => typeof value === "number" && key !== "Fazenda")
       .map(([key, value]) => ({
+        name: key,
         key,
         value,
       }));
