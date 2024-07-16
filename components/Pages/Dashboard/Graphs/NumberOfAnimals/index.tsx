@@ -1,5 +1,5 @@
 import { useFilterContext } from "@/providers/FilterContext";
-import { getBarColor } from "@/utils/getGraphColors";
+import { getBarColorByName } from "@/utils/getGraphColors";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -7,7 +7,7 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
 export default function NumberOfAnimals() {
   const [data, setData] = useState([]);
-  const { selectedBatch } = useFilterContext();
+  const { batches, selectedBatch } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,9 +28,19 @@ export default function NumberOfAnimals() {
     <div className="flex h-full w-full flex-row">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
-          <Pie dataKey="value" data={data} cx="50%" cy="50%" label>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={getBarColor(index)} />
+          <Pie
+            dataKey="value"
+            data={data}
+            cx="50%"
+            cy="50%"
+            label
+            animationDuration={700}
+          >
+            {data.map((entry: any, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={getBarColorByName(batches, entry.key)}
+              />
             ))}
           </Pie>
           <Tooltip />
@@ -42,7 +52,7 @@ export default function NumberOfAnimals() {
             <span
               className="mr-2 inline-block h-4 w-4"
               style={{
-                backgroundColor: getBarColor(index),
+                backgroundColor: getBarColorByName(batches, entry.key),
               }}
             ></span>
             <p style={{ margin: 0 }}>{entry.name}</p>

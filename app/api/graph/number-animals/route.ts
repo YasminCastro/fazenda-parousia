@@ -15,13 +15,13 @@ export async function GET(request: NextRequest) {
       .filter(([key, value]) => typeof value === "number" && key !== "Fazenda")
       .map(([key, value]) => ({
         name: key,
-        key,
+        key: key.substring(key.length - 1).toLocaleLowerCase(),
         value,
       }));
 
     if (batch && batch !== "all") {
       const key = formatBatchName(batch);
-      array = array.filter((item) => item.key === key);
+      array = array.filter((item) => item.name === key);
     }
 
     return Response.json(array);
