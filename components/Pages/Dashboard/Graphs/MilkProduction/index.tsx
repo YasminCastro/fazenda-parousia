@@ -65,7 +65,7 @@ export default function MilkProductionGraph() {
           />
         )}
         {selectedBatch === "all" &&
-          batches.map((item, index) => {
+          batches.map((item: any, index) => {
             if (item.value === "all") {
               return;
             }

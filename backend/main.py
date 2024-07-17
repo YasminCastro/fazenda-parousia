@@ -54,6 +54,12 @@ def get_custo_leite():
     return df.to_json(orient='records')
 
 
+@app.get('/eficiencia-alimentar')
+def get_eficiencia_alimentar():
+    df = pd.read_json('eficiencia-alimentar.json')
+    return df.to_json(orient='records')
+
+
 
 if __name__ == '__main__':
    app.run(host="0.0.0.0",port=8001, threaded=True, debug=True)

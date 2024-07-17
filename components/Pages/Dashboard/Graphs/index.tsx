@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import NumberOfAnimalsGraph from "./NumberOfAnimals";
 import FoodCostGraph from "./FoodCost";
 import FoodMarginGraph from "./FoodMargin";
+import FoodEfficencyGraph from "./FoodEfficiency";
 
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
@@ -25,7 +26,7 @@ export default function Graphs() {
         {/* {selectedCard === "investmentReturn" && <FoodCostGraph />} */}
         {selectedCard === "milkProduction" && <MilkProductionGraph />}
         {selectedCard === "numberOfAnimals" && <NumberOfAnimalsGraph />}
-        {/* {selectedCard === "foodEfficiency" && <FoodCostGraph />} */}
+        {selectedCard === "foodEfficiency" && <FoodEfficencyGraph />}
         {selectedCard === "mastite" && <MastiteGraph />}
       </div>
     </Card>
@@ -42,6 +43,8 @@ const getGraphTitle = (key: string) => {
       return "Produção do leite (kg)";
     case "numberOfAnimals":
       return "Quantidade de animais";
+    case "foodEfficiency":
+      return "Eficiência Alimentar";
     default:
       return "";
   }

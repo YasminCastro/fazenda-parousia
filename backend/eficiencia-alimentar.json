@@ -1,0 +1,281 @@
+[
+  {
+    "date_record": "2024-03-01T00:00:00.000",
+    "LoteA": 1.44,
+    "LoteB": 1.19,
+    "LoteC": 1.98,
+    "LoteD": 1.77,
+    "LoteN": 1.72,
+    "Fazenda": 1.37
+  },
+  {
+    "date_record": "2024-03-02T00:00:00.000",
+    "LoteA": 1.19,
+    "LoteB": 1.19,
+    "LoteC": 1.32,
+    "LoteD": 1.02,
+    "LoteN": 1.8,
+    "Fazenda": 1.57
+  },
+  {
+    "date_record": "2024-03-03T00:00:00.000",
+    "LoteA": 1.64,
+    "LoteB": 1.95,
+    "LoteC": 1.82,
+    "LoteD": 1.73,
+    "LoteN": 1.42,
+    "Fazenda": 1.25
+  },
+  {
+    "date_record": "2024-03-04T00:00:00.000",
+    "LoteA": 1.01,
+    "LoteB": 1.37,
+    "LoteC": 1.39,
+    "LoteD": 1.7,
+    "LoteN": 1.8,
+    "Fazenda": 1.31
+  },
+  {
+    "date_record": "2024-03-05T00:00:00.000",
+    "LoteA": 1.3,
+    "LoteB": 1.2,
+    "LoteC": 1.83,
+    "LoteD": 1.71,
+    "LoteN": 1.82,
+    "Fazenda": 1.71
+  },
+  {
+    "date_record": "2024-03-06T00:00:00.000",
+    "LoteA": 1.63,
+    "LoteB": 1.02,
+    "LoteC": 1.49,
+    "LoteD": 1.93,
+    "LoteN": 1.78,
+    "Fazenda": 1.58
+  },
+  {
+    "date_record": "2024-03-07T00:00:00.000",
+    "LoteA": 1.55,
+    "LoteB": 1.15,
+    "LoteC": 1.83,
+    "LoteD": 1.89,
+    "LoteN": 1.64,
+    "Fazenda": 1.24
+  },
+  {
+    "date_record": "2024-03-08T00:00:00.000",
+    "LoteA": 1.57,
+    "LoteB": 1.12,
+    "LoteC": 1.99,
+    "LoteD": 1.08,
+    "LoteN": 1.92,
+    "Fazenda": 1.04
+  },
+  {
+    "date_record": "2024-03-09T00:00:00.000",
+    "LoteA": 1.87,
+    "LoteB": 1.24,
+    "LoteC": 1.96,
+    "LoteD": 1.51,
+    "LoteN": 1.63,
+    "Fazenda": 1.89
+  },
+  {
+    "date_record": "2024-03-10T00:00:00.000",
+    "LoteA": 1.67,
+    "LoteB": 1.57,
+    "LoteC": 1.51,
+    "LoteD": 1.01,
+    "LoteN": 1.1,
+    "Fazenda": 1.27
+  },
+  {
+    "date_record": "2024-03-11T00:00:00.000",
+    "LoteA": 1.01,
+    "LoteB": 1.52,
+    "LoteC": 1.76,
+    "LoteD": 1.63,
+    "LoteN": 1.41,
+    "Fazenda": 1.25
+  },
+  {
+    "date_record": "2024-03-12T00:00:00.000",
+    "LoteA": 1.94,
+    "LoteB": 1.54,
+    "LoteC": 1.48,
+    "LoteD": 1.23,
+    "LoteN": 1.51,
+    "Fazenda": 1.41
+  },
+  {
+    "date_record": "2024-03-13T00:00:00.000",
+    "LoteA": 1.47,
+    "LoteB": 1.21,
+    "LoteC": 1.49,
+    "LoteD": 1.06,
+    "LoteN": 1.73,
+    "Fazenda": 1.89
+  },
+  {
+    "date_record": "2024-03-14T00:00:00.000",
+    "LoteA": 1.43,
+    "LoteB": 1.95,
+    "LoteC": 1.05,
+    "LoteD": 1.04,
+    "LoteN": 1.5,
+    "Fazenda": 1.55
+  },
+  {
+    "date_record": "2024-03-15T00:00:00.000",
+    "LoteA": 1.56,
+    "LoteB": 1.94,
+    "LoteC": 1.04,
+    "LoteD": 1.45,
+    "LoteN": 1.29,
+    "Fazenda": 1.25
+  },
+  {
+    "date_record": "2024-03-16T00:00:00.000",
+    "LoteA": 1.79,
+    "LoteB": 1.89,
+    "LoteC": 1.79,
+    "LoteD": 1.17,
+    "LoteN": 1.19,
+    "Fazenda": 1.04
+  },
+  {
+    "date_record": "2024-03-17T00:00:00.000",
+    "LoteA": 1.83,
+    "LoteB": 1.08,
+    "LoteC": 1.88,
+    "LoteD": 1.55,
+    "LoteN": 1.68,
+    "Fazenda": 1.71
+  },
+  {
+    "date_record": "2024-03-18T00:00:00.000",
+    "LoteA": 1.27,
+    "LoteB": 1.22,
+    "LoteC": 1.39,
+    "LoteD": 1.95,
+    "LoteN": 1.66,
+    "Fazenda": 1.02
+  },
+  {
+    "date_record": "2024-03-19T00:00:00.000",
+    "LoteA": 1.84,
+    "LoteB": 1.52,
+    "LoteC": 1.61,
+    "LoteD": 1.17,
+    "LoteN": 1.98,
+    "Fazenda": 1.97
+  },
+  {
+    "date_record": "2024-03-20T00:00:00.000",
+    "LoteA": 1.48,
+    "LoteB": 1.33,
+    "LoteC": 1.0,
+    "LoteD": 1.04,
+    "LoteN": 1.88,
+    "Fazenda": 1.38
+  },
+  {
+    "date_record": "2024-03-21T00:00:00.000",
+    "LoteA": 1.12,
+    "LoteB": 1.05,
+    "LoteC": 1.12,
+    "LoteD": 1.6,
+    "LoteN": 1.38,
+    "Fazenda": 1.44
+  },
+  {
+    "date_record": "2024-03-22T00:00:00.000",
+    "LoteA": 1.99,
+    "LoteB": 1.13,
+    "LoteC": 1.27,
+    "LoteD": 1.97,
+    "LoteN": 1.06,
+    "Fazenda": 1.49
+  },
+  {
+    "date_record": "2024-03-23T00:00:00.000",
+    "LoteA": 1.96,
+    "LoteB": 1.66,
+    "LoteC": 1.58,
+    "LoteD": 1.35,
+    "LoteN": 1.4,
+    "Fazenda": 1.7
+  },
+  {
+    "date_record": "2024-03-24T00:00:00.000",
+    "LoteA": 1.11,
+    "LoteB": 1.67,
+    "LoteC": 1.28,
+    "LoteD": 1.73,
+    "LoteN": 1.27,
+    "Fazenda": 1.65
+  },
+  {
+    "date_record": "2024-03-25T00:00:00.000",
+    "LoteA": 1.29,
+    "LoteB": 1.22,
+    "LoteC": 1.61,
+    "LoteD": 1.33,
+    "LoteN": 1.66,
+    "Fazenda": 1.8
+  },
+  {
+    "date_record": "2024-03-26T00:00:00.000",
+    "LoteA": 1.68,
+    "LoteB": 1.18,
+    "LoteC": 1.8,
+    "LoteD": 1.92,
+    "LoteN": 1.44,
+    "Fazenda": 1.55
+  },
+  {
+    "date_record": "2024-03-27T00:00:00.000",
+    "LoteA": 1.06,
+    "LoteB": 1.45,
+    "LoteC": 1.61,
+    "LoteD": 1.48,
+    "LoteN": 1.55,
+    "Fazenda": 1.36
+  },
+  {
+    "date_record": "2024-03-28T00:00:00.000",
+    "LoteA": 1.65,
+    "LoteB": 1.01,
+    "LoteC": 1.93,
+    "LoteD": 1.96,
+    "LoteN": 1.23,
+    "Fazenda": 1.77
+  },
+  {
+    "date_record": "2024-03-29T00:00:00.000",
+    "LoteA": 1.23,
+    "LoteB": 1.08,
+    "LoteC": 1.71,
+    "LoteD": 1.1,
+    "LoteN": 1.22,
+    "Fazenda": 1.1
+  },
+  {
+    "date_record": "2024-03-30T00:00:00.000",
+    "LoteA": 1.61,
+    "LoteB": 1.89,
+    "LoteC": 1.5,
+    "LoteD": 1.29,
+    "LoteN": 1.75,
+    "Fazenda": 1.76
+  },
+  {
+    "date_record": "2024-03-31T00:00:00.000",
+    "LoteA": 1.52,
+    "LoteB": 1.19,
+    "LoteC": 1.52,
+    "LoteD": 1.73,
+    "LoteN": 1.31,
+    "Fazenda": 1.96
+  }
+]
