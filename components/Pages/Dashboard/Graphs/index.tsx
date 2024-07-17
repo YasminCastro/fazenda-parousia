@@ -6,6 +6,7 @@ import MilkProductionGraph from "./MilkProduction";
 import { Card } from "@/components/ui/card";
 import NumberOfAnimalsGraph from "./NumberOfAnimals";
 import FoodCostGraph from "./FoodCost";
+import FoodMarginGraph from "./FoodMargin";
 
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
@@ -20,7 +21,7 @@ export default function Graphs() {
       <div className="flex-1">
         {selectedCard === "milkRevenue" && <MilkRevenueGraph />}
         {selectedCard === "foodCost" && <FoodCostGraph />}
-        {/* {selectedCard === "foodMargin" && <FoodCostGraph />} */}
+        {selectedCard === "foodMargin" && <FoodMarginGraph />}
         {/* {selectedCard === "investmentReturn" && <FoodCostGraph />} */}
         {selectedCard === "milkProduction" && <MilkProductionGraph />}
         {selectedCard === "numberOfAnimals" && <NumberOfAnimalsGraph />}
