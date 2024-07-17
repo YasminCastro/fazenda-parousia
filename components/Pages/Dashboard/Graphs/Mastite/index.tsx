@@ -1,5 +1,6 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import { formatXAxis } from "@/utils/formatXAxis";
+import { getBarColorByName } from "@/utils/getGraphColors";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {
@@ -17,6 +18,7 @@ import {
 
 export default function MastiteGraph() {
   const [data, setData] = useState([]);
+  const { batches, selectedBatch } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +51,11 @@ export default function MastiteGraph() {
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="date_record" height={30} stroke="#8884d8" />
+        <Brush
+          dataKey="date_record"
+          height={30}
+          stroke={getBarColorByName(batches, selectedBatch)}
+        />
         <Bar dataKey="vaca_mastite" stackId="a" name="Mastite" fill="#8884d8" />
         <Bar
           dataKey="vaca_carencia_mastite"

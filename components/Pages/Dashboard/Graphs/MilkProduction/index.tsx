@@ -55,7 +55,11 @@ export default function MilkProductionGraph() {
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
-        <Brush dataKey="date_record" height={30} stroke="#3b82f6" />
+        <Brush
+          dataKey="date_record"
+          height={30}
+          stroke={getBarColorByName(batches, selectedBatch)}
+        />
         {selectedBatch !== "all" && (
           <Bar
             dataKey="value"
