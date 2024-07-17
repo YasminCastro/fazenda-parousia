@@ -1,0 +1,7 @@
+.title {
+  @apply mt-2 text-center text-xl font-bold;
+}
+
+.graphContainer {
+  @apply flex h-full flex-col;
+}
