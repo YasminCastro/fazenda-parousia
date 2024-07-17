@@ -19,8 +19,8 @@ import {
 import styles from "./styles.module.css";
 
 export default function FoodMarginGraph() {
-  const [foodCostData, setFoodCostData] = useState([]);
-  const [milkCostData, setMilkCostData] = useState([]);
+  const [foodMarginData, setFoodMarginData] = useState([]);
+  const [milkMarginData, setMilkMarginData] = useState([]);
   const { batches, selectedBatch } = useFilterContext();
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function FoodMarginGraph() {
         const response = await axios.get(
           `/api/graph/food-cost?batch=${selectedBatch}`,
         );
-        setFoodCostData(response.data.foodCost);
-        setMilkCostData(response.data.milkCost);
+        setFoodMarginData(response.data.foodCost);
+        setMilkMarginData(response.data.milkCost);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -49,7 +49,7 @@ export default function FoodMarginGraph() {
           <BarChart
             width={500}
             height={300}
-            data={foodCostData}
+            data={foodMarginData}
             margin={{
               top: 5,
               right: 30,
@@ -97,7 +97,7 @@ export default function FoodMarginGraph() {
           <BarChart
             width={500}
             height={300}
-            data={milkCostData}
+            data={milkMarginData}
             margin={{
               top: 5,
               right: 30,
