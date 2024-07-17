@@ -45,7 +45,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
   });
-  const [selectedCard, setSelectedCard] = useState<CardType>("mastite");
+  const [selectedCard, setSelectedCard] = useState<CardType>("milkRevenue");
 
   useEffect(() => {
     const fetchData = async () => {
