@@ -19,7 +19,8 @@ import {
 import styles from "./styles.module.css";
 
 export default function FoodCostGraph() {
-  const [data, setData] = useState([]);
+  const [foodCostData, setFoodCostData] = useState([]);
+  const [milkCostData, setMilkCostData] = useState([]);
   const { batches, selectedBatch } = useFilterContext();
 
   useEffect(() => {
@@ -28,7 +29,8 @@ export default function FoodCostGraph() {
         const response = await axios.get(
           `/api/graph/food-cost?batch=${selectedBatch}`,
         );
-        setData(response.data);
+        setFoodCostData(response.data.foodCost);
+        setMilkCostData(response.data.milkCost);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -45,7 +47,7 @@ export default function FoodCostGraph() {
           <BarChart
             width={500}
             height={300}
-            data={data}
+            data={foodCostData}
             margin={{
               top: 5,
               right: 30,
@@ -93,7 +95,7 @@ export default function FoodCostGraph() {
           <BarChart
             width={500}
             height={300}
-            data={data}
+            data={milkCostData}
             margin={{
               top: 5,
               right: 30,

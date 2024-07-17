@@ -15,21 +15,35 @@ export async function GET(request: NextRequest) {
       key = formatBatchName(batch, true);
     }
 
-    const { data } = await api.get("/custo-alimentacao");
+    const { data: foodCostData } = await api.get("/custo-alimentacao");
 
-    const response = data.map((item: any) => {
+    const foodCost = foodCostData.map((item: any) => {
       if (batch === "all") return item;
 
       return { date_record: item.date_record, value: item[key] };
     });
 
-    response.sort((a: any, b: any) => {
+    foodCost.sort((a: any, b: any) => {
       return (
         new Date(a.date_record).getTime() - new Date(b.date_record).getTime()
       );
     });
 
-    return Response.json(response);
+    const { data: milkCostData } = await api.get("/custo-leite");
+
+    const milkCost = milkCostData.map((item: any) => {
+      if (batch === "all") return item;
+
+      return { date_record: item.date_record, value: item[key] };
+    });
+
+    milkCost.sort((a: any, b: any) => {
+      return (
+        new Date(a.date_record).getTime() - new Date(b.date_record).getTime()
+      );
+    });
+
+    return Response.json({ foodCost, milkCost });
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
   }

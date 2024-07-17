@@ -48,6 +48,12 @@ def get_custo_alimentacao():
     df = pd.read_json('custo-alimentacao.json')
     return df.to_json(orient='records')
 
+@app.get('/custo-leite')
+def get_custo_leite():
+    df = pd.read_json('custo-leite.json')
+    return df.to_json(orient='records')
+
+
 
 if __name__ == '__main__':
    app.run(host="0.0.0.0",port=8001, threaded=True, debug=True)
