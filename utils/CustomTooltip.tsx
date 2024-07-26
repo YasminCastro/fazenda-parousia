@@ -12,7 +12,7 @@ const CustomTooltip = ({ active, payload, label, prefix }: any) => {
       <p>{format(new Date(label), "dd/MM/yyyy")}</p>
       {payload.map((item: any) => (
         <p key={item.name} style={{ color: item.color }}>
-          {item.name}: R$ {item.value}
+          {formatItemMessage(item.name, item.value, prefix)}
         </p>
       ))}
       {payload.length > 1 && <p>{formatTotalMessage(total, prefix)}</p>}
@@ -28,6 +28,16 @@ const formatTotalMessage = (total: number, prefix?: string): string => {
   return prefix
     ? `Total: ${prefix} ${total.toFixed(1)}`
     : `Total: ${total.toFixed(1)}`;
+};
+
+const formatItemMessage = (
+  name: string,
+  value: number,
+  prefix?: string,
+): string => {
+  return prefix
+    ? `${name}: ${prefix} ${value.toFixed(1)}`
+    : `${name}: ${value.toFixed(1)}`;
 };
 
 export default CustomTooltip;

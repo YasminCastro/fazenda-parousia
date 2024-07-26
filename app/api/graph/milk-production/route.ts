@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     let key = "";
 
     if (batch && batch !== "all") {
-      key = formatBatchName(batch, true);
+      key = formatBatchName(batch, false, true);
     }
 
     const { data } = await api.get("/producao-leite");
@@ -20,13 +20,7 @@ export async function GET(request: NextRequest) {
     const response = data.map((item: any) => {
       if (batch === "all") return item;
 
-      return { date_record: item.date_record, value: item[key] };
-    });
-
-    response.sort((a: any, b: any) => {
-      return (
-        new Date(a.date_record).getTime() - new Date(b.date_record).getTime()
-      );
+      return { date: item.date, value: item[key] };
     });
 
     return Response.json(response);
