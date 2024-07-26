@@ -13,6 +13,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Label,
 } from "recharts";
 
 interface IProps {
@@ -37,7 +38,13 @@ export default function SimpleBar({ data }: IProps) {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" tickFormatter={formatXAxis} />
-        <YAxis />
+        <YAxis>
+          <Label
+            value="valor em reais (R$)"
+            position="insideBottomLeft"
+            angle={-90}
+          />
+        </YAxis>
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
