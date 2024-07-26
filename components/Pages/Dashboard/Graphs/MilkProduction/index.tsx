@@ -34,7 +34,7 @@ export default function MilkProductionGraph() {
 
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
-      <div className="mx-6 mt-2 flex justify-between">
+      <div className={`${stylesGraph.graphHeader}`}>
         <h2 className={`${stylesGraph.graphTitle}`}>Produção do leite (kg)</h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}
