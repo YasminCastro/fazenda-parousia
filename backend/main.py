@@ -57,6 +57,8 @@ def get_custo_leite():
 @app.get('/eficiencia-alimentar')
 def get_eficiencia_alimentar():
     df = pd.read_json('eficiencia-alimentar.json')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
     return df.to_json(orient='records')
 
 
