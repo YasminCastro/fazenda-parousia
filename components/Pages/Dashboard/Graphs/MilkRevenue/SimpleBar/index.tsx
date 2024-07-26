@@ -49,7 +49,6 @@ export default function SimpleBar({ data }: IProps) {
         {selectedBatch !== "all" && (
           <Bar
             dataKey="value"
-            stackId="a"
             name={formatBatchName(selectedBatch)}
             fill={getBarColorByName(batches, selectedBatch)}
           />
