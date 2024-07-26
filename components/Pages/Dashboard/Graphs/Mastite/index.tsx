@@ -1,24 +1,19 @@
-import { useFilterContext } from "@/providers/FilterContext";
-import { formatXAxis } from "@/utils/formatXAxis";
-import { getBarColorByName } from "@/utils/getGraphColors";
+import { Card } from "@/components/ui/card";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  BarChart,
-  Bar,
-  Brush,
-  ReferenceLine,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+
+import stylesGraph from "../styles.module.css";
+import { Button } from "@/components/ui/button";
+import { RefreshCcw } from "lucide-react";
+import BarGraph from "./BarGraph";
 
 export default function MastiteGraph() {
   const [data, setData] = useState([]);
-  const { batches, selectedBatch } = useFilterContext();
+  const [isStackedChart, setIsStackedChart] = useState(false);
+
+  const handleGraphChange = () => {
+    setIsStackedChart(!isStackedChart);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,37 +28,19 @@ export default function MastiteGraph() {
     fetchData();
   }, []);
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" tickFormatter={formatXAxis} />
-        <YAxis />
-        <Tooltip />
-        <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
-        <ReferenceLine y={0} stroke="#000" />
-        <Brush
-          dataKey="date"
-          height={30}
-          stroke={getBarColorByName(batches, selectedBatch)}
-        />
-        <Bar dataKey="mastite" stackId="a" name="Mastite" fill="#8884d8" />
-        <Bar
-          dataKey="carenciaMastite"
-          stackId="a"
-          name="Carência Mastite"
-          fill="#82ca9d"
-        />
-      </BarChart>
-    </ResponsiveContainer>
+    <Card className={`${stylesGraph.cardWrapper}`}>
+      <div className={`${stylesGraph.graphHeader}`}>
+        <h2 className={`${stylesGraph.graphTitle}`}>Mastite</h2>
+        <Button
+          className={`${stylesGraph.changeGraphButton}`}
+          onClick={handleGraphChange}
+        >
+          <RefreshCcw />
+        </Button>
+      </div>
+      <div className={`${stylesGraph.graphWrapper}`}>
+        <BarGraph data={data} isStackedChart={isStackedChart} />
+      </div>
+    </Card>
   );
 }
