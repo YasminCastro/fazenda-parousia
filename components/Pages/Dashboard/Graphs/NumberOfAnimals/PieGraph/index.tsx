@@ -1,3 +1,4 @@
+import PieChartTooltip from "@/components/Global/CustomTooltip/PieChartTooltip";
 import { useFilterContext } from "@/providers/FilterContext";
 import { getBarColorByName } from "@/utils/getGraphColors";
 import { Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
@@ -9,6 +10,15 @@ interface IProps {
 export default function PieGraph({ data }: IProps) {
   const { batches } = useFilterContext();
 
+  const totalValue = data.reduce((acc, entry) => acc + entry.value, 0);
+  const renderCustomLabel = (entry: any) => {
+    let label = entry.value;
+    if (data.length !== 1) {
+      label = `${((entry.value / totalValue) * 100).toFixed(1)}%`;
+    }
+    return label;
+  };
+
   return (
     <div className="flex h-full w-full flex-row">
       <ResponsiveContainer width="100%" height="100%">
@@ -18,7 +28,7 @@ export default function PieGraph({ data }: IProps) {
             data={data}
             cx="50%"
             cy="50%"
-            label
+            label={renderCustomLabel}
             animationDuration={700}
           >
             {data.map((entry: any, index) => (
@@ -28,7 +38,7 @@ export default function PieGraph({ data }: IProps) {
               />
             ))}
           </Pie>
-          <Tooltip />
+          <Tooltip content={<PieChartTooltip />} />
         </PieChart>
       </ResponsiveContainer>
       <div className="w-1/12">
