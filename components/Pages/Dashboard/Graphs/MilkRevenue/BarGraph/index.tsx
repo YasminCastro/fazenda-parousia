@@ -1,4 +1,5 @@
 import { useFilterContext } from "@/providers/FilterContext";
+import CustomTooltip from "@/utils/CustomTooltip";
 import formatBatchName from "@/utils/formatBatchName";
 import { formatXAxis } from "@/utils/formatXAxis";
 import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
@@ -46,7 +47,7 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
             angle={-90}
           />
         </YAxis>
-        <Tooltip />
+        <Tooltip content={<CustomTooltip prefix={"R$"} />} />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush
@@ -57,7 +58,7 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
         {selectedBatch !== "all" && (
           <Bar
             dataKey="value"
-            name={formatBatchName(selectedBatch)}
+            name={formatBatchName(selectedBatch, true)}
             fill={getBarColorByName(batches, selectedBatch)}
             stackId={isStackedChart ? "a" : undefined}
           />
