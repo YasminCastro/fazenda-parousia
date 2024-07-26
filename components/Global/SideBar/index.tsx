@@ -19,7 +19,8 @@ export default function SideBar() {
       <nav className="flex w-full flex-col p-6">
         <Link
           href="/dashboard"
-          className={`${styles.navLink} ${pathname === "/dashboard" ? styles.navLinkActive : styles.navLinkDefault}`}
+          // className={`${styles.navLink} ${pathname === "/dashboard" ? styles.navLinkActive : styles.navLinkDefault}`}
+          className={`${styles.navLink} ${styles.navLinkActive}`}
         >
           <Gauge />
           Dashboard
