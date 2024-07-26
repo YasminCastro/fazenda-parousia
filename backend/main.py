@@ -19,8 +19,8 @@ def get_producao():
 @app.get('/mastite')
 def get_mastite():
     df = pd.read_json('mastite.json')
-    df['Data'] = pd.to_datetime(df['date_record'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
-    df =  df.sort_values('date_record')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
     return df.to_json(orient='records')
 
 

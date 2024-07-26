@@ -46,19 +46,19 @@ export default function MastiteGraph() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date_record" tickFormatter={formatXAxis} />
+        <XAxis dataKey="date" tickFormatter={formatXAxis} />
         <YAxis />
         <Tooltip />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush
-          dataKey="date_record"
+          dataKey="date"
           height={30}
           stroke={getBarColorByName(batches, selectedBatch)}
         />
-        <Bar dataKey="vaca_mastite" stackId="a" name="Mastite" fill="#8884d8" />
+        <Bar dataKey="mastite" stackId="a" name="Mastite" fill="#8884d8" />
         <Bar
-          dataKey="vaca_carencia_mastite"
+          dataKey="carenciaMastite"
           stackId="a"
           name="Carência Mastite"
           fill="#82ca9d"
