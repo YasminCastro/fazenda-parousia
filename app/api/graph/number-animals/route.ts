@@ -17,10 +17,15 @@ export async function GET(request: NextRequest) {
         name: key,
         key: key.substring(key.length - 1).toLocaleLowerCase(),
         value,
+        title: formatBatchName(
+          key.substring(key.length - 1).toLocaleLowerCase(),
+          true,
+          false,
+        ),
       }));
 
     if (batch && batch !== "all") {
-      const key = formatBatchName(batch);
+      const key = formatBatchName(batch, false, true);
       array = array.filter((item) => item.name === key);
     }
 

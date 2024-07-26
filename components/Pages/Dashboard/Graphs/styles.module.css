@@ -13,3 +13,7 @@
 .changeGraphButton {
   @apply p-2;
 }
+
+.graphHeader {
+  @apply mx-6 mt-2 flex justify-between;
+}

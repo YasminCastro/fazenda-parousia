@@ -1,11 +1,11 @@
 [
   {
     "key": "Animais",
-    "Lote A": 45.0,
-    "Lote B": 38.0,
-    "Lote C": 32.0,
-    "Lote D": 45.0,
-    "Lote N": 66.0,
+    "loteA": 45.0,
+    "loteB": 38.0,
+    "loteC": 32.0,
+    "loteD": 45.0,
+    "loteN": 66.0,
     "Fazenda": 226.0
   }
 ]
