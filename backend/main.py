@@ -27,8 +27,8 @@ def get_mastite():
 @app.get('/receita-leite')
 def get_receita_leite():
     df = pd.read_json('receita-leite.json')
-    df['date_record'] = pd.to_datetime(df['Data'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
-    df =  df.sort_values('Data')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
     return df.to_json(orient='records')
 
 @app.get('/producao-leite')

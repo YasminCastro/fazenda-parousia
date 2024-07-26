@@ -1,0 +1,15 @@
+.cardWrapper {
+  @apply mt-4 flex h-full w-full flex-col rounded-3xl p-3;
+}
+
+.graphTitle {
+  @apply text-2xl font-bold;
+}
+
+.graphWrapper {
+  @apply flex-1;
+}
+
+.changeGraphButton {
+  @apply p-2;
+}
