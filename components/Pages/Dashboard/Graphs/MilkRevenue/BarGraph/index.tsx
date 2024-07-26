@@ -18,9 +18,10 @@ import {
 
 interface IProps {
   data: any[];
+  isStackedChart: boolean;
 }
 
-export default function StackedBar({ data }: IProps) {
+export default function BarGraph({ data, isStackedChart }: IProps) {
   const { batches, selectedBatch } = useFilterContext();
 
   return (
@@ -56,9 +57,9 @@ export default function StackedBar({ data }: IProps) {
         {selectedBatch !== "all" && (
           <Bar
             dataKey="value"
-            stackId="a"
             name={formatBatchName(selectedBatch)}
             fill={getBarColorByName(batches, selectedBatch)}
+            stackId={isStackedChart ? "a" : undefined}
           />
         )}
         {selectedBatch === "all" &&
@@ -69,10 +70,10 @@ export default function StackedBar({ data }: IProps) {
             return (
               <Bar
                 dataKey={formatBatchName(item.value, false, true)}
-                stackId="a"
                 name={item.label}
                 fill={getBarColor(index)}
                 key={item.label}
+                stackId={isStackedChart ? "a" : undefined}
               />
             );
           })}

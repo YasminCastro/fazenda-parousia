@@ -1,12 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useFilterContext } from "@/providers/FilterContext";
-import StackedBar from "./StackedBar";
 import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
-import SimpleBar from "./SimpleBar";
+import BarGraph from "./BarGraph";
 
 export default function MilkRevenueGraph() {
   const [data, setData] = useState([]);
@@ -44,11 +43,7 @@ export default function MilkRevenueGraph() {
         </Button>
       </div>
       <div className={`${stylesGraph.graphWrapper}`}>
-        {isStackedChart ? (
-          <StackedBar data={data} />
-        ) : (
-          <SimpleBar data={data} />
-        )}
+        <BarGraph data={data} isStackedChart={isStackedChart} />
       </div>
     </Card>
   );
