@@ -1,5 +1,5 @@
+import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
 import { useFilterContext } from "@/providers/FilterContext";
-import CustomTooltip from "@/utils/CustomTooltip";
 import formatBatchName from "@/utils/formatBatchName";
 import { formatXAxis } from "@/utils/formatXAxis";
 import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
@@ -47,7 +47,7 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
             angle={-90}
           />
         </YAxis>
-        <Tooltip content={<CustomTooltip />} />
+        <Tooltip content={<BarChartTooltip />} />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush
