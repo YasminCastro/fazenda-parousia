@@ -61,7 +61,7 @@ export default function FoodEfficencyGraph() {
         <Line
           type="monotone"
           dataKey="value"
-          name="Data"
+          name="Eficiência Alimentar"
           stroke={getBarColorByName(batches, selectedBatch)}
           activeDot={{ r: 8 }}
         />
