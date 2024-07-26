@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import LineChartTooltip from "@/components/Global/CustomTooltip/LineChartTooltip";
 import { useFilterContext } from "@/providers/FilterContext";
 import formatBatchName from "@/utils/formatBatchName";
@@ -22,6 +23,32 @@ interface IProps {
 
 export default function LineGraph({ data }: IProps) {
   const { batches, selectedBatch } = useFilterContext();
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [fixedKey, setFixedKey] = useState<string | null>(null);
+
+  const handleLegendMouseEnter = (dataKey: any) => {
+    if (!fixedKey) {
+      setHoveredKey(dataKey);
+    }
+  };
+
+  const handleLegendMouseLeave = () => {
+    if (!fixedKey) {
+      setHoveredKey(null);
+    }
+  };
+
+  const handleLegendClick = (dataKey: any) => {
+    setFixedKey((prev) => (prev === dataKey ? null : dataKey));
+    setHoveredKey(null);
+  };
+
+  const getLineOpacity = (dataKey: string) => {
+    if (fixedKey) {
+      return fixedKey === dataKey ? 1 : 0.2;
+    }
+    return hoveredKey && dataKey !== hoveredKey ? 0.2 : 1;
+  };
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -46,7 +73,13 @@ export default function LineGraph({ data }: IProps) {
           />
         </YAxis>
         <Tooltip content={<LineChartTooltip />} />
-        <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
+        <Legend
+          verticalAlign="top"
+          wrapperStyle={{ lineHeight: "40px" }}
+          onMouseEnter={(e) => handleLegendMouseEnter(e.dataKey)}
+          onMouseLeave={handleLegendMouseLeave}
+          onClick={(e) => handleLegendClick(e.dataKey)}
+        />
         <Brush
           dataKey="date"
           height={30}
@@ -59,6 +92,7 @@ export default function LineGraph({ data }: IProps) {
             name={formatBatchName(selectedBatch, true)}
             stroke={getBarColorByName(batches, selectedBatch)}
             activeDot={{ r: 8 }}
+            opacity={getLineOpacity("value")}
           />
         )}
 
@@ -69,6 +103,7 @@ export default function LineGraph({ data }: IProps) {
             if (item.value === "all") {
               dataKey = "fazenda";
             }
+
             return (
               <Line
                 type="monotone"
@@ -78,6 +113,7 @@ export default function LineGraph({ data }: IProps) {
                 key={item.label}
                 activeDot={{ r: 8 }}
                 stroke={getBarColor(index)}
+                opacity={getLineOpacity(dataKey)}
               />
             );
           })}
