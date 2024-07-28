@@ -15,8 +15,8 @@ export interface BatchCombobox {
 
 export type CardType =
   | "milkRevenue"
-  | "foodCost"
-  | "foodMargin"
+  | "cost"
+  | "margin"
   | "investmentReturn"
   | "milkProduction"
   | "numberOfAnimals"

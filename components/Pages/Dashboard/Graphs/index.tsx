@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import MilkRevenueGraph from "./MilkRevenue";
 import MilkProductionGraph from "./MilkProduction";
 import NumberOfAnimalsGraph from "./NumberOfAnimals";
-import FoodCostGraph from "./FoodCost";
-import FoodMarginGraph from "./FoodMargin";
+import CostGraph from "./Cost";
+import MarginGraph from "./Margin";
 import FoodEfficencyGraph from "./FoodEfficiency";
 
 export default function Graphs() {
@@ -16,8 +16,8 @@ export default function Graphs() {
   return (
     <>
       {selectedCard === "milkRevenue" && <MilkRevenueGraph />}
-      {selectedCard === "foodCost" && <FoodCostGraph />}
-      {selectedCard === "foodMargin" && <FoodMarginGraph />}
+      {selectedCard === "cost" && <CostGraph />}
+      {selectedCard === "margin" && <MarginGraph />}
       {/* {selectedCard === "investmentReturn" && <FoodCostGraph />} */}
       {selectedCard === "milkProduction" && <MilkProductionGraph />}
       {selectedCard === "numberOfAnimals" && <NumberOfAnimalsGraph />}

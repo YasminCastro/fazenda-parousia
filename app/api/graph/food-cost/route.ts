@@ -17,13 +17,13 @@ export async function GET(request: NextRequest) {
 
     const { data: foodCostData } = await api.get("/custo-alimentacao");
 
-    const foodCost = foodCostData.map((item: any) => {
+    const cost = foodCostData.map((item: any) => {
       if (batch === "all") return item;
 
       return { date_record: item.date_record, value: item[key] };
     });
 
-    foodCost.sort((a: any, b: any) => {
+    cost.sort((a: any, b: any) => {
       return (
         new Date(a.date_record).getTime() - new Date(b.date_record).getTime()
       );
@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
       );
     });
 
-    return Response.json({ foodCost, milkCost });
+    return Response.json({ cost, milkCost });
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
   }

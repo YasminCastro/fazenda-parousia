@@ -51,7 +51,7 @@ const dashboardCardsMapping: any = [
     kpi: "Custo alimentação",
     title2: "Custo R$/kg de leite",
     kpi2: "Margem sobre alimentação (R$/kg)",
-    key: "foodCost",
+    key: "cost",
   },
   {
     cardType: "double",
@@ -59,7 +59,7 @@ const dashboardCardsMapping: any = [
     kpi: "Margem sobre alimentação (R$/vaca/dia)",
     title2: "Margem R$/kg de leite",
     kpi2: "Margem sobre alimentação (R$/kg)",
-    key: "foodMargin",
+    key: "margin",
   },
   {
     cardType: "simple",

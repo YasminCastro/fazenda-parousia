@@ -18,7 +18,7 @@ import {
 } from "recharts";
 import styles from "./styles.module.css";
 
-export default function FoodCostGraph() {
+export default function CostGraph() {
   const [foodCostData, setFoodCostData] = useState([]);
   const [milkCostData, setMilkCostData] = useState([]);
   const { batches, selectedBatch } = useFilterContext();
@@ -29,7 +29,7 @@ export default function FoodCostGraph() {
         const response = await axios.get(
           `/api/graph/food-cost?batch=${selectedBatch}`,
         );
-        setFoodCostData(response.data.foodCost);
+        setFoodCostData(response.data.cost);
         setMilkCostData(response.data.milkCost);
       } catch (error) {
         console.error("Error fetching data:", error);
