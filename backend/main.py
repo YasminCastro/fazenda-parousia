@@ -16,17 +16,30 @@ def get_producao():
    df.columns = ['data', 'producao']
    return df.to_json(orient='records')
 
-@app.get('/mastite')
-def get_mastite():
-    df = pd.read_json('mastite.json')
+@app.get('/receita-leite')
+def get_receita_leite():
+    df = pd.read_json('receita-leite.json')
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
     df =  df.sort_values('date')
     return df.to_json(orient='records')
 
+@app.get('/custo')
+def get_custo_alimentacao_leite():
+    df = pd.read_json('custo-alimentacao-leite.json')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
+    return df.to_json(orient='records')
 
-@app.get('/receita-leite')
-def get_receita_leite():
-    df = pd.read_json('receita-leite.json')
+@app.get('/margem')
+def get_margem_alimentacao_leite():
+    df = pd.read_json('custo-alimentacao-leite.json')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
+    return df.to_json(orient='records')
+
+@app.get('/retorno-investimento')
+def get_retorno_investimento():
+    df = pd.read_json('custo-alimentacao-leite.json')
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
     df =  df.sort_values('date')
     return df.to_json(orient='records')
@@ -43,17 +56,6 @@ def get_quantidade_animais():
     df = pd.read_json('quantidade-animais.json')
     return df.to_json(orient='records')
 
-@app.get('/custo-alimentacao')
-def get_custo_alimentacao():
-    df = pd.read_json('custo-alimentacao.json')
-    return df.to_json(orient='records')
-
-@app.get('/custo-leite')
-def get_custo_leite():
-    df = pd.read_json('custo-leite.json')
-    return df.to_json(orient='records')
-
-
 @app.get('/eficiencia-alimentar')
 def get_eficiencia_alimentar():
     df = pd.read_json('eficiencia-alimentar.json')
@@ -61,6 +63,13 @@ def get_eficiencia_alimentar():
     df =  df.sort_values('date')
     return df.to_json(orient='records')
 
+
+@app.get('/mastite')
+def get_mastite():
+    df = pd.read_json('mastite.json')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
+    return df.to_json(orient='records')
 
 
 if __name__ == '__main__':
