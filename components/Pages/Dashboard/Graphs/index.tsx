@@ -5,9 +5,9 @@ import MilkRevenueGraph from "./MilkRevenue";
 import MilkProductionGraph from "./MilkProduction";
 import NumberOfAnimalsGraph from "./NumberOfAnimals";
 import CostGraph from "./Cost";
-import MarginGraph from "./Margin";
 import FoodEfficencyGraph from "./FoodEfficiency";
 import InvestmentReturnGraph from "./InvestmentReturn";
+import MarginGraph from "./Margin";
 
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
