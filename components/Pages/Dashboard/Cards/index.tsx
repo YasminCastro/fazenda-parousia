@@ -12,6 +12,7 @@ import {
   BriefcaseMedical,
   IterationCw,
   List,
+  DollarSignIcon,
 } from "lucide-react";
 import axios from "axios";
 import { CardType, useFilterContext } from "@/providers/FilterContext";
@@ -116,7 +117,7 @@ const getIconAndColor = (index: number) => {
       };
     case 3:
       return {
-        icon: <IterationCw color="#ff9871" size={36} />,
+        icon: <DollarSignIcon color="#ff9871" size={36} />,
         color: "#ffded2",
       };
     case 4:

@@ -7,6 +7,7 @@ import NumberOfAnimalsGraph from "./NumberOfAnimals";
 import CostGraph from "./Cost";
 import MarginGraph from "./Margin";
 import FoodEfficencyGraph from "./FoodEfficiency";
+import InvestmentReturnGraph from "./InvestmentReturn";
 
 export default function Graphs() {
   const { selectedCard } = useFilterContext();
@@ -18,7 +19,7 @@ export default function Graphs() {
       {selectedCard === "milkRevenue" && <MilkRevenueGraph />}
       {selectedCard === "cost" && <CostGraph />}
       {selectedCard === "margin" && <MarginGraph />}
-      {/* {selectedCard === "investmentReturn" && <FoodCostGraph />} */}
+      {selectedCard === "investmentReturn" && <InvestmentReturnGraph />}
       {selectedCard === "milkProduction" && <MilkProductionGraph />}
       {selectedCard === "numberOfAnimals" && <NumberOfAnimalsGraph />}
       {selectedCard === "foodEfficiency" && <FoodEfficencyGraph />}

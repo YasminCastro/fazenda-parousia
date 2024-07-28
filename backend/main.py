@@ -39,7 +39,7 @@ def get_margem_alimentacao_leite():
 
 @app.get('/retorno-investimento')
 def get_retorno_investimento():
-    df = pd.read_json('custo-alimentacao-leite.json')
+    df = pd.read_json('retorno-investimento.json')
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
     df =  df.sort_values('date')
     return df.to_json(orient='records')
