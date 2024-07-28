@@ -41,11 +41,7 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" tickFormatter={formatXAxis} />
         <YAxis>
-          <Label
-            value="produção do leite em kg"
-            position="insideBottomLeft"
-            angle={-90}
-          />
+          <Label value="kg/vaca" position="insideBottomLeft" angle={-90} />
         </YAxis>
         <Tooltip content={<BarChartTooltip />} />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />

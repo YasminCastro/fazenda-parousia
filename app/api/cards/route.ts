@@ -69,7 +69,7 @@ const dashboardCardsMapping: any = [
   },
   {
     cardType: "simple",
-    title: "Produção do leite (kg)",
+    title: "Produção média (kg/vaca/dia)",
     kpi: "Média de produção (kg/vaca/dia)",
     key: "milkProduction",
   },
