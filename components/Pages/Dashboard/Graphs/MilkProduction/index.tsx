@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 
 import BarGraph from "./BarGraph";
 import stylesGraph from "../styles.module.css";
+import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
 
 export default function MilkProductionGraph() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IMilkProduction[]>([]);
   const { selectedBatch } = useFilterContext();
   const [isStackedChart, setIsStackedChart] = useState(true);
 

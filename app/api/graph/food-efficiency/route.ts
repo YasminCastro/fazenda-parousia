@@ -15,15 +15,7 @@ export const dynamic = "force-dynamic";
 //     loteN: 1.75,
 //     fazenda: 1.76,
 //   },
-//   {
-//     date: "2024-03-31",
-//     loteA: 1.52,
-//     loteB: 1.19,
-//     loteC: 1.52,
-//     loteD: 1.73,
-//     loteN: 1.31,
-//     fazenda: 1.96,
-//   },
+//   { date: '2024-03-30', value: 57.16 }, //If batch is specified
 // ];
 
 export async function GET(request: NextRequest) {

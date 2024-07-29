@@ -1,4 +1,5 @@
 import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
+import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
 import { useFilterContext } from "@/providers/FilterContext";
 import formatBatchName from "@/utils/formatBatchName";
 import { formatXAxis } from "@/utils/formatXAxis";
@@ -18,7 +19,7 @@ import {
 } from "recharts";
 
 interface IProps {
-  data: any[];
+  data: IMilkProduction[];
   isStackedChart: boolean;
 }
 

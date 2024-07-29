@@ -29,6 +29,8 @@ export async function GET(request: NextRequest) {
       array = array.filter((item) => item.name === key);
     }
 
+    console.log(array);
+
     return Response.json(array);
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });

@@ -6,9 +6,10 @@ import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
 import BarGraph from "./BarGraph";
+import { IMastite } from "@/interfaces/Graphs/mastite";
 
 export default function MastiteGraph() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IMastite[]>([]);
   const [isStackedChart, setIsStackedChart] = useState(false);
 
   const handleGraphChange = () => {

@@ -16,9 +16,10 @@ import {
   LineChart,
   Line,
 } from "recharts";
+import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 
 interface IProps {
-  data: any[];
+  data: IFoodEfficiency[];
 }
 
 export default function LineGraph({ data }: IProps) {

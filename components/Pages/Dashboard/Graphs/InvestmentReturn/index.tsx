@@ -6,9 +6,10 @@ import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
 import BarGraph from "./BarGraph";
+import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
 
 export default function InvestmentReturnGraph() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IInvestmentReturn[]>([]);
   const [isStackedChart, setIsStackedChart] = useState(false);
   const { selectedBatch } = useFilterContext();
 

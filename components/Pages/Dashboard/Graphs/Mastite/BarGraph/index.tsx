@@ -1,4 +1,5 @@
 import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
+import { IMastite } from "@/interfaces/Graphs/mastite";
 import { useFilterContext } from "@/providers/FilterContext";
 import { formatXAxis } from "@/utils/formatXAxis";
 import { getBarColorByName } from "@/utils/getGraphColors";
@@ -17,7 +18,7 @@ import {
 } from "recharts";
 
 interface IProps {
-  data: any[];
+  data: IMastite[];
   isStackedChart: boolean;
 }
 

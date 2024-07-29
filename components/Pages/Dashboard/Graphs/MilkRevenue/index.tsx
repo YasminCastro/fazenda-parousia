@@ -6,9 +6,10 @@ import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
 import BarGraph from "./BarGraph";
+import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 
 export default function MilkRevenueGraph() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IMilkRevenue[]>([]);
   const [isStackedChart, setIsStackedChart] = useState(false);
   const { selectedBatch } = useFilterContext();
 

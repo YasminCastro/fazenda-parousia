@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import stylesGraph from "../styles.module.css";
 
 import LineGraph from "./LineGraph";
+import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 
 export default function FoodEfficencyGraph() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IFoodEfficiency[]>([]);
   const { selectedBatch } = useFilterContext();
 
   useEffect(() => {
