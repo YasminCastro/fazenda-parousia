@@ -9,4 +9,4 @@ interface OneBatch {
   value: number;
 }
 
-export type IFoodEfficiency = All | OneBatch;
+export type IInvestmentReturn = OneBatch | All;
