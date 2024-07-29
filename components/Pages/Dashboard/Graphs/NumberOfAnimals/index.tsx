@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 
 import PieGraph from "./PieGraph";
 import stylesGraph from "../styles.module.css";
+import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
 
 export default function NumberOfAnimals() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<INumberAnimals[]>([]);
   const { selectedBatch } = useFilterContext();
 
   useEffect(() => {

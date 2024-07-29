@@ -2,9 +2,11 @@ import PieChartTooltip from "@/components/Global/CustomTooltip/PieChartTooltip";
 import { useFilterContext } from "@/providers/FilterContext";
 import { getBarColorByName } from "@/utils/getGraphColors";
 import { Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import LegendPieChart from "./Legend";
+import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
 
 interface IProps {
-  data: any[];
+  data: INumberAnimals[];
 }
 
 export default function PieGraph({ data }: IProps) {
@@ -41,19 +43,7 @@ export default function PieGraph({ data }: IProps) {
           <Tooltip content={<PieChartTooltip />} />
         </PieChart>
       </ResponsiveContainer>
-      <div className="w-1/12">
-        {data.map((entry: any, index) => (
-          <div key={index} className="mb-2 flex items-center">
-            <span
-              className="mr-2 inline-block h-4 w-4"
-              style={{
-                backgroundColor: getBarColorByName(batches, entry.key),
-              }}
-            ></span>
-            <p style={{ margin: 0 }}>{entry.title}</p>
-          </div>
-        ))}
-      </div>
+      <LegendPieChart data={data} />
     </div>
   );
 }
