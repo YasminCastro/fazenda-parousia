@@ -14,71 +14,67 @@ import {
   Legend,
   ResponsiveContainer,
   Label,
+  ComposedChart,
+  Line,
+  Scatter,
+  Area,
 } from "recharts";
 import styles from "./styles.module.css";
 import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
+import { IMarginValues } from "@/interfaces/Graphs/margin";
+import LineChartTooltip from "@/components/Global/CustomTooltip/LineChartTooltip";
+import ComposedChartTooltip from "@/components/Global/CustomTooltip/ComposedChartTooltip";
 
 interface IProps {
-  data: any[];
+  data: IMarginValues[];
   title: string;
   yAxisLabel: string;
 }
 
-export default function CostGraph({ data, title, yAxisLabel }: IProps) {
+export default function ComposedGraph({ data, title, yAxisLabel }: IProps) {
   const { batches, selectedBatch } = useFilterContext();
 
   return (
     <div className={`${styles.graphContainer}`}>
       <h2 className={`${styles.title}`}>{title}</h2>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart
+        <ComposedChart
           width={500}
-          height={300}
+          height={400}
           data={data}
           margin={{
-            top: 5,
-            right: 30,
+            top: 20,
+            right: 20,
+            bottom: 20,
             left: 20,
-            bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tickFormatter={formatXAxis} />
+          <CartesianGrid stroke="#f5f5f5" />
+          <XAxis dataKey="date" scale="band" tickFormatter={formatXAxis} />
           <YAxis>
             <Label value={yAxisLabel} position="insideLeft" angle={-90} />
           </YAxis>
-          <Tooltip content={<BarChartTooltip />} />
+          <Tooltip content={<ComposedChartTooltip />} />
           <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
-          <ReferenceLine y={0} stroke="#000" />
           <Brush
             dataKey="date"
             height={30}
             stroke={getBarColorByName(batches, selectedBatch)}
           />
-          {selectedBatch !== "all" && (
-            <Bar
-              dataKey="value"
-              stackId="a"
-              name={formatBatchName(selectedBatch, true)}
-              fill={getBarColorByName(batches, selectedBatch)}
-            />
-          )}
-          {selectedBatch === "all" &&
-            batches.map((item, index) => {
-              if (item.value === "all") {
-                return;
-              }
-              return (
-                <Bar
-                  dataKey={formatBatchName(item.value, false, true)}
-                  stackId="a"
-                  name={item.label}
-                  fill={getBarColor(index)}
-                  key={item.label}
-                />
-              );
-            })}
-        </BarChart>
+          <Bar
+            dataKey="margin"
+            name="Margem"
+            barSize={20}
+            fill={getBarColor(2)}
+          />
+          <Line
+            type="monotone"
+            dataKey="percent"
+            name="Porcentagem"
+            stroke={getBarColor(1)}
+            fill={getBarColor(1)}
+          />
+        </ComposedChart>
       </ResponsiveContainer>
     </div>
   );

@@ -23,16 +23,16 @@ def get_receita_leite():
     df =  df.sort_values('date')
     return df.to_json(orient='records')
 
-@app.get('/custo')
-def get_custo_alimentacao_leite():
-    df = pd.read_json('custo-alimentacao-leite.json')
+@app.get('/custo-leite')
+def get_custo_leite():
+    df = pd.read_json('custo-leite.json')
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
     df =  df.sort_values('date')
     return df.to_json(orient='records')
 
-@app.get('/margem')
-def get_margem_alimentacao_leite():
-    df = pd.read_json('margin-alimentacao-leite.json')
+@app.get('/custo-alimentacao')
+def get_custo_alimentacao():
+    df = pd.read_json('custo-alimentacao.json')
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
     df =  df.sort_values('date')
     return df.to_json(orient='records')

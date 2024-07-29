@@ -1,0 +1,812 @@
+[
+  {
+    "date": "2024-03-01T00:00:00.000",
+    "loteA": {
+      "valor": 20.09,
+      "porcentagem": 16.52
+    },
+    "loteB": {
+      "valor": 28.6,
+      "porcentagem": 23.52
+    },
+    "loteC": {
+      "valor": 23.24,
+      "porcentagem": 19.11
+    },
+    "loteD": {
+      "valor": 27.2,
+      "porcentagem": 22.37
+    },
+    "loteN": {
+      "valor": 22.47,
+      "porcentagem": 18.48
+    },
+    "farm": {
+      "valor": 27.02,
+      "porcentagem": 21.37
+    }
+  },
+  {
+    "date": "2024-03-02T00:00:00.000",
+    "loteA": {
+      "valor": 29.52,
+      "porcentagem": 23.62
+    },
+    "loteB": {
+      "valor": 20.84,
+      "porcentagem": 16.67
+    },
+    "loteC": {
+      "valor": 20.41,
+      "porcentagem": 16.33
+    },
+    "loteD": {
+      "valor": 25.15,
+      "porcentagem": 20.12
+    },
+    "loteN": {
+      "valor": 29.06,
+      "porcentagem": 23.25
+    },
+    "farm": {
+      "valor": 23.66,
+      "porcentagem": 21.73
+    }
+  },
+  {
+    "date": "2024-03-03T00:00:00.000",
+    "loteA": {
+      "valor": 28.7,
+      "porcentagem": 22.18
+    },
+    "loteB": {
+      "valor": 29.21,
+      "porcentagem": 22.58
+    },
+    "loteC": {
+      "valor": 24.98,
+      "porcentagem": 19.31
+    },
+    "loteD": {
+      "valor": 24.62,
+      "porcentagem": 19.03
+    },
+    "loteN": {
+      "valor": 21.87,
+      "porcentagem": 16.9
+    },
+    "farm": {
+      "valor": 26.93,
+      "porcentagem": 17.93
+    }
+  },
+  {
+    "date": "2024-03-04T00:00:00.000",
+    "loteA": {
+      "valor": 26.84,
+      "porcentagem": 21.46
+    },
+    "loteB": {
+      "valor": 28.62,
+      "porcentagem": 22.88
+    },
+    "loteC": {
+      "valor": 25.04,
+      "porcentagem": 20.02
+    },
+    "loteD": {
+      "valor": 22.92,
+      "porcentagem": 18.33
+    },
+    "loteN": {
+      "valor": 21.65,
+      "porcentagem": 17.31
+    },
+    "farm": {
+      "valor": 24.98,
+      "porcentagem": 22.77
+    }
+  },
+  {
+    "date": "2024-03-05T00:00:00.000",
+    "loteA": {
+      "valor": 22.74,
+      "porcentagem": 19.3
+    },
+    "loteB": {
+      "valor": 28.52,
+      "porcentagem": 24.2
+    },
+    "loteC": {
+      "valor": 21.16,
+      "porcentagem": 17.96
+    },
+    "loteD": {
+      "valor": 21.49,
+      "porcentagem": 18.24
+    },
+    "loteN": {
+      "valor": 23.93,
+      "porcentagem": 20.31
+    },
+    "farm": {
+      "valor": 28.45,
+      "porcentagem": 22.36
+    }
+  },
+  {
+    "date": "2024-03-06T00:00:00.000",
+    "loteA": {
+      "valor": 29.01,
+      "porcentagem": 21.24
+    },
+    "loteB": {
+      "valor": 28.27,
+      "porcentagem": 20.7
+    },
+    "loteC": {
+      "valor": 29.89,
+      "porcentagem": 21.88
+    },
+    "loteD": {
+      "valor": 27.84,
+      "porcentagem": 20.38
+    },
+    "loteN": {
+      "valor": 21.58,
+      "porcentagem": 15.8
+    },
+    "farm": {
+      "valor": 22.47,
+      "porcentagem": 21.02
+    }
+  },
+  {
+    "date": "2024-03-07T00:00:00.000",
+    "loteA": {
+      "valor": 25.88,
+      "porcentagem": 18.7
+    },
+    "loteB": {
+      "valor": 29.6,
+      "porcentagem": 21.39
+    },
+    "loteC": {
+      "valor": 24.07,
+      "porcentagem": 17.4
+    },
+    "loteD": {
+      "valor": 29.25,
+      "porcentagem": 21.14
+    },
+    "loteN": {
+      "valor": 29.56,
+      "porcentagem": 21.36
+    },
+    "farm": {
+      "valor": 26.65,
+      "porcentagem": 19.56
+    }
+  },
+  {
+    "date": "2024-03-08T00:00:00.000",
+    "loteA": {
+      "valor": 26.78,
+      "porcentagem": 20.94
+    },
+    "loteB": {
+      "valor": 21.21,
+      "porcentagem": 16.58
+    },
+    "loteC": {
+      "valor": 28.79,
+      "porcentagem": 22.51
+    },
+    "loteD": {
+      "valor": 29.15,
+      "porcentagem": 22.79
+    },
+    "loteN": {
+      "valor": 21.96,
+      "porcentagem": 17.17
+    },
+    "farm": {
+      "valor": 27.27,
+      "porcentagem": 20.61
+    }
+  },
+  {
+    "date": "2024-03-09T00:00:00.000",
+    "loteA": {
+      "valor": 28.65,
+      "porcentagem": 22.93
+    },
+    "loteB": {
+      "valor": 29.21,
+      "porcentagem": 23.38
+    },
+    "loteC": {
+      "valor": 22.69,
+      "porcentagem": 18.16
+    },
+    "loteD": {
+      "valor": 22.33,
+      "porcentagem": 17.87
+    },
+    "loteN": {
+      "valor": 22.08,
+      "porcentagem": 17.67
+    },
+    "farm": {
+      "valor": 23.89,
+      "porcentagem": 17.93
+    }
+  },
+  {
+    "date": "2024-03-10T00:00:00.000",
+    "loteA": {
+      "valor": 22.19,
+      "porcentagem": 17.22
+    },
+    "loteB": {
+      "valor": 29.17,
+      "porcentagem": 22.64
+    },
+    "loteC": {
+      "valor": 28.01,
+      "porcentagem": 21.74
+    },
+    "loteD": {
+      "valor": 25.18,
+      "porcentagem": 19.55
+    },
+    "loteN": {
+      "valor": 24.28,
+      "porcentagem": 18.85
+    },
+    "farm": {
+      "valor": 25.18,
+      "porcentagem": 20.94
+    }
+  },
+  {
+    "date": "2024-03-11T00:00:00.000",
+    "loteA": {
+      "valor": 28.73,
+      "porcentagem": 22.96
+    },
+    "loteB": {
+      "valor": 25.86,
+      "porcentagem": 20.66
+    },
+    "loteC": {
+      "valor": 24.05,
+      "porcentagem": 19.22
+    },
+    "loteD": {
+      "valor": 26.22,
+      "porcentagem": 20.95
+    },
+    "loteN": {
+      "valor": 20.29,
+      "porcentagem": 16.21
+    },
+    "farm": {
+      "valor": 25.82,
+      "porcentagem": 16.98
+    }
+  },
+  {
+    "date": "2024-03-12T00:00:00.000",
+    "loteA": {
+      "valor": 23.84,
+      "porcentagem": 20.17
+    },
+    "loteB": {
+      "valor": 25.98,
+      "porcentagem": 21.98
+    },
+    "loteC": {
+      "valor": 26.83,
+      "porcentagem": 22.69
+    },
+    "loteD": {
+      "valor": 20.28,
+      "porcentagem": 17.15
+    },
+    "loteN": {
+      "valor": 21.29,
+      "porcentagem": 18.01
+    },
+    "farm": {
+      "valor": 20.81,
+      "porcentagem": 19.1
+    }
+  },
+  {
+    "date": "2024-03-13T00:00:00.000",
+    "loteA": {
+      "valor": 27.46,
+      "porcentagem": 20.83
+    },
+    "loteB": {
+      "valor": 28.26,
+      "porcentagem": 21.44
+    },
+    "loteC": {
+      "valor": 21.91,
+      "porcentagem": 16.62
+    },
+    "loteD": {
+      "valor": 29.17,
+      "porcentagem": 22.13
+    },
+    "loteN": {
+      "valor": 25.0,
+      "porcentagem": 18.97
+    },
+    "farm": {
+      "valor": 22.41,
+      "porcentagem": 18.77
+    }
+  },
+  {
+    "date": "2024-03-14T00:00:00.000",
+    "loteA": {
+      "valor": 26.16,
+      "porcentagem": 19.63
+    },
+    "loteB": {
+      "valor": 27.14,
+      "porcentagem": 20.37
+    },
+    "loteC": {
+      "valor": 27.9,
+      "porcentagem": 20.94
+    },
+    "loteD": {
+      "valor": 26.49,
+      "porcentagem": 19.88
+    },
+    "loteN": {
+      "valor": 25.56,
+      "porcentagem": 19.18
+    },
+    "farm": {
+      "valor": 26.12,
+      "porcentagem": 20.5
+    }
+  },
+  {
+    "date": "2024-03-15T00:00:00.000",
+    "loteA": {
+      "valor": 28.3,
+      "porcentagem": 22.12
+    },
+    "loteB": {
+      "valor": 20.96,
+      "porcentagem": 16.38
+    },
+    "loteC": {
+      "valor": 26.72,
+      "porcentagem": 20.88
+    },
+    "loteD": {
+      "valor": 26.63,
+      "porcentagem": 20.81
+    },
+    "loteN": {
+      "valor": 25.33,
+      "porcentagem": 19.8
+    },
+    "farm": {
+      "valor": 25.35,
+      "porcentagem": 20.05
+    }
+  },
+  {
+    "date": "2024-03-16T00:00:00.000",
+    "loteA": {
+      "valor": 21.81,
+      "porcentagem": 18.92
+    },
+    "loteB": {
+      "valor": 24.01,
+      "porcentagem": 20.83
+    },
+    "loteC": {
+      "valor": 20.18,
+      "porcentagem": 17.51
+    },
+    "loteD": {
+      "valor": 28.3,
+      "porcentagem": 24.56
+    },
+    "loteN": {
+      "valor": 20.95,
+      "porcentagem": 18.18
+    },
+    "farm": {
+      "valor": 23.97,
+      "porcentagem": 21.37
+    }
+  },
+  {
+    "date": "2024-03-17T00:00:00.000",
+    "loteA": {
+      "valor": 24.27,
+      "porcentagem": 20.77
+    },
+    "loteB": {
+      "valor": 24.29,
+      "porcentagem": 20.79
+    },
+    "loteC": {
+      "valor": 25.61,
+      "porcentagem": 21.92
+    },
+    "loteD": {
+      "valor": 21.42,
+      "porcentagem": 18.33
+    },
+    "loteN": {
+      "valor": 21.25,
+      "porcentagem": 18.19
+    },
+    "farm": {
+      "valor": 23.85,
+      "porcentagem": 19.74
+    }
+  },
+  {
+    "date": "2024-03-18T00:00:00.000",
+    "loteA": {
+      "valor": 25.73,
+      "porcentagem": 21.83
+    },
+    "loteB": {
+      "valor": 21.09,
+      "porcentagem": 17.9
+    },
+    "loteC": {
+      "valor": 25.96,
+      "porcentagem": 22.03
+    },
+    "loteD": {
+      "valor": 24.33,
+      "porcentagem": 20.64
+    },
+    "loteN": {
+      "valor": 20.74,
+      "porcentagem": 17.6
+    },
+    "farm": {
+      "valor": 23.2,
+      "porcentagem": 21.2
+    }
+  },
+  {
+    "date": "2024-03-19T00:00:00.000",
+    "loteA": {
+      "valor": 26.66,
+      "porcentagem": 22.53
+    },
+    "loteB": {
+      "valor": 24.95,
+      "porcentagem": 21.09
+    },
+    "loteC": {
+      "valor": 22.65,
+      "porcentagem": 19.14
+    },
+    "loteD": {
+      "valor": 22.24,
+      "porcentagem": 18.8
+    },
+    "loteN": {
+      "valor": 21.82,
+      "porcentagem": 18.44
+    },
+    "farm": {
+      "valor": 23.75,
+      "porcentagem": 18.93
+    }
+  },
+  {
+    "date": "2024-03-20T00:00:00.000",
+    "loteA": {
+      "valor": 21.12,
+      "porcentagem": 17.84
+    },
+    "loteB": {
+      "valor": 28.58,
+      "porcentagem": 24.14
+    },
+    "loteC": {
+      "valor": 20.77,
+      "porcentagem": 17.55
+    },
+    "loteD": {
+      "valor": 27.71,
+      "porcentagem": 23.41
+    },
+    "loteN": {
+      "valor": 20.2,
+      "porcentagem": 17.06
+    },
+    "farm": {
+      "valor": 22.53,
+      "porcentagem": 17.26
+    }
+  },
+  {
+    "date": "2024-03-21T00:00:00.000",
+    "loteA": {
+      "valor": 27.29,
+      "porcentagem": 20.65
+    },
+    "loteB": {
+      "valor": 28.27,
+      "porcentagem": 21.39
+    },
+    "loteC": {
+      "valor": 24.29,
+      "porcentagem": 18.38
+    },
+    "loteD": {
+      "valor": 29.29,
+      "porcentagem": 22.16
+    },
+    "loteN": {
+      "valor": 23.04,
+      "porcentagem": 17.43
+    },
+    "farm": {
+      "valor": 24.66,
+      "porcentagem": 20.73
+    }
+  },
+  {
+    "date": "2024-03-22T00:00:00.000",
+    "loteA": {
+      "valor": 28.72,
+      "porcentagem": 22.54
+    },
+    "loteB": {
+      "valor": 29.74,
+      "porcentagem": 23.35
+    },
+    "loteC": {
+      "valor": 24.39,
+      "porcentagem": 19.15
+    },
+    "loteD": {
+      "valor": 21.05,
+      "porcentagem": 16.52
+    },
+    "loteN": {
+      "valor": 23.49,
+      "porcentagem": 18.44
+    },
+    "farm": {
+      "valor": 28.06,
+      "porcentagem": 21.37
+    }
+  },
+  {
+    "date": "2024-03-23T00:00:00.000",
+    "loteA": {
+      "valor": 27.39,
+      "porcentagem": 21.18
+    },
+    "loteB": {
+      "valor": 22.92,
+      "porcentagem": 17.73
+    },
+    "loteC": {
+      "valor": 21.24,
+      "porcentagem": 16.43
+    },
+    "loteD": {
+      "valor": 29.87,
+      "porcentagem": 23.1
+    },
+    "loteN": {
+      "valor": 27.87,
+      "porcentagem": 21.56
+    },
+    "farm": {
+      "valor": 24.97,
+      "porcentagem": 20.61
+    }
+  },
+  {
+    "date": "2024-03-24T00:00:00.000",
+    "loteA": {
+      "valor": 22.51,
+      "porcentagem": 18.0
+    },
+    "loteB": {
+      "valor": 29.74,
+      "porcentagem": 23.78
+    },
+    "loteC": {
+      "valor": 24.33,
+      "porcentagem": 19.45
+    },
+    "loteD": {
+      "valor": 26.85,
+      "porcentagem": 21.47
+    },
+    "loteN": {
+      "valor": 21.64,
+      "porcentagem": 17.3
+    },
+    "farm": {
+      "valor": 27.52,
+      "porcentagem": 21.04
+    }
+  },
+  {
+    "date": "2024-03-25T00:00:00.000",
+    "loteA": {
+      "valor": 28.84,
+      "porcentagem": 22.54
+    },
+    "loteB": {
+      "valor": 21.46,
+      "porcentagem": 16.77
+    },
+    "loteC": {
+      "valor": 24.57,
+      "porcentagem": 19.21
+    },
+    "loteD": {
+      "valor": 24.95,
+      "porcentagem": 19.5
+    },
+    "loteN": {
+      "valor": 28.11,
+      "porcentagem": 21.97
+    },
+    "farm": {
+      "valor": 25.51,
+      "porcentagem": 18.17
+    }
+  },
+  {
+    "date": "2024-03-26T00:00:00.000",
+    "loteA": {
+      "valor": 20.06,
+      "porcentagem": 17.31
+    },
+    "loteB": {
+      "valor": 27.37,
+      "porcentagem": 23.62
+    },
+    "loteC": {
+      "valor": 26.68,
+      "porcentagem": 23.02
+    },
+    "loteD": {
+      "valor": 21.07,
+      "porcentagem": 18.18
+    },
+    "loteN": {
+      "valor": 20.7,
+      "porcentagem": 17.86
+    },
+    "farm": {
+      "valor": 26.49,
+      "porcentagem": 22.85
+    }
+  },
+  {
+    "date": "2024-03-27T00:00:00.000",
+    "loteA": {
+      "valor": 28.69,
+      "porcentagem": 22.38
+    },
+    "loteB": {
+      "valor": 25.79,
+      "porcentagem": 20.11
+    },
+    "loteC": {
+      "valor": 29.51,
+      "porcentagem": 23.02
+    },
+    "loteD": {
+      "valor": 23.52,
+      "porcentagem": 18.34
+    },
+    "loteN": {
+      "valor": 20.71,
+      "porcentagem": 16.15
+    },
+    "farm": {
+      "valor": 21.72,
+      "porcentagem": 21.06
+    }
+  },
+  {
+    "date": "2024-03-28T00:00:00.000",
+    "loteA": {
+      "valor": 23.23,
+      "porcentagem": 18.12
+    },
+    "loteB": {
+      "valor": 27.32,
+      "porcentagem": 21.31
+    },
+    "loteC": {
+      "valor": 24.11,
+      "porcentagem": 18.81
+    },
+    "loteD": {
+      "valor": 26.09,
+      "porcentagem": 20.35
+    },
+    "loteN": {
+      "valor": 27.43,
+      "porcentagem": 21.4
+    },
+    "farm": {
+      "valor": 26.8,
+      "porcentagem": 19.91
+    }
+  },
+  {
+    "date": "2024-03-29T00:00:00.000",
+    "loteA": {
+      "valor": 27.8,
+      "porcentagem": 21.27
+    },
+    "loteB": {
+      "valor": 28.56,
+      "porcentagem": 21.85
+    },
+    "loteC": {
+      "valor": 24.91,
+      "porcentagem": 19.06
+    },
+    "loteD": {
+      "valor": 20.95,
+      "porcentagem": 16.03
+    },
+    "loteN": {
+      "valor": 28.47,
+      "porcentagem": 21.78
+    },
+    "farm": {
+      "valor": 21.3,
+      "porcentagem": 21.28
+    }
+  },
+  {
+    "date": "2024-03-30T00:00:00.000",
+    "loteA": {
+      "valor": 25.51,
+      "porcentagem": 21.3
+    },
+    "loteB": {
+      "valor": 26.45,
+      "porcentagem": 22.09
+    },
+    "loteC": {
+      "valor": 26.11,
+      "porcentagem": 21.8
+    },
+    "loteD": {
+      "valor": 21.04,
+      "porcentagem": 17.57
+    },
+    "loteN": {
+      "valor": 20.65,
+      "porcentagem": 17.24
+    },
+    "farm": {
+      "valor": 24.45,
+      "porcentagem": 17.94
+    }
+  }
+]
