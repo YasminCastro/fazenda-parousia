@@ -14,8 +14,6 @@ export async function GET() {
 
     const response: IMastite[] = data;
 
-    console.log(response);
-
     return Response.json(response);
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });

@@ -37,8 +37,6 @@ export async function GET(request: NextRequest) {
       return { date: item.date, value: item[key] };
     });
 
-    console.log(response);
-
     return Response.json(response);
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
