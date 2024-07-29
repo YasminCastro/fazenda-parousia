@@ -1,5 +1,4 @@
 import { ICostValues } from "@/interfaces/Graphs/cost";
-import { IMarginValues } from "@/interfaces/Graphs/margin";
 import api from "@/lib/api";
 import formatBatchName from "@/utils/formatBatchName";
 import { NextRequest } from "next/server";
