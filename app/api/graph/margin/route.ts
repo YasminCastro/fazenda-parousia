@@ -31,8 +31,6 @@ export async function GET(request: NextRequest) {
 
     const { data: foodMarginData } = await api.get("/margem-alimentacao");
 
-    console.log(foodMarginData);
-
     const foodMargin: IMarginValues[] = foodMarginData.map((item: any) => {
       if (batchKey === "all") {
         return {
