@@ -4,21 +4,22 @@ import { useEffect, useState } from "react";
 
 import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
-import BarGraph from "./BarGraph";
+import ComposedGraph from "./ComposedGraph";
+import { IMargin, IMarginValues } from "@/interfaces/Graphs/margin";
 
 export default function MarginGraph() {
-  const [foodCostData, setFoodCostData] = useState([]) as any[];
-  const [milkCostData, setMilkCostData] = useState([]);
+  const [foodCostData, setFoodCostData] = useState<IMarginValues[]>([]);
+  const [milkCostData, setMilkCostData] = useState<IMarginValues[]>([]);
   const { selectedBatch } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `/api/graph/cost?batch=${selectedBatch}`,
+        const response = await axios.get<IMargin>(
+          `/api/graph/margin?batch=${selectedBatch}`,
         );
-        setFoodCostData(response.data.foodCost);
-        setMilkCostData(response.data.milkCost);
+        setFoodCostData(response.data.foodMargin);
+        setMilkCostData(response.data.milkMargin);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -30,12 +31,12 @@ export default function MarginGraph() {
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphWrapper} grid h-full grid-cols-2`}>
-        <BarGraph
+        <ComposedGraph
           data={foodCostData}
           title="Margem - Alimentação (R$/vaca/dia)"
           yAxisLabel="R$"
         />
-        <BarGraph
+        <ComposedGraph
           data={milkCostData}
           title="Margem R$/kg de leite"
           yAxisLabel="R$/kg"

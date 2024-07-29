@@ -32,7 +32,21 @@ def get_custo_alimentacao_leite():
 
 @app.get('/margem')
 def get_margem_alimentacao_leite():
-    df = pd.read_json('custo-alimentacao-leite.json')
+    df = pd.read_json('margin-alimentacao-leite.json')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
+    return df.to_json(orient='records')
+
+@app.get('/margem-alimentacao')
+def get_margem_alimentacao():
+    df = pd.read_json('margem-alimentacao.json')
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
+    df =  df.sort_values('date')
+    return df.to_json(orient='records')
+
+@app.get('/margem-leite')
+def get_margem_leite():
+    df = pd.read_json('margem-leite.json')
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%dT%H:%M:%S.%f").dt.strftime('%Y-%m-%d')
     df =  df.sort_values('date')
     return df.to_json(orient='records')
