@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import DoubleCard from "./DoubleCard";
 import SimpleCard from "./SimpleCard";
@@ -17,6 +15,7 @@ import {
 import axios from "axios";
 import { CardType, useFilterContext } from "@/providers/FilterContext";
 import styles from "./styles.module.css";
+import { formatISO } from "date-fns";
 
 interface ICard {
   title: string;
@@ -32,7 +31,7 @@ const defaultData = [{}, {}, {}, {}, {}, {}, {}, {}];
 export default function Cards() {
   const [data, setData] = useState<ICard[]>(defaultData as ICard[]);
 
-  const { selectedBatch, setSelectedCard } = useFilterContext();
+  const { selectedBatch, setSelectedCard, date } = useFilterContext();
 
   const handleCardClick = (cardKey: CardType) => {
     setSelectedCard(cardKey);
@@ -41,7 +40,13 @@ export default function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/api/cards?batch=${selectedBatch}`);
+        const params = new URLSearchParams({
+          batch: selectedBatch,
+          startDate: date && date.from ? formatISO(date?.from) : "",
+          endDate: date && date.to ? formatISO(date?.to) : "",
+        });
+
+        const response = await axios.get(`/api/cards?${params.toString()}`);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -49,7 +54,7 @@ export default function Cards() {
     };
 
     fetchData();
-  }, [selectedBatch]);
+  }, [selectedBatch, date]);
 
   return (
     <div className="mt-4 grid grid-cols-4 gap-4">

@@ -7,6 +7,8 @@ export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.nextUrl);
     let batch = url.searchParams.get("batch");
+    let startDate = url.searchParams.get("startDate");
+    let endDate = url.searchParams.get("endDate");
 
     if (!batch) throw new Error("Invalid batch");
 
