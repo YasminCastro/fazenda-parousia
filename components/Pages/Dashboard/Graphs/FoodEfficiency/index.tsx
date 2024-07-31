@@ -6,16 +6,23 @@ import stylesGraph from "../styles.module.css";
 
 import LineGraph from "./LineGraph";
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
+import { formatISO } from "date-fns";
 
 export default function FoodEfficencyGraph() {
   const [data, setData] = useState<IFoodEfficiency[]>([]);
-  const { selectedBatch } = useFilterContext();
+  const { selectedBatch, date } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const params = new URLSearchParams({
+          batch: selectedBatch,
+          startDate: date && date.from ? formatISO(date?.from) : "",
+          endDate: date && date.to ? formatISO(date?.to) : "",
+        });
+
         const response = await axios.get(
-          `/api/graph/food-efficiency?batch=${selectedBatch}`,
+          `/api/graph/food-efficiency?${params.toString()}`,
         );
         setData(response.data);
       } catch (error) {
@@ -24,7 +31,7 @@ export default function FoodEfficencyGraph() {
     };
 
     fetchData();
-  }, [selectedBatch]);
+  }, [selectedBatch, date]);
 
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
