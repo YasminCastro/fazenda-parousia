@@ -6,17 +6,23 @@ import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
 import ComposedGraph from "./ComposedGraph";
 import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
+import { formatISO } from "date-fns";
 
 export default function CostGraph() {
   const [foodCostData, setFoodCostData] = useState<ICostValues[]>([]);
   const [milkCostData, setMilkCostData] = useState<ICostValues[]>([]);
-  const { selectedBatch } = useFilterContext();
+  const { selectedBatch, date } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
+      const params = new URLSearchParams({
+        batch: selectedBatch,
+        startDate: date && date.from ? formatISO(date?.from) : "",
+        endDate: date && date.to ? formatISO(date?.to) : "",
+      });
       try {
         const response = await axios.get<ICost>(
-          `/api/graph/cost?batch=${selectedBatch}`,
+          `/api/graph/cost?${params.toString()}`,
         );
         setFoodCostData(response.data.foodCost);
         setMilkCostData(response.data.milkCost);
@@ -26,7 +32,7 @@ export default function CostGraph() {
     };
 
     fetchData();
-  }, [selectedBatch]);
+  }, [selectedBatch, date]);
 
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>

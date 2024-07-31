@@ -1,6 +1,8 @@
 import { ICostValues } from "@/interfaces/Graphs/cost";
 import api from "@/lib/api";
 import formatBatchName from "@/utils/formatBatchName";
+import getDatesInterval from "@/utils/getDatesInterval";
+import { isWithinInterval, parseISO } from "date-fns";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +24,10 @@ export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.nextUrl);
     const batch = url.searchParams.get("batch");
+    const startDate = url.searchParams.get("startDate");
+    const endDate = url.searchParams.get("endDate");
+
+    const datesInterval = getDatesInterval(startDate, endDate);
 
     let batchKey = "all";
 
@@ -31,39 +37,49 @@ export async function GET(request: NextRequest) {
 
     const { data: foodMarginData } = await api.get("/custo-alimentacao");
 
-    const foodCost: ICostValues[] = foodMarginData.map((item: any) => {
-      if (batchKey === "all") {
+    const foodCost: ICostValues[] = foodMarginData
+      .filter((item: any) => {
+        const date = parseISO(item.date);
+        return isWithinInterval(date, datesInterval);
+      })
+      .map((item: any) => {
+        if (batchKey === "all") {
+          return {
+            date: item.date,
+            margin: item.farm.valor,
+            percent: item.farm.porcentagem,
+          };
+        }
+
         return {
           date: item.date,
-          margin: item.farm.valor,
-          percent: item.farm.porcentagem,
+          margin: item[batchKey].valor,
+          percent: item[batchKey].porcentagem,
         };
-      }
-
-      return {
-        date: item.date,
-        margin: item[batchKey].valor,
-        percent: item[batchKey].porcentagem,
-      };
-    });
+      });
 
     const { data: milkMarginData } = await api.get("/custo-leite");
 
-    const milkCost: ICostValues[] = milkMarginData.map((item: any) => {
-      if (batchKey === "all") {
+    const milkCost: ICostValues[] = milkMarginData
+      .filter((item: any) => {
+        const date = parseISO(item.date);
+        return isWithinInterval(date, datesInterval);
+      })
+      .map((item: any) => {
+        if (batchKey === "all") {
+          return {
+            date: item.date,
+            margin: item.farm.valor,
+            percent: item.farm.porcentagem,
+          };
+        }
+
         return {
           date: item.date,
-          margin: item.farm.valor,
-          percent: item.farm.porcentagem,
+          margin: item[batchKey].valor,
+          percent: item[batchKey].porcentagem,
         };
-      }
-
-      return {
-        date: item.date,
-        margin: item[batchKey].valor,
-        percent: item[batchKey].porcentagem,
-      };
-    });
+      });
 
     return Response.json({ milkCost, foodCost });
   } catch (error: any) {

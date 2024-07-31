@@ -1,6 +1,7 @@
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import api from "@/lib/api";
 import formatBatchName from "@/utils/formatBatchName";
+import getDatesInterval from "@/utils/getDatesInterval";
 import {
   addMonths,
   endOfDay,
@@ -32,16 +33,7 @@ export async function GET(request: NextRequest) {
     const startDate = url.searchParams.get("startDate");
     const endDate = url.searchParams.get("endDate");
 
-    let start: Date, end: Date;
-
-    if (startDate) {
-      start = startOfDay(parseISO(startDate));
-      end = endDate ? endOfDay(parseISO(endDate)) : endOfDay(start);
-    } else {
-      const now = new Date();
-      start = startOfDay(addMonths(now, -1));
-      end = endOfDay(now);
-    }
+    const datesInterval = getDatesInterval(startDate, endDate);
 
     let key = "";
 
@@ -54,7 +46,7 @@ export async function GET(request: NextRequest) {
     const response: IMilkRevenue[] = data
       .filter((item: any) => {
         const date = parseISO(item.date);
-        return isWithinInterval(date, { start, end });
+        return isWithinInterval(date, datesInterval);
       })
       .map((item: any) => {
         if (batch === "all") return item;
