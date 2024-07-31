@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LineChartTooltip from "@/components/Global/CustomTooltip/LineChartTooltip";
 import { useFilterContext } from "@/providers/FilterContext";
 import formatBatchName from "@/utils/formatBatchName";
-import { formatXAxis } from "@/utils/formatXAxis";
+import { formatTickDate } from "@/utils/formatXAxis";
 import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
 import {
   Brush,
@@ -65,7 +65,7 @@ export default function LineGraph({ data }: IProps) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" tickFormatter={formatXAxis} />
+        <XAxis dataKey="date" tickFormatter={formatTickDate} />
         <YAxis domain={["auto", "auto"]}>
           <Label
             value="eficiência alimentar"
@@ -85,6 +85,7 @@ export default function LineGraph({ data }: IProps) {
           dataKey="date"
           height={30}
           stroke={getBarColorByName(batches, selectedBatch)}
+          tickFormatter={formatTickDate}
         />
         {selectedBatch !== "all" && (
           <Line

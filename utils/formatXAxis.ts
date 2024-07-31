@@ -1,5 +1,5 @@
 import { format } from "date-fns";
 
-export const formatXAxis = (tickItem: string) => {
+export const formatTickDate = (tickItem: string) => {
   return format(new Date(tickItem), "dd/MM/yy");
 };

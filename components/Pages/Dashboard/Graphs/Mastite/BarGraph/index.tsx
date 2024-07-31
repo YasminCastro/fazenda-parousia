@@ -1,7 +1,7 @@
 import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
 import { IMastite } from "@/interfaces/Graphs/mastite";
 import { useFilterContext } from "@/providers/FilterContext";
-import { formatXAxis } from "@/utils/formatXAxis";
+import { formatTickDate } from "@/utils/formatXAxis";
 import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
 import {
   BarChart,
@@ -39,7 +39,7 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" tickFormatter={formatXAxis} />
+        <XAxis dataKey="date" tickFormatter={formatTickDate} />
         <YAxis>
           <Label value="quantidade" position="insideBottomLeft" angle={-90} />
         </YAxis>
@@ -50,6 +50,7 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
           dataKey="date"
           height={30}
           stroke={getBarColorByName(batches, selectedBatch)}
+          tickFormatter={formatTickDate}
         />
         <Bar
           dataKey="mastite"

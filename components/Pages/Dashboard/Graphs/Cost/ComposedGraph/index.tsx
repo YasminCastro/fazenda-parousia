@@ -1,5 +1,5 @@
 import { useFilterContext } from "@/providers/FilterContext";
-import { formatXAxis } from "@/utils/formatXAxis";
+import { formatTickDate } from "@/utils/formatXAxis";
 import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
 import {
   Bar,
@@ -71,7 +71,7 @@ export default function ComposedGraph({ data, title, yAxisLabel }: IProps) {
           }}
         >
           <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="date" scale="band" tickFormatter={formatXAxis} />
+          <XAxis dataKey="date" scale="band" tickFormatter={formatTickDate} />
           <YAxis>
             <Label value={yAxisLabel} position="insideLeft" angle={-90} />
           </YAxis>
@@ -87,6 +87,7 @@ export default function ComposedGraph({ data, title, yAxisLabel }: IProps) {
             dataKey="date"
             height={30}
             stroke={getBarColorByName(batches, selectedBatch)}
+            tickFormatter={formatTickDate}
           />
           <Bar
             dataKey="margin"
