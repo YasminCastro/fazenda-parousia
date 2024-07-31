@@ -1,5 +1,6 @@
 import api from "@/lib/api";
 import { NextRequest } from "next/server";
+import data from "@/backend/dados.json";
 
 export const dynamic = "force-dynamic";
 
@@ -14,19 +15,19 @@ export async function GET(request: NextRequest) {
 
     const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
-    const { data } = await api.get("/data");
+    // const { data } = await api.get("/data");
 
     let dashboardCards = [];
 
     for (let card of dashboardCardsMapping) {
       let newKPI = { ...card };
-      const foundKPI = data.find((kpi: any) => kpi.KPI === card.kpi);
+      const foundKPI: any = data.find((kpi: any) => kpi.KPI === card.kpi);
       if (foundKPI) {
         newKPI.value = foundKPI[key];
       }
 
       if (card.cardType === "double" && card.kpi2) {
-        const foundKPI2 = data.find((kpi: any) => kpi.KPI === card.kpi2);
+        const foundKPI2: any = data.find((kpi: any) => kpi.KPI === card.kpi2);
         if (foundKPI2) {
           newKPI.value2 = foundKPI2[key];
         }

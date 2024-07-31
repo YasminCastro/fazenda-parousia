@@ -3,6 +3,7 @@ import api from "@/lib/api";
 import getDatesInterval from "@/utils/getDatesInterval";
 import { isWithinInterval, parseISO } from "date-fns";
 import { NextRequest } from "next/server";
+import data from "@/backend/mastite.json";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +20,7 @@ export async function GET(request: NextRequest) {
 
     const datesInterval = getDatesInterval(startDate, endDate);
 
-    const { data } = await api.get("/mastite");
+    // const { data } = await api.get("/mastite");
 
     const response: IMastite[] = data.filter((item: any) => {
       const date = parseISO(item.date);

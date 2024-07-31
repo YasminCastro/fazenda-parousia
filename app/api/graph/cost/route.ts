@@ -4,6 +4,8 @@ import formatBatchName from "@/utils/formatBatchName";
 import getDatesInterval from "@/utils/getDatesInterval";
 import { isWithinInterval, parseISO } from "date-fns";
 import { NextRequest } from "next/server";
+import foodMarginData from "@/backend/custo-alimentacao.json";
+import milkMarginData from "@/backend/custo-leite.json";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +37,7 @@ export async function GET(request: NextRequest) {
       batchKey = formatBatchName(batch, false, true);
     }
 
-    const { data: foodMarginData } = await api.get("/custo-alimentacao");
+    // const { data: foodMarginData } = await api.get("/custo-alimentacao");
 
     const foodCost: ICostValues[] = foodMarginData
       .filter((item: any) => {
@@ -58,7 +60,7 @@ export async function GET(request: NextRequest) {
         };
       });
 
-    const { data: milkMarginData } = await api.get("/custo-leite");
+    // const { data: milkMarginData } = await api.get("/custo-leite");
 
     const milkCost: ICostValues[] = milkMarginData
       .filter((item: any) => {

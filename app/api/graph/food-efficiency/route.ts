@@ -4,6 +4,7 @@ import formatBatchName from "@/utils/formatBatchName";
 import getDatesInterval from "@/utils/getDatesInterval";
 import { isWithinInterval, parseISO } from "date-fns";
 import { NextRequest } from "next/server";
+import data from "@/backend/eficiencia-alimentar.json";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +36,7 @@ export async function GET(request: NextRequest) {
       key = formatBatchName(batch, false, true);
     }
 
-    const { data } = await api.get("/eficiencia-alimentar");
+    // const { data } = await api.get("/eficiencia-alimentar");
 
     const response: IFoodEfficiency[] = data
       .filter((item: any) => {
