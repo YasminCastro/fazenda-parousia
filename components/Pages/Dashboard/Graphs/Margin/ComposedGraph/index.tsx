@@ -58,14 +58,14 @@ export default function ComposedGraph({ data, title, yAxisLabel }: IProps) {
             dataKey="margin"
             name="Margem"
             barSize={20}
-            fill={getBarColor(2)}
+            fill={getBarColor(1)}
           />
           <Line
             type="monotone"
             dataKey="percent"
             name="Porcentagem"
-            stroke={getBarColor(1)}
-            fill={getBarColor(1)}
+            stroke={getBarColor(3)}
+            fill={getBarColor(3)}
           />
         </ComposedChart>
       </ResponsiveContainer>

@@ -2,7 +2,7 @@ import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
 import { IMastite } from "@/interfaces/Graphs/mastite";
 import { useFilterContext } from "@/providers/FilterContext";
 import { formatXAxis } from "@/utils/formatXAxis";
-import { getBarColorByName } from "@/utils/getGraphColors";
+import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
 import {
   BarChart,
   Bar,
@@ -51,12 +51,17 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
           height={30}
           stroke={getBarColorByName(batches, selectedBatch)}
         />
-        <Bar dataKey="mastite" stackId="a" name="Mastite" fill="#8280ff" />
+        <Bar
+          dataKey="mastite"
+          stackId="a"
+          name="Mastite"
+          fill={getBarColor(4)}
+        />
         <Bar
           dataKey="carenciaMastite"
           stackId={isStackedChart ? "a" : undefined}
           name="Carência Mastite"
-          fill="#fec53d"
+          fill={getBarColor(0)}
         />
       </BarChart>
     </ResponsiveContainer>

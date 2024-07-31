@@ -1,12 +1,9 @@
 import { useFilterContext } from "@/providers/FilterContext";
-import formatBatchName from "@/utils/formatBatchName";
 import { formatXAxis } from "@/utils/formatXAxis";
 import { getBarColor, getBarColorByName } from "@/utils/getGraphColors";
 import {
-  BarChart,
   Bar,
   Brush,
-  ReferenceLine,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -16,13 +13,9 @@ import {
   Label,
   ComposedChart,
   Line,
-  Scatter,
-  Area,
 } from "recharts";
 import styles from "./styles.module.css";
-import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
 import { IMarginValues } from "@/interfaces/Graphs/margin";
-import LineChartTooltip from "@/components/Global/CustomTooltip/LineChartTooltip";
 import ComposedChartTooltip from "@/components/Global/CustomTooltip/ComposedChartTooltip";
 
 interface IProps {
@@ -65,14 +58,14 @@ export default function ComposedGraph({ data, title, yAxisLabel }: IProps) {
             dataKey="margin"
             name="Margem"
             barSize={20}
-            fill={getBarColor(2)}
+            fill={getBarColor(5)}
           />
           <Line
             type="monotone"
             dataKey="percent"
             name="Porcentagem"
-            stroke={getBarColor(1)}
-            fill={getBarColor(1)}
+            stroke={getBarColor(3)}
+            fill={getBarColor(3)}
           />
         </ComposedChart>
       </ResponsiveContainer>

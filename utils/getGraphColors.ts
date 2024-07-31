@@ -1,16 +1,12 @@
 import { BatchCombobox } from "@/providers/FilterContext";
 
 const colors = [
-  "#8280ff",
-  "#fec53d",
-  "#5cdd9c",
-  "#ff9871",
-  "#ff80ca",
-  "#A6A4FF",
-  "#FFE073",
-  "#89F2C2",
-  "#FFBDA2",
-  "#FFA3DF",
+  "#3498DB",
+  "#2ECC71",
+  "#E74C3C",
+  "#9B59B6",
+  "#E67E22",
+  "#F1C40F",
 ];
 
 export const getBarColor = (index: number) => {
