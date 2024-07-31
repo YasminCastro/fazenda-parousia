@@ -7,18 +7,27 @@ import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
 import BarGraph from "./BarGraph";
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
+import { formatISO } from "date-fns";
 
 export default function MilkRevenueGraph() {
   const [data, setData] = useState<IMilkRevenue[]>([]);
   const [isStackedChart, setIsStackedChart] = useState(false);
-  const { selectedBatch } = useFilterContext();
+  const { selectedBatch, date } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const params = new URLSearchParams({
+          batch: selectedBatch,
+          startDate: date && date.from ? formatISO(date?.from) : "",
+          endDate: date && date.to ? formatISO(date?.to) : "",
+        });
+
         const response = await axios.get(
-          `/api/graph/milk-revenue?batch=${selectedBatch}`,
+          `/api/graph/milk-revenue?${params.toString()}`,
         );
+
+        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -26,7 +35,7 @@ export default function MilkRevenueGraph() {
     };
 
     fetchData();
-  }, [selectedBatch]);
+  }, [selectedBatch, date]);
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);

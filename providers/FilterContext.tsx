@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addMonths } from "date-fns";
 import React, {
   createContext,
   useContext,
@@ -44,6 +45,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   ]);
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(),
+    to: new Date(addMonths(new Date(), -1)),
   });
   const [selectedCard, setSelectedCard] = useState<CardType>("milkRevenue");
 

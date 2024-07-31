@@ -1,6 +1,13 @@
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import api from "@/lib/api";
 import formatBatchName from "@/utils/formatBatchName";
+import {
+  addMonths,
+  endOfDay,
+  isWithinInterval,
+  parseISO,
+  startOfDay,
+} from "date-fns";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +29,19 @@ export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.nextUrl);
     const batch = url.searchParams.get("batch");
+    const startDate = url.searchParams.get("startDate");
+    const endDate = url.searchParams.get("endDate");
+
+    let start: Date, end: Date;
+
+    if (startDate) {
+      start = startOfDay(parseISO(startDate));
+      end = endDate ? endOfDay(parseISO(endDate)) : endOfDay(start);
+    } else {
+      const now = new Date();
+      start = startOfDay(addMonths(now, -1));
+      end = endOfDay(now);
+    }
 
     let key = "";
 
@@ -31,11 +51,16 @@ export async function GET(request: NextRequest) {
 
     const { data } = await api.get("/receita-leite");
 
-    const response: IMilkRevenue[] = data.map((item: any) => {
-      if (batch === "all") return item;
+    const response: IMilkRevenue[] = data
+      .filter((item: any) => {
+        const date = parseISO(item.date);
+        return isWithinInterval(date, { start, end });
+      })
+      .map((item: any) => {
+        if (batch === "all") return item;
 
-      return { date: item.date, value: item[key] };
-    });
+        return { date: item.date, value: item[key] };
+      });
 
     return Response.json(response);
   } catch (error: any) {
