@@ -7,17 +7,23 @@ import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
 import BarGraph from "./BarGraph";
 import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
+import { formatISO } from "date-fns";
 
 export default function InvestmentReturnGraph() {
   const [data, setData] = useState<IInvestmentReturn[]>([]);
   const [isStackedChart, setIsStackedChart] = useState(false);
-  const { selectedBatch } = useFilterContext();
+  const { selectedBatch, date } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const params = new URLSearchParams({
+          batch: selectedBatch,
+          startDate: date && date.from ? formatISO(date?.from) : "",
+          endDate: date && date.to ? formatISO(date?.to) : "",
+        });
         const response = await axios.get(
-          `/api/graph/investment-return?batch=${selectedBatch}`,
+          `/api/graph/investment-return?${params.toString()}`,
         );
         setData(response.data);
       } catch (error) {
@@ -26,7 +32,7 @@ export default function InvestmentReturnGraph() {
     };
 
     fetchData();
-  }, [selectedBatch]);
+  }, [selectedBatch, date]);
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);

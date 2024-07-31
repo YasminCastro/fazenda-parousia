@@ -1,6 +1,8 @@
 import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
 import api from "@/lib/api";
 import formatBatchName from "@/utils/formatBatchName";
+import getDatesInterval from "@/utils/getDatesInterval";
+import { isWithinInterval, parseISO } from "date-fns";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +24,10 @@ export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.nextUrl);
     const batch = url.searchParams.get("batch");
+    const startDate = url.searchParams.get("startDate");
+    const endDate = url.searchParams.get("endDate");
+
+    const datesInterval = getDatesInterval(startDate, endDate);
 
     let key = "";
 
@@ -31,11 +37,16 @@ export async function GET(request: NextRequest) {
 
     const { data } = await api.get("/retorno-investimento");
 
-    const response: IInvestmentReturn = data.map((item: any) => {
-      if (batch === "all") return item;
+    const response: IInvestmentReturn = data
+      .filter((item: any) => {
+        const date = parseISO(item.date);
+        return isWithinInterval(date, datesInterval);
+      })
+      .map((item: any) => {
+        if (batch === "all") return item;
 
-      return { date: item.date, value: item[key] };
-    });
+        return { date: item.date, value: item[key] };
+      });
 
     return Response.json(response);
   } catch (error: any) {
