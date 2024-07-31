@@ -27,7 +27,6 @@ export default function MilkRevenueGraph() {
           `/api/graph/milk-revenue?${params.toString()}`,
         );
 
-        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
