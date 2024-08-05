@@ -5,17 +5,18 @@ import {
   Milk,
   TrendingUp,
   DollarSign,
-  ShoppingCart,
   Activity,
   BriefcaseMedical,
   IterationCw,
   List,
   DollarSignIcon,
+  Wheat,
 } from "lucide-react";
 import axios from "axios";
 import { CardType, useFilterContext } from "@/providers/FilterContext";
 import styles from "./styles.module.css";
 import { formatISO } from "date-fns";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 interface ICard {
   title: string;
@@ -112,12 +113,12 @@ const getIconAndColor = (index: number) => {
       };
     case 1:
       return {
-        icon: <ShoppingCart color="#fec53d" size={36} />,
+        icon: <Wheat color="#fec53d" size={36} />,
         color: "#fef2d6",
       };
     case 2:
       return {
-        icon: <TrendingUp color="#4ad991" size={36} />,
+        icon: <FaMoneyBillTrendUp color="#4ad991" size={32} />,
         color: "#d9f7e7",
       };
     case 3:

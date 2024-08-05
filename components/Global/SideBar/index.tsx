@@ -16,14 +16,14 @@ export default function SideBar() {
         Pecuária Leiteira
       </h2>
       {/* NAV */}
-      <nav className="flex w-full flex-col p-6">
+      <nav className="flex w-full flex-col px-3 py-6">
         <Link
-          href="/dashboard"
+          href=""
           // className={`${styles.navLink} ${pathname === "/dashboard" ? styles.navLinkActive : styles.navLinkDefault}`}
-          className={`${styles.navLink} ${styles.navLinkActive}`}
+          className={`${styles.navLink} ${styles.navLinkActive} text-center text-sm`}
         >
           <Gauge />
-          Dashboard
+          Desempenho Fazenda Parousia
         </Link>
         {/* <Link
           href="/performance"
@@ -42,7 +42,7 @@ export default function SideBar() {
       </nav>
       {/* DATE FILTER */}
 
-      <div className="mb-6 mt-auto">
+      <div className="">
         <DatePicker />
       </div>
       {/* SETTINGS */}

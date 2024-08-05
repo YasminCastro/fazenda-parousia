@@ -16,7 +16,7 @@ export default function TopBar() {
           />
           <Input
             type="text"
-            placeholder="Buscar"
+            placeholder="Dairy GPT"
             className="text-md rounded-full border border-gray-300 py-2 pl-10 pr-3 shadow-sm"
             value=""
             readOnly
