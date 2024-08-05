@@ -4,13 +4,16 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import stylesGraph from "../styles.module.css";
 
-import LineGraph from "./LineGraph";
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 import { formatISO } from "date-fns";
+import BarGraph from "./BarGraph";
+import { Button } from "@/components/ui/button";
+import { RefreshCcw } from "lucide-react";
 
 export default function FoodEfficencyGraph() {
   const [data, setData] = useState<IFoodEfficiency[]>([]);
   const { selectedBatch, date } = useFilterContext();
+  const [isStackedChart, setIsStackedChart] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,13 +36,24 @@ export default function FoodEfficencyGraph() {
     fetchData();
   }, [selectedBatch, date]);
 
+  const handleGraphChange = () => {
+    setIsStackedChart(!isStackedChart);
+  };
+
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
         <h2 className={`${stylesGraph.graphTitle}`}>Eficiência alimentar</h2>
+        <Button
+          className={`${stylesGraph.changeGraphButton}`}
+          onClick={handleGraphChange}
+        >
+          <RefreshCcw />
+        </Button>
       </div>
       <div className={`${stylesGraph.graphWrapper}`}>
-        <LineGraph data={data} />
+        {/* <LineGraph data={data} /> */}
+        <BarGraph data={data} isStackedChart={isStackedChart} />
       </div>
     </Card>
   );
