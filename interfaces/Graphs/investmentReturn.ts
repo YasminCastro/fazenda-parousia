@@ -9,4 +9,4 @@ interface OneBatch {
   value: number;
 }
 
-export type IInvestmentReturn = OneBatch | All;
+export type IInvestmentReturn = All | OneBatch;

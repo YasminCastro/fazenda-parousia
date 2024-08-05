@@ -17,6 +17,8 @@ import {
   ResponsiveContainer,
   Label,
 } from "recharts";
+import { min } from "lodash";
+import { AxisDomain } from "recharts/types/util/types";
 
 interface IProps {
   data: IInvestmentReturn[];
@@ -25,6 +27,18 @@ interface IProps {
 
 export default function BarGraph({ data, isStackedChart }: IProps) {
   const { batches, selectedBatch } = useFilterContext();
+
+  const getMinValueFromLotes = (data: any[]): number => {
+    const lotValues = data.flatMap((item) =>
+      Object.keys(item)
+        .filter((key: any) => key !== "date")
+        .map((key) => item[key]),
+    );
+    return Math.floor(min(lotValues));
+  };
+
+  const minValue = getMinValueFromLotes(data);
+  const yAxisDomain: AxisDomain = [Math.max(0, minValue - 20), "dataMax"];
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -41,10 +55,10 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" tickFormatter={formatTickDate} />
-        <YAxis>
-          <Label value="R$" position="left" angle={-90} />
+        <YAxis domain={yAxisDomain}>
+          <Label value="%" position="insideLeft" angle={-90} />
         </YAxis>
-        <Tooltip content={<BarChartTooltip prefix={"R$"} />} />
+        <Tooltip content={<BarChartTooltip />} />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush
