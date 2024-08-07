@@ -3,7 +3,6 @@ import DoubleCard from "./DoubleCard";
 import SimpleCard from "./SimpleCard";
 import {
   Milk,
-  TrendingUp,
   DollarSign,
   Activity,
   BriefcaseMedical,
@@ -15,7 +14,7 @@ import {
 import axios from "axios";
 import { CardType, useFilterContext } from "@/providers/FilterContext";
 import styles from "./styles.module.css";
-import { formatISO } from "date-fns";
+import { format } from "date-fns";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 interface ICard {
@@ -43,8 +42,7 @@ export default function Cards() {
       try {
         const params = new URLSearchParams({
           batch: selectedBatch,
-          startDate: date && date.from ? formatISO(date?.from) : "",
-          endDate: date && date.to ? formatISO(date?.to) : "",
+          date: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
         });
 
         const response = await axios.get(`/api/cards?${params.toString()}`);
