@@ -1,14 +1,14 @@
-import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
+import { IMargin, IMarginValues } from "@/interfaces/Graphs/margin";
 
 // const example: ICost = {
-//   foodCost: [
+//   foodMargin: [
 //     {
 //       date: "2024-06-11",
 //       margin: 32.61,
 //       percent: 4,
 //     },
 //   ],
-//   milkCost: [
+//   milkMargin: [
 //     {
 //       date: "2024-06-11",
 //       margin: 0.67,
@@ -17,12 +17,12 @@ import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
 //   ],
 // };
 
-export default function cost(rawData: any, batch: string): ICost {
-  const apiKey = "Feed_Cost";
-  const apiKey2 = "Feed Cost/Lt";
+export default function Margin(rawData: any, batch: string): IMargin {
+  const apiKey = "IoFC / vaca";
+  const apiKey2 = "IoFC / litro";
 
-  let foodCost: ICostValues[] = [];
-  let milkCost: ICostValues[] = [];
+  let foodMargin: IMarginValues[] = [];
+  let milkMargin: IMarginValues[] = [];
 
   const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
@@ -30,14 +30,14 @@ export default function cost(rawData: any, batch: string): ICost {
     const date = data.date;
     const kpiFound = data.data.find((kpi: any) => kpi.key === apiKey);
     if (kpiFound) {
-      foodCost.push({ date, margin: kpiFound[key], percent: 4 });
+      foodMargin.push({ date, margin: kpiFound[key], percent: 4 });
     }
 
     const kpi2Found = data.data.find((kpi: any) => kpi.key === apiKey2);
     if (kpi2Found) {
-      milkCost.push({ date, margin: kpi2Found[key], percent: 4 });
+      milkMargin.push({ date, margin: kpi2Found[key], percent: 4 });
     }
   }
 
-  return { foodCost, milkCost };
+  return { foodMargin, milkMargin };
 }

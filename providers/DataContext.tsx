@@ -11,7 +11,9 @@ import React, {
 } from "react";
 import { useFilterContext } from "./FilterContext";
 import CostService from "@/service/cost";
+import MarginService from "@/service/margin";
 import { ICost } from "@/interfaces/Graphs/cost";
+import { IMargin } from "@/interfaces/Graphs/margin";
 
 export interface BatchCombobox {
   value: string;
@@ -31,6 +33,7 @@ export type CardType =
 interface IValue {
   milkRevenue: IMilkRevenue[];
   cost: ICost;
+  margin: IMargin;
 }
 
 const DataContext = createContext({} as IValue);
@@ -38,13 +41,18 @@ const DataContext = createContext({} as IValue);
 export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
+  const [rawData, setRawData] = useState([]);
+  const { selectedCard, date, selectedBatch } = useFilterContext();
+
   const [milkRevenue, setMilkRevenue] = useState<IMilkRevenue[]>([]);
   const [cost, setCost] = useState<ICost>({
     foodCost: [],
     milkCost: [],
   });
-  const [rawData, setRawData] = useState([]);
-  const { selectedCard, date, selectedBatch } = useFilterContext();
+  const [margin, setMargin] = useState<IMargin>({
+    foodMargin: [],
+    milkMargin: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,6 +84,11 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
         const responseCost = CostService(rawData, selectedBatch);
         setCost(responseCost);
         break;
+
+      case "margin":
+        const responseMargin = MarginService(rawData, selectedBatch);
+        setMargin(responseMargin);
+        break;
     }
   }, [selectedCard, rawData, selectedBatch]);
 
@@ -83,8 +96,9 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
     () => ({
       milkRevenue,
       cost,
+      margin,
     }),
-    [milkRevenue, cost],
+    [milkRevenue, cost, margin],
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
