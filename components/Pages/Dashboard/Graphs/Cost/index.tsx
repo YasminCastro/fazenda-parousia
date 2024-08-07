@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
 import ComposedGraph from "./ComposedGraph";
 import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
-import { formatISO } from "date-fns";
+import { format } from "date-fns";
 
 export default function CostGraph() {
   const [foodCostData, setFoodCostData] = useState<ICostValues[]>([]);
@@ -17,8 +17,8 @@ export default function CostGraph() {
     const fetchData = async () => {
       const params = new URLSearchParams({
         batch: selectedBatch,
-        startDate: date && date.from ? formatISO(date?.from) : "",
-        endDate: date && date.to ? formatISO(date?.to) : "",
+        startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
+        endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
       });
       try {
         const response = await axios.get<ICost>(
