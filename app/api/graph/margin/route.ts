@@ -1,8 +1,7 @@
 import { IMarginValues } from "@/interfaces/Graphs/margin";
 import api from "@/lib/api";
-import formatBatchName from "@/utils/formatBatchName";
-import getDatesInterval from "@/utils/getDatesInterval";
-import { isWithinInterval, parseISO } from "date-fns";
+import getDatesBetween from "@/utils/getDatesBetween";
+import { language } from "@/utils/projectLanguage";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -26,60 +25,32 @@ export async function GET(request: NextRequest) {
     const batch = url.searchParams.get("batch");
     const startDate = url.searchParams.get("startDate");
     const endDate = url.searchParams.get("endDate");
+    const apiKey = "IoFC / vaca";
+    const apiKey2 = "IoFC / litro";
 
-    const datesInterval = getDatesInterval(startDate, endDate);
+    if (!batch) throw new Error("Invalid batch");
 
-    let batchKey = "all";
+    const allDates = getDatesBetween(startDate, endDate);
+    const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
-    if (batch && batch !== "all") {
-      batchKey = formatBatchName(batch, false, true);
+    let milkMargin: IMarginValues[] = [];
+    let foodMargin: IMarginValues[] = [];
+
+    for (let date of allDates) {
+      const { data } = await api.get(`/data/${language}/${date}`);
+
+      //FIRST KPI
+      const kpiFound = data.find((kpi: any) => kpi.key === apiKey);
+      if (kpiFound) {
+        foodMargin.push({ date, margin: kpiFound[key], percent: 4 });
+      }
+
+      //SECOND KPI
+      const kpi2Found = data.find((kpi: any) => kpi.key === apiKey2);
+      if (kpi2Found) {
+        milkMargin.push({ date, margin: kpi2Found[key], percent: 4 });
+      }
     }
-
-    const { data: foodMarginData } = await api.get("/margem-alimentacao");
-
-    const foodMargin: IMarginValues[] = foodMarginData
-      .filter((item: any) => {
-        const date = parseISO(item.date);
-        return isWithinInterval(date, datesInterval);
-      })
-      .map((item: any) => {
-        if (batchKey === "all") {
-          return {
-            date: item.date,
-            margin: item.farm.valor,
-            percent: item.farm.porcentagem,
-          };
-        }
-
-        return {
-          date: item.date,
-          margin: item[batchKey].valor,
-          percent: item[batchKey].porcentagem,
-        };
-      });
-
-    const { data: milkMarginData } = await api.get("/margem-leite");
-
-    const milkMargin: IMarginValues[] = milkMarginData
-      .filter((item: any) => {
-        const date = parseISO(item.date);
-        return isWithinInterval(date, datesInterval);
-      })
-      .map((item: any) => {
-        if (batchKey === "all") {
-          return {
-            date: item.date,
-            margin: item.farm.valor,
-            percent: item.farm.porcentagem,
-          };
-        }
-
-        return {
-          date: item.date,
-          margin: item[batchKey].valor,
-          percent: item[batchKey].porcentagem,
-        };
-      });
 
     return Response.json({ milkMargin, foodMargin });
   } catch (error: any) {

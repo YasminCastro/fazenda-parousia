@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
 import ComposedGraph from "./ComposedGraph";
 import { IMargin, IMarginValues } from "@/interfaces/Graphs/margin";
-import { formatISO } from "date-fns";
+import { format } from "date-fns";
 
 export default function MarginGraph() {
   const [foodMarginData, setMarginCostData] = useState<IMarginValues[]>([]);
@@ -18,8 +18,8 @@ export default function MarginGraph() {
       try {
         const params = new URLSearchParams({
           batch: selectedBatch,
-          startDate: date && date.from ? formatISO(date?.from) : "",
-          endDate: date && date.to ? formatISO(date?.to) : "",
+          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
+          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
         });
         const response = await axios.get<IMargin>(
           `/api/graph/margin?${params.toString()}`,
