@@ -39,7 +39,6 @@ export async function GET(request: NextRequest) {
       dashboardCards.push(newKPI);
     }
 
-    console.log(dashboardCards);
     return Response.json(dashboardCards);
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
