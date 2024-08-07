@@ -1,5 +1,6 @@
 import api from "@/lib/api";
 import { language } from "@/utils/projectLanguage";
+import { format, subDays } from "date-fns";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +12,7 @@ export async function GET(request: NextRequest) {
     let date = url.searchParams.get("date");
 
     if (!batch) throw new Error("Invalid batch");
+    if (!date) date = format(subDays(new Date(), 1), "yyyy-MM-dd");
 
     const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
