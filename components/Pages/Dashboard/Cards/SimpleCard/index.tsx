@@ -11,6 +11,7 @@ interface IProps {
   color: string;
   icon: any;
   fromYesterday?: string;
+  loading: boolean;
 }
 
 export default function SimpleCard({
@@ -19,8 +20,9 @@ export default function SimpleCard({
   fromYesterday,
   icon,
   color,
+  loading,
 }: IProps) {
-  if (!title || !value) {
+  if (loading) {
     return (
       <Card className={styles.cardContainer}>
         <CardContent className={styles.cardContent}>

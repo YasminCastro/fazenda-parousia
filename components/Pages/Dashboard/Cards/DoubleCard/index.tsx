@@ -9,6 +9,7 @@ interface IProps {
   value2: number;
   color: string;
   icon: any;
+  loading: boolean;
 }
 
 export default function DoubleCard({
@@ -18,8 +19,9 @@ export default function DoubleCard({
   color,
   title2,
   value2,
+  loading,
 }: IProps) {
-  if (!title || !value || !value2 || !title2) {
+  if (loading) {
     return (
       <Card className={styles.cardContainer}>
         <CardContent className={styles.cardContent}>

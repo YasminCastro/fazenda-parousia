@@ -30,6 +30,7 @@ const defaultData = [{}, {}, {}, {}, {}, {}, {}, {}];
 
 export default function Cards() {
   const [data, setData] = useState<ICard[]>(defaultData as ICard[]);
+  const [loading, setLoading] = useState(false);
 
   const { selectedBatch, setSelectedCard, date } = useFilterContext();
 
@@ -40,6 +41,7 @@ export default function Cards() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const params = new URLSearchParams({
           batch: selectedBatch,
           date: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
@@ -49,6 +51,8 @@ export default function Cards() {
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -76,6 +80,7 @@ export default function Cards() {
                 value2={card.value2 || 0}
                 icon={icon}
                 color={color}
+                loading={loading}
               />
             </button>
           );
@@ -94,6 +99,7 @@ export default function Cards() {
               value={card.value}
               icon={icon}
               color={color}
+              loading={loading}
             />
           </button>
         );
