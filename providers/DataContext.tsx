@@ -10,6 +10,8 @@ import React, {
   useState,
 } from "react";
 import { useFilterContext } from "./FilterContext";
+import CostService from "@/service/cost";
+import { ICost } from "@/interfaces/Graphs/cost";
 
 export interface BatchCombobox {
   value: string;
@@ -28,6 +30,7 @@ export type CardType =
 
 interface IValue {
   milkRevenue: IMilkRevenue[];
+  cost: ICost;
 }
 
 const DataContext = createContext({} as IValue);
@@ -36,6 +39,10 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const [milkRevenue, setMilkRevenue] = useState<IMilkRevenue[]>([]);
+  const [cost, setCost] = useState<ICost>({
+    foodCost: [],
+    milkCost: [],
+  });
   const [rawData, setRawData] = useState([]);
   const { selectedCard, date, selectedBatch } = useFilterContext();
 
@@ -61,8 +68,13 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   useEffect(() => {
     switch (selectedCard) {
       case "milkRevenue":
-        const response = MilkRevenueService(rawData, selectedBatch);
-        setMilkRevenue(response);
+        const responseMilkRevenue = MilkRevenueService(rawData, selectedBatch);
+        setMilkRevenue(responseMilkRevenue);
+        break;
+
+      case "cost":
+        const responseCost = CostService(rawData, selectedBatch);
+        setCost(responseCost);
         break;
     }
   }, [selectedCard, rawData, selectedBatch]);
@@ -70,8 +82,9 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   const value = useMemo(
     () => ({
       milkRevenue,
+      cost,
     }),
-    [milkRevenue],
+    [milkRevenue, cost],
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

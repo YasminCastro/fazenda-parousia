@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
