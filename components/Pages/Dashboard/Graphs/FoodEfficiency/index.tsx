@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import stylesGraph from "../styles.module.css";
 
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
-import { formatISO } from "date-fns";
+import { format } from "date-fns";
 import BarGraph from "./BarGraph";
 import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
@@ -20,8 +20,8 @@ export default function FoodEfficencyGraph() {
       try {
         const params = new URLSearchParams({
           batch: selectedBatch,
-          startDate: date && date.from ? formatISO(date?.from) : "",
-          endDate: date && date.to ? formatISO(date?.to) : "",
+          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
+          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
         });
 
         const response = await axios.get(
