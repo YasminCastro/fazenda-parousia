@@ -1,39 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { useFilterContext } from "@/providers/FilterContext";
-import axios from "axios";
 import { RefreshCcw } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import BarGraph from "./BarGraph";
 import stylesGraph from "../styles.module.css";
-import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
-import { format } from "date-fns";
+import { useDataContext } from "@/providers/DataContext";
 
 export default function MilkProductionGraph() {
-  const [data, setData] = useState<IMilkProduction[]>([]);
-  const { selectedBatch, date } = useFilterContext();
   const [isStackedChart, setIsStackedChart] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const params = new URLSearchParams({
-          batch: selectedBatch,
-          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
-          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
-        });
-        const response = await axios.get(
-          `/api/graph/milk-production?${params.toString()}`,
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [selectedBatch, date]);
+  const { milkProduction } = useDataContext();
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);
@@ -53,7 +29,7 @@ export default function MilkProductionGraph() {
         </Button>
       </div>
       <div className={`${stylesGraph.graphWrapper}`}>
-        <BarGraph data={data} isStackedChart={isStackedChart} />
+        <BarGraph data={milkProduction} isStackedChart={isStackedChart} />
       </div>
     </Card>
   );
