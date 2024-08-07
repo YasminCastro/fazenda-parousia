@@ -7,7 +7,7 @@
 }
 
 .cardContainer {
-  @apply h-36 w-full rounded-3xl;
+  @apply h-40 w-full rounded-3xl;
 }
 
 .cardContent {

@@ -23,7 +23,7 @@ export default function SideBar() {
           className={`${styles.navLink} ${styles.navLinkActive} text-center text-sm`}
         >
           <Gauge />
-          Desempenho Fazenda Parousia
+          Desempenho Parousia
         </Link>
         {/* <Link
           href="/performance"
