@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import BarGraph from "./BarGraph";
 import stylesGraph from "../styles.module.css";
 import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
-import { formatISO } from "date-fns";
+import { format } from "date-fns";
 
 export default function MilkProductionGraph() {
   const [data, setData] = useState<IMilkProduction[]>([]);
@@ -20,8 +20,8 @@ export default function MilkProductionGraph() {
       try {
         const params = new URLSearchParams({
           batch: selectedBatch,
-          startDate: date && date.from ? formatISO(date?.from) : "",
-          endDate: date && date.to ? formatISO(date?.to) : "",
+          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
+          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
         });
         const response = await axios.get(
           `/api/graph/milk-production?${params.toString()}`,

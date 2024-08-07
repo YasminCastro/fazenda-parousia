@@ -1,3 +1,4 @@
+import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
 import api from "@/lib/api";
 import formatLoteKeys from "@/utils/formatLoteKeys";
 import getDatesBetween from "@/utils/getDatesBetween";
@@ -32,7 +33,7 @@ export async function GET(request: NextRequest) {
     const allDates = getDatesBetween(startDate, endDate);
     const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
-    let response = [];
+    let response: IInvestmentReturn[] = [];
 
     for (let date of allDates) {
       const { data } = await api.get(`/data/${language}/${date}`);
