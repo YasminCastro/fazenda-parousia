@@ -1,5 +1,4 @@
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
-import MilkRevenueService from "@/service/milkRevenue";
 import axios from "axios";
 import { format } from "date-fns";
 import React, {
@@ -10,10 +9,12 @@ import React, {
   useState,
 } from "react";
 import { useFilterContext } from "./FilterContext";
-import CostService from "@/service/cost";
-import MarginService from "@/service/margin";
 import { ICost } from "@/interfaces/Graphs/cost";
 import { IMargin } from "@/interfaces/Graphs/margin";
+import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
+import DefaultDataParse from "@/service/DefaultDataParse";
+import MarginDataParse from "@/service/MarginDataParse";
+import CostDataParse from "@/service/CostDataParse";
 
 export interface BatchCombobox {
   value: string;
@@ -34,6 +35,7 @@ interface IValue {
   milkRevenue: IMilkRevenue[];
   cost: ICost;
   margin: IMargin;
+  investmentReturn: IInvestmentReturn[];
 }
 
 const DataContext = createContext({} as IValue);
@@ -45,6 +47,9 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   const { selectedCard, date, selectedBatch } = useFilterContext();
 
   const [milkRevenue, setMilkRevenue] = useState<IMilkRevenue[]>([]);
+  const [investmentReturn, setInvestmentReturn] = useState<IInvestmentReturn[]>(
+    [],
+  );
   const [cost, setCost] = useState<ICost>({
     foodCost: [],
     milkCost: [],
@@ -76,17 +81,30 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   useEffect(() => {
     switch (selectedCard) {
       case "milkRevenue":
-        const responseMilkRevenue = MilkRevenueService(rawData, selectedBatch);
+        const responseMilkRevenue = DefaultDataParse(
+          rawData,
+          selectedBatch,
+          "Receita do Leite",
+        );
         setMilkRevenue(responseMilkRevenue);
         break;
 
+      case "investmentReturn":
+        const responseInvestment = DefaultDataParse(
+          rawData,
+          selectedBatch,
+          "custo",
+        );
+        setInvestmentReturn(responseInvestment);
+        break;
+
       case "cost":
-        const responseCost = CostService(rawData, selectedBatch);
+        const responseCost = CostDataParse(rawData, selectedBatch);
         setCost(responseCost);
         break;
 
       case "margin":
-        const responseMargin = MarginService(rawData, selectedBatch);
+        const responseMargin = MarginDataParse(rawData, selectedBatch);
         setMargin(responseMargin);
         break;
     }
@@ -97,8 +115,9 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       milkRevenue,
       cost,
       margin,
+      investmentReturn,
     }),
-    [milkRevenue, cost, margin],
+    [milkRevenue, cost, margin, investmentReturn],
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

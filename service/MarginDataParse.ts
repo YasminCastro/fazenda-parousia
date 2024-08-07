@@ -17,7 +17,7 @@ import { IMargin, IMarginValues } from "@/interfaces/Graphs/margin";
 //   ],
 // };
 
-export default function Margin(rawData: any, batch: string): IMargin {
+export default function MarginDataParse(rawData: any, batch: string): IMargin {
   const apiKey = "IoFC / vaca";
   const apiKey2 = "IoFC / litro";
 

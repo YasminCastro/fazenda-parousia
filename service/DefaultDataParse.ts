@@ -1,7 +1,9 @@
+import { ICostValues } from "@/interfaces/Graphs/cost";
+import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import formatLoteKeys from "@/utils/formatLoteKeys";
 
-// const example: IMilkProduction[] = [
+// const example = [
 //   {
 //     date: "2024-03-30",
 //     loteA: 1.61,
@@ -14,10 +16,12 @@ import formatLoteKeys from "@/utils/formatLoteKeys";
 //   { date: '2024-03-30', value: 57.16 }, //If batch is specified
 // ];
 
-export default function milkRevenue(rawData: any, batch: string) {
-  const apiKey = "Receita do Leite";
-
-  let response: IMilkRevenue[] = [];
+export default function DefaultDataParse(
+  rawData: any,
+  batch: string,
+  apiKey: string,
+): IInvestmentReturn[] | IMilkRevenue[] {
+  let response = [];
   const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
   for (let data of rawData) {

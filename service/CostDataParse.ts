@@ -17,7 +17,7 @@ import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
 //   ],
 // };
 
-export default function cost(rawData: any, batch: string): ICost {
+export default function CostDataParse(rawData: any, batch: string): ICost {
   const apiKey = "Feed_Cost";
   const apiKey2 = "Feed Cost/Lt";
 
