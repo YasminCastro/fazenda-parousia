@@ -1,7 +1,7 @@
 import { IMastite } from "@/interfaces/Graphs/mastite";
 import api from "@/lib/api";
-import getDatesInterval from "@/utils/getDatesInterval";
-import { isWithinInterval, parseISO } from "date-fns";
+import getDatesBetween from "@/utils/getDatesBetween";
+import { language } from "@/utils/projectLanguage";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -14,17 +14,35 @@ export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.nextUrl);
+    const batch = url.searchParams.get("batch");
     const startDate = url.searchParams.get("startDate");
     const endDate = url.searchParams.get("endDate");
+    const apiKey = "vaca_mastite";
+    const apiKey2 = "vaca_carencia_mastite";
+    if (!batch) throw new Error("Invalid batch");
+    const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
-    const datesInterval = getDatesInterval(startDate, endDate);
+    const allDates = getDatesBetween(startDate, endDate);
 
-    const { data } = await api.get("/mastite");
+    const response: IMastite[] = [];
 
-    const response: IMastite[] = data.filter((item: any) => {
-      const date = parseISO(item.date);
-      return isWithinInterval(date, datesInterval);
-    });
+    for (let date of allDates) {
+      const { data } = await api.get(`/data/${language}/${date}`);
+      let newObject: any = { date };
+      //FIRST KPI
+      const kpiFound = data.find((kpi: any) => kpi.key === apiKey);
+      if (kpiFound) {
+        newObject.mastite = kpiFound[key];
+      }
+
+      //SECOND KPI
+      const kpi2Found = data.find((kpi: any) => kpi.key === apiKey2);
+      if (kpi2Found) {
+        newObject.carenciaMastite = kpi2Found[key];
+      }
+
+      response.push(newObject);
+    }
 
     return Response.json(response);
   } catch (error: any) {

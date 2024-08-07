@@ -8,12 +8,12 @@ import { RefreshCcw } from "lucide-react";
 import BarGraph from "./BarGraph";
 import { IMastite } from "@/interfaces/Graphs/mastite";
 import { useFilterContext } from "@/providers/FilterContext";
-import { formatISO } from "date-fns";
+import { format } from "date-fns";
 
 export default function MastiteGraph() {
   const [data, setData] = useState<IMastite[]>([]);
   const [isStackedChart, setIsStackedChart] = useState(false);
-  const { date } = useFilterContext();
+  const { date, selectedBatch } = useFilterContext();
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);
@@ -23,8 +23,9 @@ export default function MastiteGraph() {
     const fetchData = async () => {
       try {
         const params = new URLSearchParams({
-          startDate: date && date.from ? formatISO(date?.from) : "",
-          endDate: date && date.to ? formatISO(date?.to) : "",
+          batch: selectedBatch,
+          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
+          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
         });
         const response = await axios.get(
           `/api/graph/mastite?${params.toString()}`,
@@ -36,7 +37,7 @@ export default function MastiteGraph() {
     };
 
     fetchData();
-  }, [date]);
+  }, [selectedBatch, date]);
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
