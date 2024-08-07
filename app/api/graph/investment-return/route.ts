@@ -1,8 +1,7 @@
-import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
 import api from "@/lib/api";
-import formatBatchName from "@/utils/formatBatchName";
-import getDatesInterval from "@/utils/getDatesInterval";
-import { isWithinInterval, parseISO } from "date-fns";
+import formatLoteKeys from "@/utils/formatLoteKeys";
+import getDatesBetween from "@/utils/getDatesBetween";
+import { language } from "@/utils/projectLanguage";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -26,27 +25,33 @@ export async function GET(request: NextRequest) {
     const batch = url.searchParams.get("batch");
     const startDate = url.searchParams.get("startDate");
     const endDate = url.searchParams.get("endDate");
+    const apiKey = "custo";
 
-    const datesInterval = getDatesInterval(startDate, endDate);
+    if (!batch) throw new Error("Invalid batch");
 
-    let key = "";
+    const allDates = getDatesBetween(startDate, endDate);
+    const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
-    if (batch && batch !== "all") {
-      key = formatBatchName(batch, false, true);
+    let response = [];
+
+    for (let date of allDates) {
+      const { data } = await api.get(`/data/${language}/${date}`);
+      const kpiFound = data.find((kpi: any) => kpi.key === apiKey);
+      if (kpiFound) {
+        let newKpi: any = { date };
+        if (batch === "all") {
+          const batches = formatLoteKeys(kpiFound);
+          newKpi = {
+            date,
+            ...batches,
+          };
+        } else {
+          newKpi.value = kpiFound[key];
+        }
+
+        response.push(newKpi);
+      }
     }
-
-    const { data } = await api.get("/retorno-investimento");
-
-    const response: IInvestmentReturn = data
-      .filter((item: any) => {
-        const date = parseISO(item.date);
-        return isWithinInterval(date, datesInterval);
-      })
-      .map((item: any) => {
-        if (batch === "all") return item;
-
-        return { date: item.date, value: item[key] };
-      });
 
     return Response.json(response);
   } catch (error: any) {
