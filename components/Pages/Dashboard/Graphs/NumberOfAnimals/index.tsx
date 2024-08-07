@@ -6,25 +6,29 @@ import { useEffect, useState } from "react";
 import PieGraph from "./PieGraph";
 import stylesGraph from "../styles.module.css";
 import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
+import { format } from "date-fns";
 
 export default function NumberOfAnimals() {
   const [data, setData] = useState<INumberAnimals[]>([]);
-  const { selectedBatch } = useFilterContext();
+  const { selectedBatch, date } = useFilterContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const params = new URLSearchParams({
+          batch: selectedBatch,
+          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
+          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
+        });
         const response = await axios.get(
-          `/api/graph/number-animals?batch=${selectedBatch}`,
+          `/api/graph/number-animals?${params.toString()}`,
         );
         setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      } catch (error) {}
     };
 
     fetchData();
-  }, [selectedBatch]);
+  }, [selectedBatch, date]);
 
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
