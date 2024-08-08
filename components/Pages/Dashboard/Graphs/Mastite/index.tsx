@@ -1,43 +1,21 @@
 import { Card } from "@/components/ui/card";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
 import { RefreshCcw } from "lucide-react";
 import BarGraph from "./BarGraph";
-import { IMastite } from "@/interfaces/Graphs/mastite";
-import { useFilterContext } from "@/providers/FilterContext";
-import { format } from "date-fns";
+import { useDataContext } from "@/providers/DataContext";
 
 export default function MastiteGraph() {
-  const [data, setData] = useState<IMastite[]>([]);
   const [isStackedChart, setIsStackedChart] = useState(false);
-  const { date, selectedBatch } = useFilterContext();
+
+  const { mastite } = useDataContext();
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const params = new URLSearchParams({
-          batch: selectedBatch,
-          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
-          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
-        });
-        const response = await axios.get(
-          `/api/graph/mastite?${params.toString()}`,
-        );
-        setData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [selectedBatch, date]);
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
@@ -50,7 +28,7 @@ export default function MastiteGraph() {
         </Button>
       </div>
       <div className={`${stylesGraph.graphWrapper}`}>
-        <BarGraph data={data} isStackedChart={isStackedChart} />
+        <BarGraph data={mastite} isStackedChart={isStackedChart} />
       </div>
     </Card>
   );

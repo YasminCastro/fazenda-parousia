@@ -19,6 +19,8 @@ import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 import NumberOfAnimalsDataParse from "@/service/NumberOfAnimalsDataParse";
 import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
+import MastiteDataParse from "@/service/MastiteDataParse";
+import { IMastite } from "@/interfaces/Graphs/mastite";
 
 export interface BatchCombobox {
   value: string;
@@ -43,6 +45,7 @@ interface IValue {
   milkProduction: IMilkProduction[];
   foodEfficiency: IFoodEfficiency[];
   numberOfAnimals: INumberAnimals[];
+  mastite: IMastite[];
 }
 
 const DataContext = createContext({} as IValue);
@@ -57,6 +60,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   const [milkProduction, setMilkProduction] = useState<IMilkProduction[]>([]);
   const [foodEfficiency, setFoodEfficiency] = useState<IFoodEfficiency[]>([]);
   const [numberOfAnimals, setNumberOfAnimals] = useState<INumberAnimals[]>([]);
+  const [mastite, setMastite] = useState<IMastite[]>([]);
   const [investmentReturn, setInvestmentReturn] = useState<IInvestmentReturn[]>(
     [],
   );
@@ -144,6 +148,11 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
         );
         setNumberOfAnimals(responseNumberOfAnimals);
         break;
+
+      case "mastite":
+        const responseMastite = MastiteDataParse(rawData, selectedBatch);
+        setMastite(responseMastite);
+        break;
     }
   }, [selectedCard, rawData, selectedBatch]);
 
@@ -156,6 +165,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       milkProduction,
       foodEfficiency,
       numberOfAnimals,
+      mastite,
     }),
     [
       milkRevenue,
@@ -165,6 +175,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       milkProduction,
       foodEfficiency,
       numberOfAnimals,
+      mastite,
     ],
   );
 
