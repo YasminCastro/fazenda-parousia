@@ -30,12 +30,12 @@ export default function CostDataParse(rawData: any, batch: string): ICost {
     const date = data.date;
     const kpiFound = data.data.find((kpi: any) => kpi.key === apiKey);
     if (kpiFound) {
-      foodCost.push({ date, margin: kpiFound[key], percent: 4 });
+      foodCost.push({ date, margin: kpiFound[key], percent: 0 });
     }
 
     const kpi2Found = data.data.find((kpi: any) => kpi.key === apiKey2);
     if (kpi2Found) {
-      milkCost.push({ date, margin: kpi2Found[key], percent: 4 });
+      milkCost.push({ date, margin: kpi2Found[key], percent: 0 });
     }
   }
 

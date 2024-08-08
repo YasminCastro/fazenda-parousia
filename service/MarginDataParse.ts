@@ -30,12 +30,12 @@ export default function MarginDataParse(rawData: any, batch: string): IMargin {
     const date = data.date;
     const kpiFound = data.data.find((kpi: any) => kpi.key === apiKey);
     if (kpiFound) {
-      foodMargin.push({ date, margin: kpiFound[key], percent: 4 });
+      foodMargin.push({ date, margin: kpiFound[key], percent: 0 });
     }
 
     const kpi2Found = data.data.find((kpi: any) => kpi.key === apiKey2);
     if (kpi2Found) {
-      milkMargin.push({ date, margin: kpi2Found[key], percent: 4 });
+      milkMargin.push({ date, margin: kpi2Found[key], percent: 0 });
     }
   }
 
