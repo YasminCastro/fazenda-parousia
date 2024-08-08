@@ -21,6 +21,7 @@ import NumberOfAnimalsDataParse from "@/service/NumberOfAnimalsDataParse";
 import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
 import MastiteDataParse from "@/service/MastiteDataParse";
 import { IMastite } from "@/interfaces/Graphs/mastite";
+import MilkPrice from "@/service/GetMilkPrice";
 
 export interface BatchCombobox {
   value: string;
@@ -46,6 +47,7 @@ interface IValue {
   foodEfficiency: IFoodEfficiency[];
   numberOfAnimals: INumberAnimals[];
   mastite: IMastite[];
+  milkPrice: number;
 }
 
 const DataContext = createContext({} as IValue);
@@ -56,6 +58,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   const [rawData, setRawData] = useState([]);
   const { selectedCard, date, selectedBatch } = useFilterContext();
 
+  const [milkPrice, setMilkPrice] = useState<number>(0);
   const [milkRevenue, setMilkRevenue] = useState<IMilkRevenue[]>([]);
   const [milkProduction, setMilkProduction] = useState<IMilkProduction[]>([]);
   const [foodEfficiency, setFoodEfficiency] = useState<IFoodEfficiency[]>([]);
@@ -77,12 +80,21 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const startDate =
+          date && date.from ? format(date?.from, "yyyy-MM-dd") : "";
         const params = new URLSearchParams({
-          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
+          startDate,
           endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
         });
 
         const response = await axios.get(`/api/farm-data?${params.toString()}`);
+
+        const milkPriceFound = MilkPrice(
+          response.data,
+          selectedBatch,
+          startDate,
+        );
+        setMilkPrice(milkPriceFound);
 
         setRawData(response.data);
       } catch (error) {
@@ -166,6 +178,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       foodEfficiency,
       numberOfAnimals,
       mastite,
+      milkPrice,
     }),
     [
       milkRevenue,
@@ -176,6 +189,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       foodEfficiency,
       numberOfAnimals,
       mastite,
+      milkPrice,
     ],
   );
 
