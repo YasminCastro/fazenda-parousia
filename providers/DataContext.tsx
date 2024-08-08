@@ -17,6 +17,8 @@ import MarginDataParse from "@/service/MarginDataParse";
 import CostDataParse from "@/service/CostDataParse";
 import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
+import NumberOfAnimalsDataParse from "@/service/NumberOfAnimalsDataParse";
+import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
 
 export interface BatchCombobox {
   value: string;
@@ -40,6 +42,7 @@ interface IValue {
   investmentReturn: IInvestmentReturn[];
   milkProduction: IMilkProduction[];
   foodEfficiency: IFoodEfficiency[];
+  numberOfAnimals: INumberAnimals[];
 }
 
 const DataContext = createContext({} as IValue);
@@ -53,6 +56,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   const [milkRevenue, setMilkRevenue] = useState<IMilkRevenue[]>([]);
   const [milkProduction, setMilkProduction] = useState<IMilkProduction[]>([]);
   const [foodEfficiency, setFoodEfficiency] = useState<IFoodEfficiency[]>([]);
+  const [numberOfAnimals, setNumberOfAnimals] = useState<INumberAnimals[]>([]);
   const [investmentReturn, setInvestmentReturn] = useState<IInvestmentReturn[]>(
     [],
   );
@@ -132,6 +136,14 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
         const responseMargin = MarginDataParse(rawData, selectedBatch);
         setMargin(responseMargin);
         break;
+
+      case "numberOfAnimals":
+        const responseNumberOfAnimals = NumberOfAnimalsDataParse(
+          rawData[rawData.length - 1],
+          selectedBatch,
+        );
+        setNumberOfAnimals(responseNumberOfAnimals);
+        break;
     }
   }, [selectedCard, rawData, selectedBatch]);
 
@@ -143,6 +155,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       investmentReturn,
       milkProduction,
       foodEfficiency,
+      numberOfAnimals,
     }),
     [
       milkRevenue,
@@ -151,6 +164,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       investmentReturn,
       milkProduction,
       foodEfficiency,
+      numberOfAnimals,
     ],
   );
 

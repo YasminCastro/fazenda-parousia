@@ -1,34 +1,11 @@
 import { Card } from "@/components/ui/card";
-import { useFilterContext } from "@/providers/FilterContext";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 import PieGraph from "./PieGraph";
 import stylesGraph from "../styles.module.css";
-import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
-import { format } from "date-fns";
+import { useDataContext } from "@/providers/DataContext";
 
 export default function NumberOfAnimals() {
-  const [data, setData] = useState<INumberAnimals[]>([]);
-  const { selectedBatch, date } = useFilterContext();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const params = new URLSearchParams({
-          batch: selectedBatch,
-          startDate: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
-          endDate: date && date.to ? format(date?.to, "yyyy-MM-dd") : "",
-        });
-        const response = await axios.get(
-          `/api/graph/number-animals?${params.toString()}`,
-        );
-        setData(response.data);
-      } catch (error) {}
-    };
-
-    fetchData();
-  }, [selectedBatch, date]);
+  const { numberOfAnimals } = useDataContext();
 
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
@@ -36,7 +13,7 @@ export default function NumberOfAnimals() {
         <h2 className={`${stylesGraph.graphTitle}`}>Quantidade de animais</h2>
       </div>
       <div className={`${stylesGraph.graphWrapper}`}>
-        <PieGraph data={data} />
+        <PieGraph data={numberOfAnimals} />
       </div>
     </Card>
   );
