@@ -1,4 +1,5 @@
 import { ICostValues } from "@/interfaces/Graphs/cost";
+import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import formatLoteKeys from "@/utils/formatLoteKeys";
@@ -20,7 +21,7 @@ export default function DefaultDataParse(
   rawData: any,
   batch: string,
   apiKey: string,
-): IInvestmentReturn[] | IMilkRevenue[] {
+): IInvestmentReturn[] | IMilkRevenue[] | IFoodEfficiency[] {
   let response = [];
   const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 

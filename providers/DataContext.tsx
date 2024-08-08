@@ -16,6 +16,7 @@ import DefaultDataParse from "@/service/DefaultDataParse";
 import MarginDataParse from "@/service/MarginDataParse";
 import CostDataParse from "@/service/CostDataParse";
 import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
+import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 
 export interface BatchCombobox {
   value: string;
@@ -38,6 +39,7 @@ interface IValue {
   margin: IMargin;
   investmentReturn: IInvestmentReturn[];
   milkProduction: IMilkProduction[];
+  foodEfficiency: IFoodEfficiency[];
 }
 
 const DataContext = createContext({} as IValue);
@@ -50,6 +52,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   const [milkRevenue, setMilkRevenue] = useState<IMilkRevenue[]>([]);
   const [milkProduction, setMilkProduction] = useState<IMilkProduction[]>([]);
+  const [foodEfficiency, setFoodEfficiency] = useState<IFoodEfficiency[]>([]);
   const [investmentReturn, setInvestmentReturn] = useState<IInvestmentReturn[]>(
     [],
   );
@@ -111,6 +114,15 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
         setMilkProduction(responseMilkProduction);
         break;
 
+      case "foodEfficiency":
+        const responseFoodEfficiency = DefaultDataParse(
+          rawData,
+          selectedBatch,
+          "Feed Efficiency",
+        );
+        setFoodEfficiency(responseFoodEfficiency);
+        break;
+
       case "cost":
         const responseCost = CostDataParse(rawData, selectedBatch);
         setCost(responseCost);
@@ -130,8 +142,16 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       margin,
       investmentReturn,
       milkProduction,
+      foodEfficiency,
     }),
-    [milkRevenue, cost, margin, investmentReturn, milkProduction],
+    [
+      milkRevenue,
+      cost,
+      margin,
+      investmentReturn,
+      milkProduction,
+      foodEfficiency,
+    ],
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
