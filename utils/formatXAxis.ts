@@ -1,5 +1,6 @@
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 export const formatTickDate = (tickItem: string) => {
-  return format(new Date(tickItem), "dd/MM/yy");
+  const date = parseISO(tickItem);
+  return format(date, "dd/MM/yy");
 };
