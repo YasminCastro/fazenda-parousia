@@ -5,19 +5,21 @@ import { useDataContext } from "@/providers/DataContext";
 
 export default function CostGraph() {
   const { cost } = useDataContext();
+  const titleFood = cost.foodCost.length > 0 ? cost.foodCost[0].title : "";
+  const titleMilk = cost.milkCost.length > 0 ? cost.milkCost[0].title : "";
 
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphWrapper} grid h-full grid-cols-2`}>
         <ComposedGraph
           data={cost.foodCost}
-          title={cost.foodCost[0].title}
+          title={titleFood}
           yAxisLabel="R$"
           yAxisLabel2="%"
         />
         <ComposedGraph
           data={cost.milkCost}
-          title={cost.milkCost[0].title}
+          title={titleMilk}
           yAxisLabel="R$/kg"
           yAxisLabel2="%"
         />

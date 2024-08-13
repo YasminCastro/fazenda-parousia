@@ -9,8 +9,8 @@ import { useDataContext } from "@/providers/DataContext";
 
 export default function MastiteGraph() {
   const [isStackedChart, setIsStackedChart] = useState(false);
-
   const { mastite } = useDataContext();
+  const title = mastite.length > 0 ? mastite[0].mastiteTitle : "";
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);
@@ -19,9 +19,7 @@ export default function MastiteGraph() {
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
-        <h2 className={`${stylesGraph.graphTitle}`}>
-          {mastite[0].mastiteTitle}
-        </h2>
+        <h2 className={`${stylesGraph.graphTitle}`}>{title}</h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}
           onClick={handleGraphChange}

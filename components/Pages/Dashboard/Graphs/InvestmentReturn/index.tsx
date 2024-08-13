@@ -9,6 +9,7 @@ import { useDataContext } from "@/providers/DataContext";
 export default function InvestmentReturnGraph() {
   const [isStackedChart, setIsStackedChart] = useState(false);
   const { investmentReturn } = useDataContext();
+  const title = investmentReturn.length > 0 ? investmentReturn[0].title : "";
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);
@@ -17,9 +18,7 @@ export default function InvestmentReturnGraph() {
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
-        <h2 className={`${stylesGraph.graphTitle}`}>
-          {investmentReturn[0].title}
-        </h2>
+        <h2 className={`${stylesGraph.graphTitle}`}>{title}</h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}
           onClick={handleGraphChange}

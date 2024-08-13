@@ -10,6 +10,7 @@ import { useDataContext } from "@/providers/DataContext";
 export default function MilkProductionGraph() {
   const [isStackedChart, setIsStackedChart] = useState(true);
   const { milkProduction } = useDataContext();
+  const title = milkProduction.length > 0 ? milkProduction[0].title : "";
 
   const handleGraphChange = () => {
     setIsStackedChart(!isStackedChart);
@@ -18,9 +19,7 @@ export default function MilkProductionGraph() {
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
-        <h2 className={`${stylesGraph.graphTitle}`}>
-          {milkProduction[0].title}
-        </h2>
+        <h2 className={`${stylesGraph.graphTitle}`}>{title}</h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}
           onClick={handleGraphChange}

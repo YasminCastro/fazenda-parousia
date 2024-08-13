@@ -5,19 +5,23 @@ import { useDataContext } from "@/providers/DataContext";
 
 export default function MarginGraph() {
   const { margin } = useDataContext();
+  const titleFood =
+    margin.foodMargin.length > 0 ? margin.foodMargin[0].title : "";
+  const titleMilk =
+    margin.milkMargin.length > 0 ? margin.milkMargin[0].title : "";
 
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphWrapper} grid h-full grid-cols-2`}>
         <ComposedGraph
           data={margin.foodMargin}
-          title={margin.foodMargin[0].title}
+          title={titleFood}
           yAxisLabel="R$"
           yAxisLabel2="%"
         />
         <ComposedGraph
           data={margin.milkMargin}
-          title={margin.milkMargin[0].title}
+          title={titleMilk}
           yAxisLabel="R$/kg"
           yAxisLabel2="%"
         />
