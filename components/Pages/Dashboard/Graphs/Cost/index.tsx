@@ -13,11 +13,13 @@ export default function CostGraph() {
           data={cost.foodCost}
           title="Custo - Alimentação (R$/vaca/dia)"
           yAxisLabel="R$"
+          yAxisLabel2="%"
         />
         <ComposedGraph
           data={cost.milkCost}
           title="Custo R$/kg de leite"
           yAxisLabel="R$/kg"
+          yAxisLabel2="%"
         />
       </div>
     </Card>

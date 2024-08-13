@@ -23,9 +23,15 @@ interface IProps {
   data: IMarginValues[];
   title: string;
   yAxisLabel: string;
+  yAxisLabel2?: string;
 }
 
-export default function ComposedGraph({ data, title, yAxisLabel }: IProps) {
+export default function ComposedGraph({
+  data,
+  title,
+  yAxisLabel,
+  yAxisLabel2,
+}: IProps) {
   const { batches, selectedBatch } = useFilterContext();
 
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
@@ -58,23 +64,25 @@ export default function ComposedGraph({ data, title, yAxisLabel }: IProps) {
   return (
     <div className={`${styles.graphContainer}`}>
       <h2 className={`${styles.title}`}>{title}</h2>
+      <div className={`${styles.yAxisLabelLeft}`}>{yAxisLabel}</div>
+      {yAxisLabel2 && (
+        <div className={`${styles.yAxisLabelRight}`} key={yAxisLabel2 + title}>
+          {yAxisLabel2}
+        </div>
+      )}
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           width={500}
           height={400}
           data={data}
           margin={{
-            top: 20,
-            right: 20,
-            bottom: 20,
-            left: 20,
+            right: 40,
+            left: 10,
           }}
         >
           <CartesianGrid stroke="#f5f5f5" />
           <XAxis dataKey="date" scale="band" tickFormatter={formatTickDate} />
-          <YAxis>
-            <Label value={yAxisLabel} position="insideLeft" angle={-90} />
-          </YAxis>
+          <YAxis />
           <Tooltip content={<ComposedChartTooltip />} />
           <Legend
             verticalAlign="top"

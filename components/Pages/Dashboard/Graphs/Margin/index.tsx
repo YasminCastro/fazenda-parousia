@@ -13,11 +13,13 @@ export default function MarginGraph() {
           data={margin.foodMargin}
           title="Margem - Alimentação (R$/vaca/dia)"
           yAxisLabel="R$"
+          yAxisLabel2="%"
         />
         <ComposedGraph
           data={margin.milkMargin}
           title="Margem R$/kg de leite"
           yAxisLabel="R$/kg"
+          yAxisLabel2="%"
         />
       </div>
     </Card>
