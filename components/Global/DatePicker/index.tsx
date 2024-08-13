@@ -18,6 +18,11 @@ export function DatePicker({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
   const { date, setDate } = useFilterContext();
+  const [tempDate, setTempDate] = React.useState(date);
+
+  const handleApply = () => {
+    setDate(tempDate);
+  };
 
   return (
     <div className={cn("grid gap-2", className)}>
@@ -50,11 +55,16 @@ export function DatePicker({
           <Calendar
             initialFocus
             mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={setDate}
+            defaultMonth={tempDate?.from}
+            selected={tempDate}
+            onSelect={setTempDate}
             numberOfMonths={1}
           />
+          <div className="flex w-full px-2 pb-2">
+            <Button onClick={handleApply} className="w-full">
+              Aplicar
+            </Button>
+          </div>
         </PopoverContent>
       </Popover>
     </div>
