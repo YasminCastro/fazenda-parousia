@@ -77,7 +77,7 @@ export default function Cards() {
 
         if (card.cardType === "double" && card.title2) {
           return (
-            <TooltipProvider>
+            <TooltipProvider key={`${card.key}-${index}`}>
               <Tooltip>
                 <TooltipTrigger>
                   <button
@@ -85,7 +85,6 @@ export default function Cards() {
                     onClick={() => {
                       handleCardClick(card.key);
                     }}
-                    key={`${card.key}-${index}`}
                   >
                     <DoubleCard
                       title={card.title}
@@ -107,7 +106,7 @@ export default function Cards() {
         }
 
         return (
-          <TooltipProvider>
+          <TooltipProvider key={`${card.key}-${index}`}>
             <Tooltip>
               <TooltipTrigger>
                 <button
@@ -115,7 +114,6 @@ export default function Cards() {
                   onClick={() => {
                     handleCardClick(card.key);
                   }}
-                  key={`${card.key}-${index}`}
                 >
                   <SimpleCard
                     title={card.title}
