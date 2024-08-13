@@ -16,6 +16,12 @@ import { CardType, useFilterContext } from "@/providers/FilterContext";
 import styles from "./styles.module.css";
 import { format } from "date-fns";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface ICard {
   title: string;
@@ -31,6 +37,7 @@ const defaultData = [{}, {}, {}, {}, {}, {}, {}, {}];
 export default function Cards() {
   const [data, setData] = useState<ICard[]>(defaultData as ICard[]);
   const [loading, setLoading] = useState(false);
+  const [parsedDate, setParsedDate] = useState("");
 
   const { selectedBatch, setSelectedCard, date } = useFilterContext();
 
@@ -42,12 +49,16 @@ export default function Cards() {
     const fetchData = async () => {
       try {
         setLoading(true);
+
         const params = new URLSearchParams({
           batch: selectedBatch,
           date: date && date.from ? format(date?.from, "yyyy-MM-dd") : "",
         });
 
         const response = await axios.get(`/api/cards?${params.toString()}`);
+        setParsedDate(
+          date && date.from ? format(date?.from, "dd/MM/yyyy") : "",
+        );
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -66,42 +77,60 @@ export default function Cards() {
 
         if (card.cardType === "double" && card.title2) {
           return (
-            <button
-              className={`${styles.buttonWrapper}`}
-              onClick={() => {
-                handleCardClick(card.key);
-              }}
-              key={`${card.key}-${index}`}
-            >
-              <DoubleCard
-                title={card.title}
-                value={card.value}
-                title2={card.title2}
-                value2={card.value2 || 0}
-                icon={icon}
-                color={color}
-                loading={loading}
-              />
-            </button>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <button
+                    className={`${styles.buttonWrapper}`}
+                    onClick={() => {
+                      handleCardClick(card.key);
+                    }}
+                    key={`${card.key}-${index}`}
+                  >
+                    <DoubleCard
+                      title={card.title}
+                      value={card.value}
+                      title2={card.title2}
+                      value2={card.value2 || 0}
+                      icon={icon}
+                      color={color}
+                      loading={loading}
+                    />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{parsedDate}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           );
         }
 
         return (
-          <button
-            className={`${styles.buttonWrapper}`}
-            onClick={() => {
-              handleCardClick(card.key);
-            }}
-            key={`${card.key}-${index}`}
-          >
-            <SimpleCard
-              title={card.title}
-              value={card.value}
-              icon={icon}
-              color={color}
-              loading={loading}
-            />
-          </button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <button
+                  className={`${styles.buttonWrapper}`}
+                  onClick={() => {
+                    handleCardClick(card.key);
+                  }}
+                  key={`${card.key}-${index}`}
+                >
+                  <SimpleCard
+                    title={card.title}
+                    value={card.value}
+                    icon={icon}
+                    color={color}
+                    loading={loading}
+                  />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{parsedDate}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         );
       })}
     </div>
