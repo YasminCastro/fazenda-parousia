@@ -18,7 +18,9 @@ export default function FoodEfficencyGraph() {
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
-        <h2 className={`${stylesGraph.graphTitle}`}>Eficiência alimentar</h2>
+        <h2 className={`${stylesGraph.graphTitle}`}>
+          {foodEfficiency[0].title}
+        </h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}
           onClick={handleGraphChange}

@@ -1,4 +1,5 @@
 export interface ICostValues {
+  title: string;
   date: string;
   margin: number;
   percent: number;

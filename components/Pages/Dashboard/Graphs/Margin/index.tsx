@@ -11,13 +11,13 @@ export default function MarginGraph() {
       <div className={`${stylesGraph.graphWrapper} grid h-full grid-cols-2`}>
         <ComposedGraph
           data={margin.foodMargin}
-          title="Margem - Alimentação (R$/vaca/dia)"
+          title={margin.foodMargin[0].title}
           yAxisLabel="R$"
           yAxisLabel2="%"
         />
         <ComposedGraph
           data={margin.milkMargin}
-          title="Margem R$/kg de leite"
+          title={margin.milkMargin[0].title}
           yAxisLabel="R$/kg"
           yAxisLabel2="%"
         />

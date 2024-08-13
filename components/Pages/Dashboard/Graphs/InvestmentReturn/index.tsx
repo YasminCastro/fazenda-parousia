@@ -18,7 +18,7 @@ export default function InvestmentReturnGraph() {
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
         <h2 className={`${stylesGraph.graphTitle}`}>
-          Retorno sobre investimento (%)
+          {investmentReturn[0].title}
         </h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}

@@ -10,7 +10,9 @@ export default function NumberOfAnimals() {
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
-        <h2 className={`${stylesGraph.graphTitle}`}>Quantidade de animais</h2>
+        <h2 className={`${stylesGraph.graphTitle}`}>
+          {numberOfAnimals[0].graphTitle}
+        </h2>
       </div>
       <div className={`${stylesGraph.graphWrapper}`}>
         <PieGraph data={numberOfAnimals} />

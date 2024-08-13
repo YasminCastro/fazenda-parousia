@@ -11,13 +11,13 @@ export default function CostGraph() {
       <div className={`${stylesGraph.graphWrapper} grid h-full grid-cols-2`}>
         <ComposedGraph
           data={cost.foodCost}
-          title="Custo - Alimentação (R$/vaca/dia)"
+          title={cost.foodCost[0].title}
           yAxisLabel="R$"
           yAxisLabel2="%"
         />
         <ComposedGraph
           data={cost.milkCost}
-          title="Custo R$/kg de leite"
+          title={cost.milkCost[0].title}
           yAxisLabel="R$/kg"
           yAxisLabel2="%"
         />

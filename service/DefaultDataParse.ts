@@ -1,6 +1,6 @@
-import { ICostValues } from "@/interfaces/Graphs/cost";
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
+import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import formatLoteKeys from "@/utils/formatLoteKeys";
 
@@ -21,7 +21,11 @@ export default function DefaultDataParse(
   rawData: any,
   batch: string,
   apiKey: string,
-): IInvestmentReturn[] | IMilkRevenue[] | IFoodEfficiency[] {
+):
+  | IInvestmentReturn[]
+  | IMilkRevenue[]
+  | IMilkProduction[]
+  | IFoodEfficiency[] {
   let response = [];
   const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
@@ -32,9 +36,9 @@ export default function DefaultDataParse(
       const date = data.date;
       if (batch === "all") {
         const batches = formatLoteKeys(kpiFound);
-        response.push({ date, ...batches });
+        response.push({ date, title: kpiFound.KPI, ...batches });
       } else {
-        response.push({ date, value: kpiFound[key] });
+        response.push({ date, title: kpiFound.KPI, value: kpiFound[key] });
       }
     }
   }

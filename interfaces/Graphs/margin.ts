@@ -1,5 +1,6 @@
 export interface IMarginValues {
   date: string;
+  title: string;
   margin: number;
   percent: number;
 }

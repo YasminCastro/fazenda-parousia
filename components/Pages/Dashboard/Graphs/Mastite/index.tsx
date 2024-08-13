@@ -19,7 +19,9 @@ export default function MastiteGraph() {
   return (
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
-        <h2 className={`${stylesGraph.graphTitle}`}>Mastite</h2>
+        <h2 className={`${stylesGraph.graphTitle}`}>
+          {mastite[0].mastiteTitle}
+        </h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}
           onClick={handleGraphChange}

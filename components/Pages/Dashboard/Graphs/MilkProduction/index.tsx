@@ -19,7 +19,7 @@ export default function MilkProductionGraph() {
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
         <h2 className={`${stylesGraph.graphTitle}`}>
-          Produção média (kg/vaca/dia)
+          {milkProduction[0].title}
         </h2>
         <Button
           className={`${stylesGraph.changeGraphButton}`}

@@ -28,6 +28,7 @@ export default function NumberOfAnimalsDataParse(
           key: item.slice(-1).toLowerCase(),
           value: value,
           title: title,
+          graphTitle: kpiFound.KPI,
         };
       });
 
@@ -39,6 +40,7 @@ export default function NumberOfAnimalsDataParse(
         key: batch,
         value: kpiFound[key],
         title: key,
+        graphTitle: kpiFound.KPI,
       },
     ];
   }

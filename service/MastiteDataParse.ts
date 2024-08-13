@@ -1,4 +1,3 @@
-import { IMargin, IMarginValues } from "@/interfaces/Graphs/margin";
 import { IMastite } from "@/interfaces/Graphs/mastite";
 
 // const example: IMastite[] = [
@@ -23,12 +22,14 @@ export default function MastiteDataParse(
     const kpiFound = data.data.find((kpi: any) => kpi.key === apiKey);
     if (kpiFound) {
       newObject.mastite = kpiFound[key];
+      newObject.mastiteTitle = kpiFound.KPI;
     }
 
     //SECOND KPI
     const kpi2Found = data.data.find((kpi: any) => kpi.key === apiKey2);
     if (kpi2Found) {
       newObject.carenciaMastite = kpi2Found[key];
+      newObject.carenciaMastiteTitle = kpi2Found.KPI;
     }
 
     response.push(newObject);
