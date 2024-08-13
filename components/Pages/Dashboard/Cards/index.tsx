@@ -79,23 +79,21 @@ export default function Cards() {
           return (
             <TooltipProvider key={`${card.key}-${index}`}>
               <Tooltip>
-                <TooltipTrigger>
-                  <button
-                    className={`${styles.buttonWrapper}`}
-                    onClick={() => {
-                      handleCardClick(card.key);
-                    }}
-                  >
-                    <DoubleCard
-                      title={card.title}
-                      value={card.value}
-                      title2={card.title2}
-                      value2={card.value2 || 0}
-                      icon={icon}
-                      color={color}
-                      loading={loading}
-                    />
-                  </button>
+                <TooltipTrigger
+                  className={`${styles.buttonWrapper}`}
+                  onClick={() => {
+                    handleCardClick(card.key);
+                  }}
+                >
+                  <DoubleCard
+                    title={card.title}
+                    value={card.value}
+                    title2={card.title2}
+                    value2={card.value2 || 0}
+                    icon={icon}
+                    color={color}
+                    loading={loading}
+                  />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>{parsedDate}</p>
@@ -108,21 +106,19 @@ export default function Cards() {
         return (
           <TooltipProvider key={`${card.key}-${index}`}>
             <Tooltip>
-              <TooltipTrigger>
-                <button
-                  className={`${styles.buttonWrapper}`}
-                  onClick={() => {
-                    handleCardClick(card.key);
-                  }}
-                >
-                  <SimpleCard
-                    title={card.title}
-                    value={card.value}
-                    icon={icon}
-                    color={color}
-                    loading={loading}
-                  />
-                </button>
+              <TooltipTrigger
+                className={`${styles.buttonWrapper}`}
+                onClick={() => {
+                  handleCardClick(card.key);
+                }}
+              >
+                <SimpleCard
+                  title={card.title}
+                  value={card.value}
+                  icon={icon}
+                  color={color}
+                  loading={loading}
+                />
               </TooltipTrigger>
               <TooltipContent>
                 <p>{parsedDate}</p>
