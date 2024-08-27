@@ -19,7 +19,7 @@ export default function SideBar() {
 
   return (
     <div className="relative">
-      <aside
+      <div
         className={`duration-400 h-full overflow-hidden bg-white p-4 transition-all ease-in-out ${
           isCollapsed ? "w-20" : "w-68"
         }`}
@@ -52,7 +52,7 @@ export default function SideBar() {
             </li>
           ))}
         </ul>
-      </aside>
+      </div>
     </div>
   );
 }
