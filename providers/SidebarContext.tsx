@@ -12,7 +12,7 @@ const SidebarContext = createContext({} as IValue);
 export const SidebarProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [isCollapsed, setCollapse] = useState(false);
+  const [isCollapsed, setCollapse] = useState(true);
   const toggleSidebarCollapse = () => {
     setCollapse((prevState) => !prevState);
   };
