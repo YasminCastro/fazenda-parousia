@@ -24,7 +24,7 @@ export default function RootLayout({
         <SidebarProvider>
           <FilterProvider>
             <DataProvider>
-              <div className="relative flex h-screen">
+              <div className="relative flex min-h-screen">
                 <SideBar />
                 <main className="flex-grow bg-accent">{children}</main>
               </div>
