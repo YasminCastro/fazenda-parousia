@@ -23,6 +23,11 @@ export default function SideBar() {
         className={`duration-400 h-full overflow-hidden bg-white p-4 transition-all ease-in-out ${
           isCollapsed ? "w-20" : "w-68"
         }`}
+        style={
+          {
+            "--sidebar-width": isCollapsed ? "5rem" : "17rem",
+          } as React.CSSProperties
+        }
         data-collapse={isCollapsed}
       >
         <div className="justify-left mb-4 flex items-center border-b border-gray-200 pb-4 pl-2">

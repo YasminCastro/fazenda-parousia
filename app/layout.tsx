@@ -5,6 +5,7 @@ import { SidebarProvider } from "@/providers/SidebarContext";
 import { FilterProvider } from "@/providers/FilterContext";
 import { DataProvider } from "@/providers/DataContext";
 import SideBar from "@/components/Global/SideBar";
+import TopBar from "@/components/Global/TopBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,10 @@ export default function RootLayout({
             <DataProvider>
               <div className="relative flex min-h-screen">
                 <SideBar />
-                <main className="flex-grow bg-accent">{children}</main>
+                <div className="flex flex-grow flex-col">
+                  <TopBar />
+                  <main className="flex-grow bg-accent">{children}</main>
+                </div>
               </div>
             </DataProvider>
           </FilterProvider>

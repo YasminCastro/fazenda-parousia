@@ -1,3 +1,4 @@
 .noLeftShadow {
-  box-shadow: 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: none;
+  width: calc(100% - var(--sidebar-width));
 }
