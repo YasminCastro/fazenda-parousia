@@ -1,14 +1,7 @@
 import { useDataContext } from "@/providers/DataContext";
 import { ComboboxHeader } from "./Combobox";
 import { DatePicker } from "@/components/Global/DatePicker";
-import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import ChartDownload from "@/components/Global/ChartDownload/Index";
 
 export default function Header() {
   const { milkPrice } = useDataContext();
@@ -32,18 +25,7 @@ export default function Header() {
         <p className="text-sm text-gray-600">
           Preço do leite: R${formattedMilkPrice}/kg
         </p>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button className="ml-auto w-fit p-3">
-                <Download size={18} />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="bottom">
-              <p>Baixar gráfico produção e média diária</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <ChartDownload />
       </div>
     </div>
   );
