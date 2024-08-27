@@ -7,7 +7,7 @@ import { useSidebarContext } from "@/providers/SidebarContext";
 
 const sidebarItems = [
   {
-    name: "Desempenho Parousia",
+    name: "Desempenho",
     href: "/",
     icon: Gauge,
   },

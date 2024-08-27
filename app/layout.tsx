@@ -4,6 +4,7 @@ import "./globals.css";
 import { SidebarProvider } from "@/providers/SidebarContext";
 import { FilterProvider } from "@/providers/FilterContext";
 import { DataProvider } from "@/providers/DataContext";
+import SideBar from "@/components/Global/SideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <SidebarProvider>
           <FilterProvider>
-            <DataProvider>{children}</DataProvider>
+            <DataProvider>
+              <div className="relative flex h-screen">
+                <SideBar />
+                <main className="flex-grow bg-accent">{children}</main>
+              </div>
+            </DataProvider>
           </FilterProvider>
         </SidebarProvider>
       </body>
