@@ -4,10 +4,10 @@ import Header from "./Header";
 
 export default function Dashboard() {
   return (
-    <div className="m-8 min-h-screen space-y-5">
+    <div className="m-8 space-y-5">
       <Header />
       <Cards />
-      <div className="h-1/2">
+      <div className="h-96">
         <Graphs />
       </div>
     </div>
