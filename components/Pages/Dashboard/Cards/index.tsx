@@ -71,7 +71,7 @@ export default function Cards() {
   }, [selectedBatch, date]);
 
   return (
-    <div className="mt-4 grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-4 gap-4">
       {data.map((card: ICard, index) => {
         const { icon, color } = getIconAndColor(index);
 

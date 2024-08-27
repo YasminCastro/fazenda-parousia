@@ -1,5 +1,5 @@
 .cardWrapper {
-  @apply mt-4 flex h-full w-full flex-col rounded-3xl p-3;
+  @apply flex h-full w-full flex-col rounded-3xl p-3;
 }
 
 .graphTitle {
