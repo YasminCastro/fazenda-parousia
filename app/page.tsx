@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex bg-accent">
       <SideBar />
-      <div className="ml-60 flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col">
         <SearchBar />
         <Dashboard />
       </div>
