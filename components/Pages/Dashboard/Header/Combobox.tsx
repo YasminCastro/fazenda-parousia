@@ -33,7 +33,7 @@ export function ComboboxHeader() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-36 justify-between bg-slate-50 text-gray-400"
+          className="w-28 justify-between bg-slate-50 text-gray-400"
         >
           {batches.find((farm) => farm.value === selectedBatch)?.label}
           <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
