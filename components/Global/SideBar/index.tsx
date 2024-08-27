@@ -2,56 +2,71 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "./styles.module.css";
 
-import { Gauge, LineChart, CircleDollarSign } from "lucide-react";
-import { DatePicker } from "../DatePicker";
+import Image from "next/image";
+import { Gauge, ChevronRight, ChevronLeft } from "lucide-react";
+import { useSidebarContext } from "@/providers/SidebarContext";
+
+const sidebarItems = [
+  {
+    name: "Desempenho Parousia",
+    href: "/",
+    icon: Gauge,
+  },
+];
 
 export default function SideBar() {
+  const { isCollapsed, toggleSidebarcollapse } = useSidebarContext();
   const pathname = usePathname();
-  return (
-    <div className="fixed flex h-screen w-full max-w-60 flex-col items-center bg-card shadow-lg">
-      {/* TITLE */}
-      <h2 className="pt-7 text-xl font-bold text-blue-600">
-        Pecuária Leiteira
-      </h2>
-      {/* NAV */}
-      <nav className="flex w-full flex-col px-3 py-6">
-        <Link
-          href=""
-          // className={`${styles.navLink} ${pathname === "/dashboard" ? styles.navLinkActive : styles.navLinkDefault}`}
-          className={`${styles.navLink} ${styles.navLinkActive} text-center text-sm`}
-        >
-          <Gauge />
-          Desempenho Parousia
-        </Link>
-        {/* <Link
-          href="/performance"
-          className={`${styles.navLink} ${pathname === "/performance" ? styles.navLinkActive : styles.navLinkDefault}`}
-        >
-          <LineChart />
-          Desempenho
-        </Link>
-        <Link
-          href="/economic"
-          className={`${styles.navLink} ${pathname === "/economic" ? styles.navLinkActive : styles.navLinkDefault}`}
-        >
-          <CircleDollarSign />
-          Econômico
-        </Link> */}
-      </nav>
-      {/* DATE FILTER */}
 
-      {/* SETTINGS */}
-      {/* <div className="mt-auto flex w-full flex-col items-start gap-4 border-t px-10 py-4">
-        <Link href="/setting" className={styles.bottomButtons}>
-          <Settings />
-          Configurações
-        </Link>
-        <Link href="/" className={styles.bottomButtons}>
-          <Power /> Sair
-        </Link>
-      </div> */}
+  return (
+    <div className="relative">
+      <button
+        className="absolute right-0 top-20 flex h-6 w-6 translate-x-1/2 transform cursor-pointer items-center justify-center rounded-full border border-gray-200 bg-white text-lg"
+        onClick={toggleSidebarcollapse}
+      >
+        {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
+      </button>
+      <aside
+        className={`duration-400 h-full overflow-hidden bg-white p-4 transition-all ease-in-out ${
+          isCollapsed ? "w-20" : "w-68"
+        }`}
+        data-collapse={isCollapsed}
+      >
+        <div className="mb-4 flex items-center gap-4 border-b border-gray-200 pb-4">
+          <Image
+            width={80}
+            height={80}
+            className="h-14 w-14 rounded-lg object-contain"
+            src="/favicon.svg"
+            alt="logo"
+          />
+          {/* <p
+            className={`text-xl font-semibold ${isCollapsed ? "hidden" : "block"}`}
+          >
+            Fazenda
+          </p> */}
+        </div>
+        <ul className="list-none">
+          {sidebarItems.map(({ name, href, icon: Icon }) => (
+            <li key={name} className="mb-4">
+              <Link
+                className={`flex items-center rounded-lg bg-gray-100 p-3 text-base text-black transition hover:bg-sky-500 hover:text-white ${
+                  pathname === href ? "bg-sky-500 text-white" : ""
+                }`}
+                href={href}
+              >
+                <span className="text-xl">
+                  <Icon />
+                </span>
+                <span className={`ml-2 ${isCollapsed ? "hidden" : "block"}`}>
+                  {name}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </aside>
     </div>
   );
 }
