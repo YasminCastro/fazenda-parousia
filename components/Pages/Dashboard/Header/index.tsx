@@ -1,5 +1,7 @@
 import { useDataContext } from "@/providers/DataContext";
 import { ComboboxHeader } from "./Combobox";
+import { DatePicker } from "@/components/Global/DatePicker";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   const { milkPrice } = useDataContext();
@@ -14,8 +16,10 @@ export default function Header() {
         <h1 className="text-3xl font-bold">
           Desempenho zootécnico e econômico
         </h1>
-        <div>
+        <div className="flex gap-2">
           <ComboboxHeader />
+          <DatePicker />
+          <Button>Downlaod</Button>
         </div>
       </div>
       <div className="text-sm text-gray-600">

@@ -42,9 +42,6 @@ export default function SideBar() {
       </nav>
       {/* DATE FILTER */}
 
-      <div className="">
-        <DatePicker />
-      </div>
       {/* SETTINGS */}
       {/* <div className="mt-auto flex w-full flex-col items-start gap-4 border-t px-10 py-4">
         <Link href="/setting" className={styles.bottomButtons}>
