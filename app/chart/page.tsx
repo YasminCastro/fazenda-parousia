@@ -1,68 +1,108 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
   Legend,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
 import html2canvas from "html2canvas";
 import { useFilterContext } from "@/providers/FilterContext";
-import { useDataContext } from "@/providers/DataContext";
-
-const data = [
-  { name: "Janeiro", Produção: 50, Média: 60 },
-  { name: "Fevereiro", Produção: 100, Média: 110 },
-  { name: "Março", Produção: 75, Média: 80 },
-  { name: "Abril", Produção: 125, Média: 130 },
-];
+import axios from "axios";
+import { format } from "date-fns";
+import { formatTickDateDay } from "@/utils/formatXAxis";
 
 export default function Page() {
   const chartRef = useRef(null);
   const { date } = useFilterContext();
-  const {} = useDataContext();
+  const [data, setData] = useState<any[]>();
 
   useEffect(() => {
-    const downloadChart = async () => {
-      setTimeout(async () => {
-        if (chartRef && chartRef.current) {
-          const canvas = await html2canvas(chartRef.current);
-          const imgData = canvas.toDataURL("image/png");
-          const link = document.createElement("a");
-          link.href = imgData;
-          link.download = "grafico.png";
-          link.click();
-        }
-      }, 2000);
+    const fetchDataAndDownloadChart = async () => {
+      try {
+        const params = new URLSearchParams({
+          date: date && date.from ? format(date?.from, "yyyy-MM-01") : "",
+        });
+
+        const response = await axios.get(
+          `/api/production-chart?${params.toString()}`,
+        );
+        setData(response.data);
+
+        setTimeout(async () => {
+          if (chartRef && chartRef.current) {
+            const canvas = await html2canvas(chartRef.current);
+            const imgData = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = imgData;
+            link.download = `producao-${date && date.from ? format(date?.from, "MM-yyyy") : ""}.png`;
+            link.click();
+          }
+        }, 2000);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
-    downloadChart();
+    fetchDataAndDownloadChart();
   }, []);
+
+  const uniqueTypes = Array.from(
+    new Map(data?.map((item) => [item.type, item.color])).entries(),
+  );
+
+  const renderLegend = () => {
+    return (
+      <ul className="m-0 mt-3 flex list-none justify-center gap-3 p-0">
+        {uniqueTypes.map(([type, color]) => (
+          <li key={type} className="mb-2 flex items-center">
+            <div
+              style={{
+                width: 12,
+                height: 12,
+                backgroundColor: color,
+                marginRight: 8,
+              }}
+            />
+            <span>{type}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
-    <div ref={chartRef} className="h-fit w-fit p-14">
-      <BarChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="Produção" fill="#8884d8" />
-        <Bar dataKey="Média" fill="#82ca9d" />
-      </BarChart>
+    <div ref={chartRef} className="h-full w-full p-14">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart
+          width={500}
+          height={300}
+          data={data}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" tickFormatter={formatTickDateDay} />
+          <YAxis />
+          <Tooltip />
+          <Legend content={renderLegend} />
+          <Bar dataKey="value">
+            {data?.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }
