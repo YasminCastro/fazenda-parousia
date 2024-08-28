@@ -8,7 +8,7 @@ import stylesGraph from "../styles.module.css";
 import { useDataContext } from "@/providers/DataContext";
 
 export default function MilkProductionGraph() {
-  const [isStackedChart, setIsStackedChart] = useState(true);
+  const [isStackedChart, setIsStackedChart] = useState(false);
   const { milkProduction } = useDataContext();
   const title = milkProduction.length > 0 ? milkProduction[0].title : "";
 
