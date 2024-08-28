@@ -10,37 +10,37 @@ export interface IKpiMapping {
 
 const kpiMapping: IKpiMapping[] = [
   {
-    id: 1,
+    id: 0,
     key: "Receita do Leite",
   },
   {
-    id: 2,
+    id: 1,
     key: "Cow Feed Cost",
     secondaryKey: "(%) Feed Cost/Lt",
   },
   {
-    id: 3,
+    id: 2,
     key: "IoFC / vaca",
     secondaryKey: "iofc_litro_%",
   },
   {
-    id: 4,
+    id: 3,
     key: "custo",
   },
   {
-    id: 5,
+    id: 4,
     key: "Media_Producao",
   },
   {
-    id: 6,
+    id: 5,
     key: "Animais",
   },
   {
-    id: 7,
+    id: 6,
     key: "Feed Efficiency",
   },
   {
-    id: 8,
+    id: 7,
     key: "vaca_mastite",
     secondaryKey: "vaca_carencia_mastite",
   },

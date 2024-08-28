@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
-import { RefreshCcw } from "lucide-react";
+import { RefreshCcw, Download } from "lucide-react";
 import BarGraph from "./BarGraph";
 import { useDataContext } from "@/providers/DataContext";
 
@@ -19,12 +19,20 @@ export default function MilkRevenueGraph() {
     <Card className={`${stylesGraph.cardWrapper}`}>
       <div className={`${stylesGraph.graphHeader}`}>
         <h2 className={`${stylesGraph.graphTitle}`}>{title}</h2>
-        <Button
-          className={`${stylesGraph.changeGraphButton}`}
-          onClick={handleGraphChange}
-        >
-          <RefreshCcw />
-        </Button>
+        <div className="space-x-2">
+          <Button
+            className={`${stylesGraph.changeGraphButton}`}
+            onClick={handleGraphChange}
+          >
+            <Download />
+          </Button>
+          <Button
+            className={`${stylesGraph.changeGraphButton}`}
+            onClick={handleGraphChange}
+          >
+            <RefreshCcw />
+          </Button>
+        </div>
       </div>
       <div className={`${stylesGraph.graphWrapper}`}>
         <BarGraph data={milkRevenue} isStackedChart={isStackedChart} />

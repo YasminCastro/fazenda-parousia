@@ -24,6 +24,7 @@ import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
 import MastiteDataParse from "@/service/MastiteDataParse";
 import { IMastite } from "@/interfaces/Graphs/mastite";
 import MilkPrice from "@/service/GetMilkPrice";
+import kpiMapping from "@/constants/kpiMapping";
 
 export interface BatchCombobox {
   value: string;
@@ -109,34 +110,52 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   useEffect(() => {
     switch (selectedCard) {
-      case "milkRevenue":
+      case 0:
         const responseMilkRevenue = DefaultDataParse(
           rawData,
           selectedBatch,
-          "Receita do Leite",
+          kpiMapping[0].key,
         );
         setMilkRevenue(responseMilkRevenue);
         break;
 
-      case "investmentReturn":
+      case 1:
+        const responseCost = CostDataParse(rawData, selectedBatch);
+        setCost(responseCost);
+        break;
+
+      case 2:
+        const responseMargin = MarginDataParse(rawData, selectedBatch);
+        setMargin(responseMargin);
+        break;
+
+      case 3:
         const responseInvestment = DefaultDataParse(
           rawData,
           selectedBatch,
-          "custo",
+          kpiMapping[3].key,
         );
         setInvestmentReturn(responseInvestment);
         break;
 
-      case "milkProduction":
+      case 4:
         const responseMilkProduction = DefaultDataParse(
           rawData,
           selectedBatch,
-          "Media_Producao",
+          kpiMapping[4].key,
         );
         setMilkProduction(responseMilkProduction);
         break;
 
-      case "foodEfficiency":
+      case 5:
+        const responseNumberOfAnimals = NumberOfAnimalsDataParse(
+          rawData[rawData.length - 1],
+          selectedBatch,
+        );
+        setNumberOfAnimals(responseNumberOfAnimals);
+        break;
+
+      case 6:
         const responseFoodEfficiency = DefaultDataParse(
           rawData,
           selectedBatch,
@@ -145,25 +164,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
         setFoodEfficiency(responseFoodEfficiency);
         break;
 
-      case "cost":
-        const responseCost = CostDataParse(rawData, selectedBatch);
-        setCost(responseCost);
-        break;
-
-      case "margin":
-        const responseMargin = MarginDataParse(rawData, selectedBatch);
-        setMargin(responseMargin);
-        break;
-
-      case "numberOfAnimals":
-        const responseNumberOfAnimals = NumberOfAnimalsDataParse(
-          rawData[rawData.length - 1],
-          selectedBatch,
-        );
-        setNumberOfAnimals(responseNumberOfAnimals);
-        break;
-
-      case "mastite":
+      case 7:
         const responseMastite = MastiteDataParse(rawData, selectedBatch);
         setMastite(responseMastite);
         break;

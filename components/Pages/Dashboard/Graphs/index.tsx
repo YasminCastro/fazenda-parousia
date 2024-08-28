@@ -16,14 +16,14 @@ export default function Graphs() {
 
   return (
     <>
-      {selectedCard === "milkRevenue" && <MilkRevenueGraph />}
-      {selectedCard === "cost" && <CostGraph />}
-      {selectedCard === "margin" && <MarginGraph />}
-      {selectedCard === "investmentReturn" && <InvestmentReturnGraph />}
-      {selectedCard === "milkProduction" && <MilkProductionGraph />}
-      {selectedCard === "numberOfAnimals" && <NumberOfAnimalsGraph />}
-      {selectedCard === "foodEfficiency" && <FoodEfficencyGraph />}
-      {selectedCard === "mastite" && <MastiteGraph />}
+      {selectedCard === 0 && <MilkRevenueGraph />}
+      {selectedCard === 1 && <CostGraph />}
+      {selectedCard === 2 && <MarginGraph />}
+      {selectedCard === 3 && <InvestmentReturnGraph />}
+      {selectedCard === 4 && <MilkProductionGraph />}
+      {selectedCard === 5 && <NumberOfAnimalsGraph />}
+      {selectedCard === 6 && <FoodEfficencyGraph />}
+      {selectedCard === 7 && <MastiteGraph />}
     </>
   );
 }

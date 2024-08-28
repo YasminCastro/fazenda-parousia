@@ -73,19 +73,17 @@ export default function Cards() {
   return (
     <div className="grid grid-cols-4 gap-4">
       {cardIcons.map((cardData, index) => {
-        const cardId = index++;
-
         return (
-          <TooltipProvider>
+          <TooltipProvider key={`cardId-${index}`}>
             <Tooltip>
               <TooltipTrigger
                 className="m-0 w-full border-none bg-none p-0 text-left"
                 onClick={() => {
-                  handleCardClick(cardId);
+                  handleCardClick(index);
                 }}
               >
                 <Card
-                  data={data[cardId]}
+                  data={data[index]}
                   loading={loading}
                   icon={cardData.icon}
                   outsideColor={cardData.color}
