@@ -19,7 +19,7 @@ import { IMargin, IMarginValues } from "@/interfaces/Graphs/margin";
 
 export default function MarginDataParse(rawData: any, batch: string): IMargin {
   const apiKey = "IoFC / vaca";
-  const apiKey2 = "IoFC / litro";
+  const apiKey2 = "iofc_litro_%";
 
   let foodMargin: IMarginValues[] = [];
   let milkMargin: IMarginValues[] = [];

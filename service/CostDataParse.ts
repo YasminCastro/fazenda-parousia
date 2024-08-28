@@ -18,8 +18,8 @@ import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
 // };
 
 export default function CostDataParse(rawData: any, batch: string): ICost {
-  const apiKey = "Feed_Cost";
-  const apiKey2 = "Feed Cost/Lt";
+  const apiKey = "Cow Feed Cost"; //R%
+  const apiKey2 = "(%) Feed Cost/Lt"; //Custo de alimenta\u00e7\u00e3o (%)
 
   let foodCost: ICostValues[] = [];
   let milkCost: ICostValues[] = [];
