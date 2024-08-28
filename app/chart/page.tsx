@@ -11,6 +11,8 @@ import {
   YAxis,
 } from "recharts";
 import html2canvas from "html2canvas";
+import { useFilterContext } from "@/providers/FilterContext";
+import { useDataContext } from "@/providers/DataContext";
 
 const data = [
   { name: "Janeiro", Produção: 50, Média: 60 },
@@ -21,6 +23,8 @@ const data = [
 
 export default function Page() {
   const chartRef = useRef(null);
+  const { date } = useFilterContext();
+  const {} = useDataContext();
 
   useEffect(() => {
     const downloadChart = async () => {
