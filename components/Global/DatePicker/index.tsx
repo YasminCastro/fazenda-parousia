@@ -44,8 +44,8 @@ export function DatePicker({
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.to, "dd/MM/yy")} -{" "}
-                  {format(date.from, "dd/MM/yy")}
+                  {format(date.from, "dd/MM/yy")} -{" "}
+                  {format(date.to, "dd/MM/yy")}
                 </>
               ) : (
                 format(date.from, "dd/MM/yy")
