@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { format } from "date-fns";
+import { format, isAfter, isToday } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -24,6 +24,10 @@ export function DatePicker({
     setDate(tempDate);
   };
 
+  const disableFutureDates = (date: Date) => {
+    return isToday(date) || isAfter(date, new Date());
+  };
+
   return (
     <div className={cn("grid gap-2", className)}>
       <Popover>
@@ -40,8 +44,8 @@ export function DatePicker({
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "dd/MM/yy")} -{" "}
-                  {format(date.to, "dd/MM/yy")}
+                  {format(date.to, "dd/MM/yy")} -{" "}
+                  {format(date.from, "dd/MM/yy")}
                 </>
               ) : (
                 format(date.from, "dd/MM/yy")
@@ -59,6 +63,7 @@ export function DatePicker({
             selected={tempDate}
             onSelect={setTempDate}
             numberOfMonths={1}
+            disabled={disableFutureDates}
           />
           <div className="flex w-full px-2 pb-2">
             <Button onClick={handleApply} className="w-full">

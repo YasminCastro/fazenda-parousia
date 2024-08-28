@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { addWeeks } from "date-fns";
+import { addWeeks, addDays } from "date-fns";
 import React, {
   createContext,
   useContext,
@@ -46,7 +46,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
     { value: "all", label: "Fazenda" },
   ]);
   const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
+    from: new Date(addDays(new Date(), -1)),
     to: new Date(addWeeks(new Date(), -1)),
   });
   const [selectedCard, setSelectedCard] = useState<CardType>("milkRevenue");
