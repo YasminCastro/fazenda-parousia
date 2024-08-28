@@ -6,13 +6,18 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Download } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const ChartDownload = () => {
+  const router = useRouter();
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button className="ml-auto w-fit p-3">
+          <Button
+            className="ml-auto w-fit p-3"
+            onClick={() => router.push("/chart")}
+          >
             <Download size={18} />
           </Button>
         </TooltipTrigger>
