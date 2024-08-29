@@ -32,8 +32,8 @@ interface IValue {
   batches: BatchCombobox[];
   date: DateRange | undefined;
   setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
-  selectedCard: number;
-  setSelectedCard: React.Dispatch<React.SetStateAction<number>>;
+  selectedCardIndex: number;
+  setselectedCardIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FilterContext = createContext({} as IValue);
@@ -49,7 +49,7 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
     from: new Date(addDays(new Date(), -1)),
     to: new Date(addWeeks(new Date(), -1)),
   });
-  const [selectedCard, setSelectedCard] = useState<number>(0);
+  const [selectedCardIndex, setselectedCardIndex] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,8 +71,8 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
       selectedBatch,
       date,
       setDate,
-      selectedCard,
-      setSelectedCard,
+      selectedCardIndex,
+      setselectedCardIndex,
     }),
     [
       batches,
@@ -80,8 +80,8 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
       selectedBatch,
       date,
       setDate,
-      selectedCard,
-      setSelectedCard,
+      selectedCardIndex,
+      setselectedCardIndex,
     ],
   );
 

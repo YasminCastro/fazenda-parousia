@@ -39,10 +39,10 @@ export default function Cards() {
   const [loading, setLoading] = useState(false);
   const [parsedDate, setParsedDate] = useState("");
 
-  const { selectedBatch, setSelectedCard, date } = useFilterContext();
+  const { selectedBatch, setselectedCardIndex, date } = useFilterContext();
 
   const handleCardClick = (cardKey: number) => {
-    setSelectedCard(cardKey);
+    setselectedCardIndex(cardKey);
   };
 
   useEffect(() => {

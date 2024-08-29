@@ -1,29 +1,28 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import MastiteGraph from "./Mastite";
 import { useEffect } from "react";
-import MilkRevenueGraph from "./MilkRevenue";
-import MilkProductionGraph from "./MilkProduction";
 import NumberOfAnimalsGraph from "./NumberOfAnimals";
 import CostGraph from "./Cost";
-import FoodEfficencyGraph from "./FoodEfficiency";
-import InvestmentReturnGraph from "./InvestmentReturn";
 import MarginGraph from "./Margin";
+import { useDataContext } from "@/providers/DataContext";
+import BarChart from "./BarChart";
 
 export default function Graphs() {
-  const { selectedCard } = useFilterContext();
+  const { selectedCardIndex } = useFilterContext();
+  const { chartData } = useDataContext();
 
-  useEffect(() => {}, [selectedCard]);
+  useEffect(() => {}, [selectedCardIndex]);
 
   return (
     <>
-      {selectedCard === 0 && <MilkRevenueGraph />}
-      {selectedCard === 1 && <CostGraph />}
-      {selectedCard === 2 && <MarginGraph />}
-      {selectedCard === 3 && <InvestmentReturnGraph />}
-      {selectedCard === 4 && <MilkProductionGraph />}
-      {selectedCard === 5 && <NumberOfAnimalsGraph />}
-      {selectedCard === 6 && <FoodEfficencyGraph />}
-      {selectedCard === 7 && <MastiteGraph />}
+      {selectedCardIndex === 0 && <BarChart data={chartData} />}
+      {selectedCardIndex === 1 && <CostGraph />}
+      {selectedCardIndex === 2 && <MarginGraph />}
+      {selectedCardIndex === 3 && <BarChart data={chartData} />}
+      {selectedCardIndex === 4 && <BarChart data={chartData} />}
+      {selectedCardIndex === 5 && <NumberOfAnimalsGraph />}
+      {selectedCardIndex === 6 && <BarChart data={chartData} />}
+      {selectedCardIndex === 7 && <MastiteGraph />}
     </>
   );
 }

@@ -25,6 +25,7 @@ import MastiteDataParse from "@/service/MastiteDataParse";
 import { IMastite } from "@/interfaces/Graphs/mastite";
 import MilkPrice from "@/service/GetMilkPrice";
 import kpiMapping from "@/constants/kpiMapping";
+import BarChartData from "@/service/BarChartData";
 
 export interface BatchCombobox {
   value: string;
@@ -51,6 +52,7 @@ interface IValue {
   numberOfAnimals: INumberAnimals[];
   mastite: IMastite[];
   milkPrice: number;
+  chartData: any;
 }
 
 const DataContext = createContext({} as IValue);
@@ -59,7 +61,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const [rawData, setRawData] = useState([]);
-  const { selectedCard, date, selectedBatch } = useFilterContext();
+  const { selectedCardIndex, date, selectedBatch } = useFilterContext();
 
   const [milkPrice, setMilkPrice] = useState<number>(0);
   const [milkRevenue, setMilkRevenue] = useState<IMilkRevenue[]>([]);
@@ -67,6 +69,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   const [foodEfficiency, setFoodEfficiency] = useState<IFoodEfficiency[]>([]);
   const [numberOfAnimals, setNumberOfAnimals] = useState<INumberAnimals[]>([]);
   const [mastite, setMastite] = useState<IMastite[]>([]);
+  const [chartData, setChartData] = useState<any>();
   const [investmentReturn, setInvestmentReturn] = useState<IInvestmentReturn[]>(
     [],
   );
@@ -109,67 +112,81 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   }, [date]);
 
   useEffect(() => {
-    switch (selectedCard) {
-      case 0:
-        const responseMilkRevenue = DefaultDataParse(
+    const selectedKpi = kpiMapping[selectedCardIndex];
+    if (selectedKpi.secondaryKey) {
+    } else {
+      if (selectedKpi.chartType === "bar") {
+        const dataFound = BarChartData(
           rawData,
           selectedBatch,
-          kpiMapping[0].key,
+          selectedCardIndex,
         );
-        setMilkRevenue(responseMilkRevenue);
-        break;
 
-      case 1:
-        const responseCost = CostDataParse(rawData, selectedBatch);
-        setCost(responseCost);
-        break;
-
-      case 2:
-        const responseMargin = MarginDataParse(rawData, selectedBatch);
-        setMargin(responseMargin);
-        break;
-
-      case 3:
-        const responseInvestment = DefaultDataParse(
-          rawData,
-          selectedBatch,
-          kpiMapping[3].key,
-        );
-        setInvestmentReturn(responseInvestment);
-        break;
-
-      case 4:
-        const responseMilkProduction = DefaultDataParse(
-          rawData,
-          selectedBatch,
-          kpiMapping[4].key,
-        );
-        setMilkProduction(responseMilkProduction);
-        break;
-
-      case 5:
-        const responseNumberOfAnimals = NumberOfAnimalsDataParse(
-          rawData[rawData.length - 1],
-          selectedBatch,
-        );
-        setNumberOfAnimals(responseNumberOfAnimals);
-        break;
-
-      case 6:
-        const responseFoodEfficiency = DefaultDataParse(
-          rawData,
-          selectedBatch,
-          "Feed Efficiency",
-        );
-        setFoodEfficiency(responseFoodEfficiency);
-        break;
-
-      case 7:
-        const responseMastite = MastiteDataParse(rawData, selectedBatch);
-        setMastite(responseMastite);
-        break;
+        setChartData(dataFound);
+      }
     }
-  }, [selectedCard, rawData, selectedBatch]);
+
+    // switch (selectedCardIndex) {
+    //   case 0:
+    //     const dataFound = BarChartData(
+    //       rawData,
+    //       selectedBatch,
+    //       selectedCardIndex,
+    //     );
+    //     setChartData(dataFound);
+    //     break;
+
+    //   case 1:
+    //     const responseCost = CostDataParse(rawData, selectedBatch);
+    //     setCost(responseCost);
+    //     break;
+
+    //   case 2:
+    //     const responseMargin = MarginDataParse(rawData, selectedBatch);
+    //     setMargin(responseMargin);
+    //     break;
+
+    //   case 3:
+    //     const responseInvestment = DefaultDataParse(
+    //       rawData,
+    //       selectedBatch,
+    //       kpiMapping[3].key,
+    //     );
+    //     setInvestmentReturn(responseInvestment);
+    //     break;
+
+    //   case 4:
+    //     const responseMilkProduction = DefaultDataParse(
+    //       rawData,
+    //       selectedBatch,
+    //       kpiMapping[4].key,
+    //     );
+    //     setMilkProduction(responseMilkProduction);
+    //     break;
+
+    //   case 5:
+    //     const responseNumberOfAnimals = NumberOfAnimalsDataParse(
+    //       rawData[rawData.length - 1],
+    //       selectedBatch,
+    //     );
+    //     setNumberOfAnimals(responseNumberOfAnimals);
+    //     break;
+
+    //   case 6:
+    //     const responseFoodEfficiency = DefaultDataParse(
+    //       rawData,
+    //       selectedBatch,
+    //       "Feed Efficiency",
+    //     );
+    //     setFoodEfficiency(responseFoodEfficiency);
+    //     break;
+
+    //   case 7:
+    //     const responseMastite = MastiteDataParse(rawData, selectedBatch);
+    //     setMastite(responseMastite);
+    //     break;
+    // }
+  }, [selectedCardIndex, rawData, selectedBatch]);
 
   const value = useMemo(
     () => ({
@@ -182,6 +199,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       numberOfAnimals,
       mastite,
       milkPrice,
+      chartData,
     }),
     [
       milkRevenue,
@@ -193,6 +211,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       numberOfAnimals,
       mastite,
       milkPrice,
+      chartData,
     ],
   );
 

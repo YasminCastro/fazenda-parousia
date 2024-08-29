@@ -1,5 +1,6 @@
 import BarChartTooltip from "@/components/Global/CustomTooltip/BarChartTooltip";
-import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
+import kpiMapping from "@/constants/kpiMapping";
+import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import { useFilterContext } from "@/providers/FilterContext";
 import formatBatchName from "@/utils/formatBatchName";
 import { formatTickDate } from "@/utils/formatXAxis";
@@ -19,12 +20,13 @@ import {
 } from "recharts";
 
 interface IProps {
-  data: IMilkProduction[];
+  data: IMilkRevenue[];
   isStackedChart: boolean;
 }
 
-export default function BarGraph({ data, isStackedChart }: IProps) {
-  const { batches, selectedBatch } = useFilterContext();
+export default function Chart({ data, isStackedChart }: IProps) {
+  const { batches, selectedBatch, selectedCardIndex } = useFilterContext();
+  const label = kpiMapping[selectedCardIndex].labelY;
 
   return (
     <ResponsiveContainer width="100%" height="100%">
@@ -42,13 +44,9 @@ export default function BarGraph({ data, isStackedChart }: IProps) {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" tickFormatter={formatTickDate} />
         <YAxis>
-          <Label
-            value="Produção Total (kg)"
-            position="insideBottomLeft"
-            angle={-90}
-          />
+          <Label value={label} position="insideBottomLeft" angle={-90} />
         </YAxis>
-        <Tooltip content={<BarChartTooltip />} />
+        <Tooltip content={<BarChartTooltip prefix={"R$"} />} />
         <Legend verticalAlign="top" wrapperStyle={{ lineHeight: "40px" }} />
         <ReferenceLine y={0} stroke="#000" />
         <Brush
