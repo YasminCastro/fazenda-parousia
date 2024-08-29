@@ -37,7 +37,6 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   ]);
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(addDays(new Date(), -1)),
-    to: new Date(addWeeks(new Date(), -1)),
   });
   const [selectedCardIndex, setselectedCardIndex] = useState<number>(0);
 
