@@ -26,9 +26,7 @@ const kpiMapping: IKpiMapping[] = [
     chartType: "composed",
     secundaryChartType: "bar",
     labelY: "R$",
-    secundaryLabelY: "%",
-    // labelY: "R$/kg",
-    // secundaryLabelY: "%",
+    secundaryLabelY: "R$/kg",
   },
   {
     id: 2,
@@ -36,10 +34,8 @@ const kpiMapping: IKpiMapping[] = [
     secondaryKey: "iofc_litro_%",
     chartType: "composed",
     secundaryChartType: "bar",
-    labelY: "R$/kg",
-    secundaryLabelY: "%",
-    // labelY: "R$/kg",
-    // secundaryLabelY: "%",
+    labelY: "R$",
+    secundaryLabelY: "R$/kg",
   },
   {
     id: 3,

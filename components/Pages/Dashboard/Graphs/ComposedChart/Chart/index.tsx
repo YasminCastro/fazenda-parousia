@@ -19,9 +19,11 @@ import { useState } from "react";
 
 interface IProps {
   data: any;
+  labelY: string;
+  secundaryLabelY: string;
 }
 
-export default function Chart({ data }: IProps) {
+export default function Chart({ data, labelY, secundaryLabelY }: IProps) {
   const { batches, selectedBatch } = useFilterContext();
 
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
@@ -54,13 +56,13 @@ export default function Chart({ data }: IProps) {
   return (
     <div className={`${styles.graphContainer}`}>
       <h2 className={`${styles.title}`}>{data.title}</h2>
-      <div className={`${styles.yAxisLabelLeft}`}>{data.labelY}</div>
-      {data.secundaryLabelY && (
+      <div className={`${styles.yAxisLabelLeft}`}>{labelY}</div>
+      {secundaryLabelY && (
         <div
           className={`${styles.yAxisLabelRight}`}
-          key={data.secundaryLabelY + data.title}
+          key={secundaryLabelY + data.title}
         >
-          {data.secundaryLabelY}
+          {secundaryLabelY}
         </div>
       )}
       <ResponsiveContainer width="100%" height="100%">
