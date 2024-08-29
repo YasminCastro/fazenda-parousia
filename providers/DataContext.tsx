@@ -26,6 +26,7 @@ import { IMastite } from "@/interfaces/Graphs/mastite";
 import MilkPrice from "@/service/GetMilkPrice";
 import kpiMapping from "@/constants/kpiMapping";
 import BarChartData from "@/service/BarChartData";
+import PieChartData from "@/service/PieChartData";
 
 export interface BatchCombobox {
   value: string;
@@ -118,6 +119,16 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
       if (selectedKpi.chartType === "bar") {
         const dataFound = BarChartData(
           rawData,
+          selectedBatch,
+          selectedCardIndex,
+        );
+
+        setChartData(dataFound);
+      }
+
+      if (selectedKpi.chartType === "pie") {
+        const dataFound = PieChartData(
+          rawData[rawData.length - 1],
           selectedBatch,
           selectedCardIndex,
         );

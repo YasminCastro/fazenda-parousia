@@ -2,14 +2,13 @@ import PieChartTooltip from "@/components/Global/CustomTooltip/PieChartTooltip";
 import { useFilterContext } from "@/providers/FilterContext";
 import { getBarColorByName } from "@/utils/getGraphColors";
 import { Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import LegendPieChart from "./Legend";
-import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
+import LegendPieChart from "../LegendPieChart";
 
 interface IProps {
-  data: INumberAnimals[];
+  data: any[];
 }
 
-export default function PieGraph({ data }: IProps) {
+export default function Chart({ data }: IProps) {
   const { batches } = useFilterContext();
 
   const totalValue = data.reduce((acc, entry) => acc + entry.value, 0);
