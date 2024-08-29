@@ -16,7 +16,7 @@ import { IMargin } from "@/interfaces/Graphs/margin";
 import { IInvestmentReturn } from "@/interfaces/Graphs/investmentReturn";
 import DefaultDataParse from "@/service/DefaultDataParse";
 import MarginDataParse from "@/service/MarginDataParse";
-import CostDataParse from "@/service/CostDataParse";
+import ComposedDataParse from "@/service/CostDataParse";
 import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
 import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
@@ -113,34 +113,43 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
 
   useEffect(() => {
     const selectedKpi = kpiMapping[selectedCardIndex];
+    let dataFound;
+
     if (selectedKpi.secondaryKey) {
-      if (selectedKpi.key === "vaca_mastite") {
-        const dataFound = MastiteDataParse(
-          rawData,
-          selectedBatch,
-          selectedCardIndex,
-        );
-        console.log(dataFound);
-        setChartData(dataFound);
+      switch (selectedKpi.key) {
+        case "vaca_mastite":
+          dataFound = MastiteDataParse(
+            rawData,
+            selectedBatch,
+            selectedCardIndex,
+          );
+          break;
+
+        case "Cow Feed Cost":
+          dataFound = ComposedDataParse(
+            rawData,
+            selectedBatch,
+            selectedCardIndex,
+          );
+          break;
       }
     } else {
-      if (selectedKpi.chartType === "bar") {
-        const dataFound = BarChartData(
-          rawData,
-          selectedBatch,
-          selectedCardIndex,
-        );
-
-        setChartData(dataFound);
-      } else if (selectedKpi.chartType === "pie") {
-        const dataFound = PieChartData(
-          rawData[rawData.length - 1],
-          selectedBatch,
-          selectedCardIndex,
-        );
-
-        setChartData(dataFound);
+      switch (selectedKpi.chartType) {
+        case "bar":
+          dataFound = BarChartData(rawData, selectedBatch, selectedCardIndex);
+          break;
+        case "pie":
+          dataFound = PieChartData(
+            rawData[rawData.length - 1],
+            selectedBatch,
+            selectedCardIndex,
+          );
+          break;
       }
+    }
+
+    if (dataFound) {
+      setChartData(dataFound);
     }
 
     // switch (selectedCardIndex) {

@@ -9,6 +9,7 @@ export interface IKpiMapping {
   chartType: string;
   secundaryChartType?: string;
   labelY: string;
+  secundaryLabelY?: string;
 }
 
 const kpiMapping: IKpiMapping[] = [
@@ -24,7 +25,8 @@ const kpiMapping: IKpiMapping[] = [
     secondaryKey: "(%) Feed Cost/Lt",
     chartType: "composed",
     secundaryChartType: "bar",
-    labelY: "",
+    labelY: "R$",
+    secundaryLabelY: "%",
   },
   {
     id: 2,
@@ -32,7 +34,8 @@ const kpiMapping: IKpiMapping[] = [
     secondaryKey: "iofc_litro_%",
     chartType: "composed",
     secundaryChartType: "bar",
-    labelY: "",
+    labelY: "R$/kg",
+    secundaryLabelY: "%",
   },
   {
     id: 3,

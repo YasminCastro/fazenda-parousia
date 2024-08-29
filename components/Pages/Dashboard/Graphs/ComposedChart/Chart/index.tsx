@@ -10,28 +10,18 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Label,
   ComposedChart,
   Line,
 } from "recharts";
 import styles from "./styles.module.css";
-import { IMarginValues } from "@/interfaces/Graphs/margin";
 import ComposedChartTooltip from "@/components/Global/CustomTooltip/ComposedChartTooltip";
 import { useState } from "react";
 
 interface IProps {
-  data: IMarginValues[];
-  title: string;
-  yAxisLabel: string;
-  yAxisLabel2?: string;
+  data: any;
 }
 
-export default function ComposedGraph({
-  data,
-  title,
-  yAxisLabel,
-  yAxisLabel2,
-}: IProps) {
+export default function Chart({ data }: IProps) {
   const { batches, selectedBatch } = useFilterContext();
 
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
@@ -63,18 +53,21 @@ export default function ComposedGraph({
 
   return (
     <div className={`${styles.graphContainer}`}>
-      <h2 className={`${styles.title}`}>{title}</h2>
-      <div className={`${styles.yAxisLabelLeft}`}>{yAxisLabel}</div>
-      {yAxisLabel2 && (
-        <div className={`${styles.yAxisLabelRight}`} key={yAxisLabel2 + title}>
-          {yAxisLabel2}
+      <h2 className={`${styles.title}`}>{data.title}</h2>
+      <div className={`${styles.yAxisLabelLeft}`}>{data.labelY}</div>
+      {data.secundaryLabelY && (
+        <div
+          className={`${styles.yAxisLabelRight}`}
+          key={data.secundaryLabelY + data.title}
+        >
+          {data.secundaryLabelY}
         </div>
       )}
       <ResponsiveContainer width="100%" height="100%">
         <ComposedChart
           width={500}
           height={400}
-          data={data}
+          data={data.data}
           margin={{
             right: 40,
             left: 10,

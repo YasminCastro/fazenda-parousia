@@ -1,4 +1,4 @@
-import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
+import kpiMapping from "@/constants/kpiMapping";
 
 // const example: ICost = {
 //   foodCost: [
@@ -17,12 +17,18 @@ import { ICost, ICostValues } from "@/interfaces/Graphs/cost";
 //   ],
 // };
 
-export default function CostDataParse(rawData: any, batch: string): ICost {
-  const apiKey = "Cow Feed Cost"; //R%
-  const apiKey2 = "(%) Feed Cost/Lt"; //Custo de alimenta\u00e7\u00e3o (%)
+export default function ComposedDataParse(
+  rawData: any,
+  batch: string,
+  index: number,
+) {
+  const apiKey = kpiMapping[index].key;
+  const apiKey2 = kpiMapping[index].secondaryKey;
 
-  let foodCost: ICostValues[] = [];
-  let milkCost: ICostValues[] = [];
+  let leftSideChartData = [];
+  let titleLeftSide = "";
+  let rightSideChartData = [];
+  let titleRightSide = "";
 
   const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
@@ -30,7 +36,8 @@ export default function CostDataParse(rawData: any, batch: string): ICost {
     const date = data.date;
     const kpiFound = data.data.find((kpi: any) => kpi.key === apiKey);
     if (kpiFound) {
-      foodCost.push({
+      titleLeftSide = kpiFound.KPI;
+      leftSideChartData.push({
         date,
         title: kpiFound.KPI,
         margin: kpiFound[key],
@@ -40,7 +47,8 @@ export default function CostDataParse(rawData: any, batch: string): ICost {
 
     const kpi2Found = data.data.find((kpi: any) => kpi.key === apiKey2);
     if (kpi2Found) {
-      milkCost.push({
+      titleRightSide = kpi2Found.KPI;
+      rightSideChartData.push({
         date,
         title: kpi2Found.KPI,
         margin: kpi2Found[key],
@@ -49,5 +57,17 @@ export default function CostDataParse(rawData: any, batch: string): ICost {
     }
   }
 
-  return { foodCost, milkCost };
+  const leftSideChart = {
+    title: titleLeftSide,
+    data: leftSideChartData,
+    ...kpiMapping[index],
+  };
+
+  const rightSideChart = {
+    title: titleLeftSide,
+    data: leftSideChartData,
+    ...kpiMapping[index],
+  };
+
+  return { leftSideChart, rightSideChart };
 }
