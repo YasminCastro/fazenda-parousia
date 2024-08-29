@@ -1,6 +1,5 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import { useEffect } from "react";
-import MarginGraph from "./Margin";
 import { useDataContext } from "@/providers/DataContext";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
@@ -17,7 +16,7 @@ export default function Graphs() {
     <>
       {selectedCardIndex === 0 && <BarChart data={chartData} />}
       {selectedCardIndex === 1 && <ComposedChart data={chartData} />}
-      {selectedCardIndex === 2 && <MarginGraph />}
+      {selectedCardIndex === 2 && <ComposedChart data={chartData} />}
       {selectedCardIndex === 3 && <BarChart data={chartData} />}
       {selectedCardIndex === 4 && <BarChart data={chartData} />}
       {selectedCardIndex === 5 && <PieChart data={chartData} />}
