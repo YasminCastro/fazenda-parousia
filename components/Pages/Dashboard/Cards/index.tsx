@@ -42,7 +42,6 @@ export default function Cards() {
   const { selectedBatch, setselectedCardIndex, date } = useFilterContext();
 
   const handleCardClick = (cardKey: number) => {
-    console.log("handleCardClick", cardKey);
     setselectedCardIndex(cardKey);
   };
 

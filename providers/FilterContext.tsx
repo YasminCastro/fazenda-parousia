@@ -1,5 +1,6 @@
 "use client";
 
+import batchesDefault, { BatchCombobox } from "@/constants/batches";
 import axios from "axios";
 import { addWeeks, addDays } from "date-fns";
 import React, {
@@ -10,11 +11,6 @@ import React, {
   useState,
 } from "react";
 import { DateRange } from "react-day-picker";
-
-export interface BatchCombobox {
-  value: string;
-  label: string;
-}
 
 interface IValue {
   selectedBatch: string;
@@ -32,26 +28,11 @@ export const FilterProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
   const [selectedBatch, setSelectedBatch] = useState("all");
-  const [batches, setBatches] = useState<BatchCombobox[]>([
-    { value: "all", label: "Fazenda" },
-  ]);
+  const [batches] = useState<BatchCombobox[]>(batchesDefault);
   const [date, setDate] = useState<DateRange | undefined>({
     from: new Date(addDays(new Date(), -1)),
   });
   const [selectedCardIndex, setselectedCardIndex] = useState<number>(0);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/farm");
-        setBatches(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const value = useMemo(
     () => ({

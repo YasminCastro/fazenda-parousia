@@ -1,10 +1,11 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import { useEffect } from "react";
 import { useDataContext } from "@/providers/DataContext";
-import BarChart from "./BarChart";
+// import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import BarChartMastite from "./BarChartMastite";
 import ComposedChart from "./ComposedChart";
+import BarChart from "../Charts/BarChart";
 
 export default function Graphs() {
   const { selectedCardIndex } = useFilterContext();

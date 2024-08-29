@@ -1,25 +1,15 @@
-import api from "@/lib/api";
-
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
     let batchParsed = [
-      { value: "all", label: "Fazenda" },
-      { value: "a", label: "Lote A" },
-      { value: "b", label: "Lote B" },
-      { value: "c", label: "Lote C" },
-      { value: "d", label: "Lote D" },
-      { value: "n", label: "Lote N" },
+      { value: "all", label: "Fazenda", key: "fazenda" },
+      { value: "a", label: "Lote A", key: "loteA" },
+      { value: "b", label: "Lote B", key: "loteB" },
+      { value: "c", label: "Lote C", key: "loteC" },
+      { value: "d", label: "Lote D", key: "loteD" },
+      { value: "n", label: "Lote N", key: "loteN" },
     ];
-
-    // const { data } = await api.get("/data");
-    // const batchs = Object.keys(data[0]).filter((key) => key.startsWith("Lote"));
-
-    // for (let bach of batchs) {
-    //   const value = bach.replaceAll(" ", "");
-    //   batchParsed.push({ value, label: bach });
-    // }
 
     return Response.json(batchParsed);
   } catch (error: any) {

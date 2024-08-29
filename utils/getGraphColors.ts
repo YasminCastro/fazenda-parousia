@@ -1,4 +1,4 @@
-import { BatchCombobox } from "@/providers/FilterContext";
+import { BatchCombobox } from "@/constants/batches";
 
 const colors = [
   "#3498DB",
