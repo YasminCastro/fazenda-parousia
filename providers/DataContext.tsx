@@ -22,16 +22,6 @@ export interface BatchCombobox {
   label: string;
 }
 
-export type CardType =
-  | "milkRevenue"
-  | "cost"
-  | "margin"
-  | "investmentReturn"
-  | "milkProduction"
-  | "numberOfAnimals"
-  | "foodEfficiency"
-  | "mastite";
-
 interface IValue {
   milkPrice: number;
   chartData: any;
