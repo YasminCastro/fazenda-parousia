@@ -22,7 +22,7 @@ interface IProps {
   isStackedChart: boolean;
 }
 
-export default function BarGraph({ data, isStackedChart }: IProps) {
+export default function Chart({ data, isStackedChart }: IProps) {
   const { batches, selectedBatch } = useFilterContext();
 
   return (

@@ -19,7 +19,6 @@ import MarginDataParse from "@/service/MarginDataParse";
 import CostDataParse from "@/service/CostDataParse";
 import { IMilkProduction } from "@/interfaces/Graphs/milkProduction";
 import { IFoodEfficiency } from "@/interfaces/Graphs/foodEfficiency";
-import NumberOfAnimalsDataParse from "@/service/NumberOfAnimalsDataParse";
 import { INumberAnimals } from "@/interfaces/Graphs/animalsCount";
 import MastiteDataParse from "@/service/MastiteDataParse";
 import { IMastite } from "@/interfaces/Graphs/mastite";
@@ -115,6 +114,15 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   useEffect(() => {
     const selectedKpi = kpiMapping[selectedCardIndex];
     if (selectedKpi.secondaryKey) {
+      if (selectedKpi.key === "vaca_mastite") {
+        const dataFound = MastiteDataParse(
+          rawData,
+          selectedBatch,
+          selectedCardIndex,
+        );
+        console.log(dataFound);
+        setChartData(dataFound);
+      }
     } else {
       if (selectedKpi.chartType === "bar") {
         const dataFound = BarChartData(
@@ -124,9 +132,7 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
         );
 
         setChartData(dataFound);
-      }
-
-      if (selectedKpi.chartType === "pie") {
+      } else if (selectedKpi.chartType === "pie") {
         const dataFound = PieChartData(
           rawData[rawData.length - 1],
           selectedBatch,

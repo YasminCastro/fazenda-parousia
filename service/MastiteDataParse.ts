@@ -1,3 +1,4 @@
+import kpiMapping from "@/constants/kpiMapping";
 import { IMastite } from "@/interfaces/Graphs/mastite";
 
 // const example: IMastite[] = [
@@ -8,11 +9,13 @@ import { IMastite } from "@/interfaces/Graphs/mastite";
 export default function MastiteDataParse(
   rawData: any,
   batch: string,
-): IMastite[] {
-  const apiKey = "vaca_mastite";
-  const apiKey2 = "vaca_carencia_mastite";
+  index: number,
+) {
+  const apiKey = kpiMapping[index].key;
+  const apiKey2 = kpiMapping[index].secondaryKey;
 
-  const response: IMastite[] = [];
+  const dataParsed: IMastite[] = [];
+  let title = "";
 
   const key = batch === "all" ? "Fazenda" : `Lote ${batch.toUpperCase()}`;
 
@@ -20,20 +23,23 @@ export default function MastiteDataParse(
     let newObject: any = { date: data.date };
     //FIRST KPI
     const kpiFound = data.data.find((kpi: any) => kpi.key === apiKey);
+
     if (kpiFound) {
+      title = kpiFound.KPI;
       newObject.mastite = kpiFound[key];
       newObject.mastiteTitle = kpiFound.KPI;
     }
 
     //SECOND KPI
     const kpi2Found = data.data.find((kpi: any) => kpi.key === apiKey2);
+
     if (kpi2Found) {
       newObject.carenciaMastite = kpi2Found[key];
       newObject.carenciaMastiteTitle = kpi2Found.KPI;
     }
 
-    response.push(newObject);
+    dataParsed.push(newObject);
   }
 
-  return response;
+  return { ...kpiMapping[index], title, data: dataParsed };
 }

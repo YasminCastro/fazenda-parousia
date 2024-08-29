@@ -1,11 +1,11 @@
 import { useFilterContext } from "@/providers/FilterContext";
-import MastiteGraph from "./Mastite";
 import { useEffect } from "react";
 import CostGraph from "./Cost";
 import MarginGraph from "./Margin";
 import { useDataContext } from "@/providers/DataContext";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
+import BarChartMastite from "./BarChartMastite";
 
 export default function Graphs() {
   const { selectedCardIndex } = useFilterContext();
@@ -24,7 +24,7 @@ export default function Graphs() {
       {selectedCardIndex === 4 && <BarChart data={chartData} />}
       {selectedCardIndex === 5 && <PieChart data={chartData} />}
       {selectedCardIndex === 6 && <BarChart data={chartData} />}
-      {selectedCardIndex === 7 && <MastiteGraph />}
+      {selectedCardIndex === 7 && <BarChartMastite data={chartData} />}
     </>
   );
 }
