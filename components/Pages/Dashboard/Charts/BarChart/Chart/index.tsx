@@ -1,7 +1,6 @@
 import kpiMapping from "@/constants/kpiMapping";
 import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import { useFilterContext } from "@/providers/FilterContext";
-import formatBatchName from "@/utils/formatBatchName";
 import { formatTickDate } from "@/utils/formatXAxis";
 import { getBarColorByName } from "@/utils/getGraphColors";
 import {
