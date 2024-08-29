@@ -1,0 +1,21 @@
+.title {
+  @apply mt-2 text-center text-xl font-bold;
+}
+
+.graphContainer {
+  @apply relative flex h-full flex-col;
+}
+
+.yAxisLabelLeft {
+  @apply absolute left-3 top-1/2 text-gray-400;
+  transform: translateY(-50%) rotate(-180deg);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.yAxisLabelRight {
+  @apply absolute right-3 top-1/2 text-gray-400;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}

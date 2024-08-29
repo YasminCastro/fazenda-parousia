@@ -1,4 +1,5 @@
 import kpiMapping from "@/constants/kpiMapping";
+import formatLoteKeys from "@/utils/formatLoteKeys";
 
 // const example: ICost = {
 //   foodCost: [
@@ -37,12 +38,13 @@ export default function ComposedDataParse(
     const kpiFound = data.data.find((kpi: any) => kpi.key === apiKey);
     if (kpiFound) {
       titleLeftSide = kpiFound.KPI;
-      leftSideChartData.push({
-        date,
-        title: kpiFound.KPI,
-        margin: kpiFound[key],
-        percent: 0,
-      });
+
+      if (batch === "all") {
+        const batches = formatLoteKeys(kpiFound);
+        leftSideChartData.push({ date, ...batches });
+      } else {
+        leftSideChartData.push({ date, value: kpiFound[key] });
+      }
     }
 
     const kpi2Found = data.data.find((kpi: any) => kpi.key === apiKey2);
