@@ -7,7 +7,6 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { IMastite } from "@/interfaces/Graphs/mastite";
-import { useFilterContext } from "@/providers/FilterContext";
 import { formatTickDate } from "@/utils/formatXAxis";
 import {
   BarChart,
@@ -37,10 +36,6 @@ export const chartConfig = {
 } satisfies ChartConfig;
 
 export default function Chart({ data, isStackedChart }: IProps) {
-  const { batches, selectedBatch } = useFilterContext();
-
-  console.log(data);
-
   return (
     <ResponsiveContainer width="100%" height="100%">
       <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
