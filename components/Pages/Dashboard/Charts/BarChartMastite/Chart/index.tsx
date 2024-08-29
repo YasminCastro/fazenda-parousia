@@ -31,7 +31,7 @@ export const chartConfig = {
   },
   carenciaMastite: {
     label: "Carência Mastite",
-    color: "#ff9871",
+    color: "#ffded2",
   },
 } satisfies ChartConfig;
 
@@ -69,7 +69,7 @@ export default function Chart({ data, isStackedChart }: IProps) {
           <Bar
             dataKey="carenciaMastite"
             stackId={isStackedChart ? "a" : undefined}
-            fill="#ff9871"
+            fill="#ffded2"
           />
         </BarChart>
       </ChartContainer>
