@@ -27,11 +27,11 @@ interface IProps {
 export const chartConfig = {
   mastite: {
     label: "Mastite",
-    color: "#2ECC71",
+    color: "#ff9871",
   },
   carenciaMastite: {
     label: "Carência Mastite",
-    color: "#E74C3C",
+    color: "#ff9871",
   },
 } satisfies ChartConfig;
 
@@ -69,7 +69,7 @@ export default function Chart({ data, isStackedChart }: IProps) {
           <Bar
             dataKey="carenciaMastite"
             stackId={isStackedChart ? "a" : undefined}
-            fill="#ffded2"
+            fill="#ff9871"
           />
         </BarChart>
       </ChartContainer>
