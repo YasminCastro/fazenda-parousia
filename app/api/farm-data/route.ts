@@ -1,6 +1,6 @@
+import { language } from "@/constants/projectLanguage";
 import api from "@/lib/api";
 import getDatesBetween from "@/utils/getDatesBetween";
-import { language } from "@/utils/projectLanguage";
 
 import { NextRequest } from "next/server";
 

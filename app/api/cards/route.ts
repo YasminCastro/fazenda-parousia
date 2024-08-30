@@ -1,6 +1,6 @@
 import kpiMapping, { IKpiMapping } from "@/constants/kpiMapping";
+import { language } from "@/constants/projectLanguage";
 import api from "@/lib/api";
-import { language } from "@/utils/projectLanguage";
 import { format, subDays } from "date-fns";
 import { NextRequest } from "next/server";
 
