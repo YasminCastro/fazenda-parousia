@@ -10,12 +10,12 @@ import React, {
   useState,
 } from "react";
 import { useFilterContext } from "./FilterContext";
-import ComposedDataParse from "@/service/CostDataParse";
 import MastiteDataParse from "@/service/MastiteDataParse";
 import MilkPrice from "@/service/GetMilkPrice";
 import kpiMapping from "@/constants/kpiMapping";
 import BarChartData from "@/service/BarChartData";
 import PieChartData from "@/service/PieChartData";
+import ComposedDataParse from "@/service/ComposedDataParse";
 
 export interface BatchCombobox {
   value: string;

@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import { useFilterContext } from "@/providers/FilterContext";
-import styles from "./styles.module.css";
 import { format } from "date-fns";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import {

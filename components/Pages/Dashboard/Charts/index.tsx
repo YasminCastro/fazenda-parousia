@@ -1,16 +1,12 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import { useEffect } from "react";
 import { useDataContext } from "@/providers/DataContext";
-// import BarChart from "./BarChart";
-// import PieChart from "./PieChart";
-// import BarChartMastite from "./BarChartMastite";
-// import ComposedChart from "./ComposedChart";
-import BarChart from "../Charts/BarChart";
-import PieChart from "../Charts/PieChart";
-import BarChartMastite from "../Charts/BarChartMastite";
-import ComposedChart from "../Charts/ComposedChart";
+import BarChart from "./BarChart";
+import PieChart from "./PieChart";
+import BarChartMastite from "./BarChartMastite";
+import ComposedChart from "./ComposedChart";
 
-export default function Graphs() {
+export default function Charts() {
   const { selectedCardIndex } = useFilterContext();
   const { chartData } = useDataContext();
 

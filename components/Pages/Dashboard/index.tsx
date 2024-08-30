@@ -1,5 +1,5 @@
 import Cards from "./Cards";
-import Graphs from "./Graphs";
+import Charts from "./Charts";
 import Header from "./Header";
 
 export default function Dashboard() {
@@ -8,7 +8,7 @@ export default function Dashboard() {
       <Header />
       <Cards />
       <div className="h-96">
-        <Graphs />
+        <Charts />
       </div>
     </div>
   );

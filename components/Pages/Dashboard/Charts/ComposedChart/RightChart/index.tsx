@@ -30,7 +30,7 @@ interface IProps {
   data: any;
 }
 
-export default function LeftChart({ data }: IProps) {
+export default function RightChart({ data }: IProps) {
   const { batches, selectedBatch, selectedCardIndex } = useFilterContext();
   const label = kpiMapping[selectedCardIndex].labelY;
 
