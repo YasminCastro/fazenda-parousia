@@ -4,7 +4,7 @@ export interface IKpiMapping {
   secondaryKey?: string;
   value?: number;
   title?: string;
-  secundaryValue?: number;
+  secundaryValue?: number | string;
   secundaryTitle?: string;
   chartType: string;
   secundaryChartType?: string;
