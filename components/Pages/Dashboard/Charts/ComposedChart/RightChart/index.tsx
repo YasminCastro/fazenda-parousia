@@ -1,16 +1,15 @@
 import kpiMapping from "@/constants/kpiMapping";
 import { useFilterContext } from "@/providers/FilterContext";
 import { formatTickDate } from "@/utils/formatXAxis";
-import { getBarColorByName } from "@/utils/getGraphColors";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
+  ChartConfig,
 } from "@/components/ui/chart";
 import {
-  BarChart,
   Bar,
   Brush,
   XAxis,
@@ -18,12 +17,13 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Label,
+  ComposedChart,
+  Line,
 } from "recharts";
-import { chartConfig } from "@/constants/chartConfig";
 
 import stylesGraph from "./styles.module.css";
 import { Button } from "@/components/ui/button";
-import { Download, RefreshCcw } from "lucide-react";
+import { Download } from "lucide-react";
 import { useState } from "react";
 
 interface IProps {
@@ -31,16 +31,29 @@ interface IProps {
 }
 
 export default function RightChart({ data }: IProps) {
-  const { batches, selectedBatch, selectedCardIndex } = useFilterContext();
-  const label = kpiMapping[selectedCardIndex].labelY;
-
-  const batchInfo = batches.find((batch) => batch.value === selectedBatch);
+  console.log(data);
+  const { selectedBatch, selectedCardIndex } = useFilterContext();
+  const label = kpiMapping[selectedCardIndex].secundaryLabelY;
 
   const [isStackedChart, setIsStackedChart] = useState(false);
 
-  const handleGraphChange = () => {
+  const handleDownloadChart = () => {
     setIsStackedChart(!isStackedChart);
   };
+
+  const percentColor = data.key === "IoFC / vaca" ? "#4ad991" : "#fec53d";
+  const percentByMilkColor = data.key === "IoFC / vaca" ? "#d9f7e7" : "#fef2d6";
+
+  const chartConfig = {
+    percent: {
+      label: "% sobre alimentação",
+      color: percentColor,
+    },
+    percentByMilkPrice: {
+      label: "% sobre alimentação pelo valor do leite",
+      color: percentByMilkColor,
+    },
+  } satisfies ChartConfig;
 
   return (
     <div className="h-80 w-full">
@@ -49,21 +62,15 @@ export default function RightChart({ data }: IProps) {
         <div className="space-x-3">
           <Button
             className={`${stylesGraph.changeGraphButton}`}
-            onClick={handleGraphChange}
+            onClick={handleDownloadChart}
           >
             <Download size={18} />
-          </Button>
-          <Button
-            className={`${stylesGraph.changeGraphButton}`}
-            onClick={handleGraphChange}
-          >
-            <RefreshCcw size={18} />
           </Button>
         </div>
       </div>
       <ResponsiveContainer width="100%" height="100%">
         <ChartContainer config={chartConfig} className="w-full">
-          <BarChart
+          <ComposedChart
             accessibilityLayer
             data={data.data}
             width={500}
@@ -77,9 +84,9 @@ export default function RightChart({ data }: IProps) {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <Brush dataKey="date" height={20} />
-            <XAxis dataKey="date" tickFormatter={formatTickDate} />
+            <XAxis dataKey="date" tickFormatter={formatTickDate} scale="band" />
             <YAxis>
-              <Label value={label} position="insideBottomLeft" angle={-90} />
+              <Label value={label} position="insideLeft" angle={-90} />
             </YAxis>
             {selectedBatch === "all" && (
               <ChartLegend
@@ -93,32 +100,19 @@ export default function RightChart({ data }: IProps) {
               content={<ChartTooltipContent indicator="dashed" />}
             />
 
-            {selectedBatch === "all" ? (
-              batches.map((item) => {
-                if (item.value === "all") {
-                  return;
-                }
-                return (
-                  <Bar
-                    dataKey={item.key}
-                    name={item.label}
-                    fill={item.color}
-                    key={item.label}
-                    stackId={isStackedChart ? "a" : undefined}
-                  />
-                );
-              })
-            ) : (
-              <Bar
-                dataKey="value"
-                fill={
-                  (batchInfo && batchInfo.color) ||
-                  getBarColorByName(batches, selectedBatch)
-                }
-                stackId={isStackedChart ? "a" : undefined}
-              />
-            )}
-          </BarChart>
+            <Bar
+              dataKey="percent"
+              name="% sobre alimentação"
+              barSize={20}
+              fill={percentColor}
+            />
+            <Line
+              type="monotone"
+              dataKey="percentByMilkPrice"
+              name="% sobre alimentação pelo valor do leite"
+              stroke={percentByMilkColor}
+            />
+          </ComposedChart>
         </ChartContainer>
       </ResponsiveContainer>
     </div>

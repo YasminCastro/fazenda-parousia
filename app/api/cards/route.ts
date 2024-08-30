@@ -1,6 +1,7 @@
 import kpiMapping, { IKpiMapping } from "@/constants/kpiMapping";
 import { language } from "@/constants/projectLanguage";
 import api from "@/lib/api";
+import getPercentValueByMilk from "@/utils/getPercentValueByMilk";
 import { format, subDays } from "date-fns";
 import { NextRequest } from "next/server";
 
@@ -38,25 +39,17 @@ export async function GET(request: NextRequest) {
           newKPI.secundaryTitle = foundKPI2.KPI;
           newKPI.secundaryValue = foundKPI2[key];
 
-          if (card.secondaryKey === "iofc_litro_%") {
-            // CALCULO MARGEM SOBRE ALIMENTAÇÃO COM BASE NO PREÇO DO LEITE
-
-            // PARSE % VALUE IN TO DECIMAL
-            const percentValueToDecimal = foundKPI2[key] / 100;
-            const decimalValue = parseFloat(percentValueToDecimal.toFixed(2));
-            const foundKPIMilkPrice = data.find(
-              (kpi: any) => kpi.key === "preco_leite",
+          if (
+            card.secondaryKey === "iofc_litro_%" ||
+            card.secondaryKey === "(%) Feed Cost/Lt"
+          ) {
+            const milkValuePercent = getPercentValueByMilk(
+              foundKPI2[key],
+              key,
+              data,
             );
 
-            if (foundKPIMilkPrice) {
-              // DIVISION OF DECIMAL VALUE WITH MILK PRICE, PARSE DECIMAL IN TO %
-              const decimalValueByMilkPrice =
-                decimalValue / foundKPIMilkPrice[key];
-              const decimalValueToPercent = decimalValueByMilkPrice * 100;
-              const value = parseFloat(decimalValueToPercent.toFixed(2));
-
-              newKPI.secundaryValue = `${foundKPI2[key]}% - ${value}%`;
-            }
+            newKPI.secundaryValue = `${foundKPI2[key]}% - ${milkValuePercent}%`;
           }
         }
       }

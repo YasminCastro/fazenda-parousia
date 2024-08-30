@@ -26,7 +26,7 @@ const kpiMapping: IKpiMapping[] = [
     chartType: "composed",
     secundaryChartType: "bar",
     labelY: "R$",
-    secundaryLabelY: "R$/kg",
+    secundaryLabelY: "%",
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const kpiMapping: IKpiMapping[] = [
     chartType: "composed",
     secundaryChartType: "bar",
     labelY: "R$",
-    secundaryLabelY: "R$/kg",
+    secundaryLabelY: "%",
   },
   {
     id: 3,

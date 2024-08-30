@@ -79,7 +79,7 @@ export default function LeftChart({ data }: IProps) {
             <Brush dataKey="date" height={20} />
             <XAxis dataKey="date" tickFormatter={formatTickDate} />
             <YAxis>
-              <Label value={label} position="insideBottomLeft" angle={-90} />
+              <Label value={label} position="insideLeft" angle={-90} />
             </YAxis>
             {selectedBatch === "all" && (
               <ChartLegend
