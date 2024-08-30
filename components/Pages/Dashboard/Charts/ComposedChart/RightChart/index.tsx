@@ -24,33 +24,47 @@ import {
 import stylesGraph from "./styles.module.css";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { useState } from "react";
+import html2canvas from "html2canvas";
+
+interface IRightCartConfig {
+  percentColor: string;
+  percentByMilkColor: string;
+  title: string;
+  ref: any;
+}
 
 interface IProps {
   data: any;
+  rightChartConfig: IRightCartConfig;
 }
 
-export default function RightChart({ data }: IProps) {
+export default function RightChart({ data, rightChartConfig }: IProps) {
   const { selectedBatch, selectedCardIndex } = useFilterContext();
   const label = kpiMapping[selectedCardIndex].secundaryLabelY;
 
-  const [isStackedChart, setIsStackedChart] = useState(false);
+  if (data.key === "IoFC / vaca") {
+  }
 
-  const handleDownloadChart = () => {
-    setIsStackedChart(!isStackedChart);
+  const handleDownloadChart = async () => {
+    if (rightChartConfig.ref && rightChartConfig.ref.current) {
+      const canvas = await html2canvas(rightChartConfig.ref.current);
+      const imgData = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = imgData;
+
+      link.download = rightChartConfig.title;
+      link.click();
+    }
   };
-
-  const percentColor = data.key === "IoFC / vaca" ? "#4ad991" : "#fec53d";
-  const percentByMilkColor = data.key === "IoFC / vaca" ? "#d9f7e7" : "#fef2d6";
 
   const chartConfig = {
     percent: {
       label: "% sobre alimentação",
-      color: percentColor,
+      color: rightChartConfig.percentColor,
     },
     percentByMilkPrice: {
       label: "% sobre alimentação pelo valor do leite",
-      color: percentByMilkColor,
+      color: rightChartConfig.percentByMilkColor,
     },
   } satisfies ChartConfig;
 
@@ -103,13 +117,13 @@ export default function RightChart({ data }: IProps) {
               dataKey="percent"
               name="% sobre alimentação"
               barSize={20}
-              fill={percentColor}
+              fill={rightChartConfig.percentColor}
             />
             <Line
               type="monotone"
               dataKey="percentByMilkPrice"
               name="% sobre alimentação pelo valor do leite"
-              stroke={percentByMilkColor}
+              stroke={rightChartConfig.percentByMilkColor}
             />
           </ComposedChart>
         </ChartContainer>
