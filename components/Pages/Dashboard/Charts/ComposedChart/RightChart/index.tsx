@@ -31,7 +31,6 @@ interface IProps {
 }
 
 export default function RightChart({ data }: IProps) {
-  console.log(data);
   const { selectedBatch, selectedCardIndex } = useFilterContext();
   const label = kpiMapping[selectedCardIndex].secundaryLabelY;
 

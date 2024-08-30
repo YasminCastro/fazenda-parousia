@@ -23,7 +23,7 @@ import { chartConfig } from "@/constants/chartConfig";
 
 import stylesGraph from "./styles.module.css";
 import { Button } from "@/components/ui/button";
-import { Download, RefreshCcw } from "lucide-react";
+import { RefreshCcw } from "lucide-react";
 import { useState } from "react";
 
 interface IProps {
@@ -47,12 +47,6 @@ export default function LeftChart({ data }: IProps) {
       <div className="mx-6 mt-1 flex justify-between">
         <h2 className="text-xl font-bold">{data.title}</h2>
         <div className="space-x-3">
-          <Button
-            className={`${stylesGraph.changeGraphButton}`}
-            onClick={handleGraphChange}
-          >
-            <Download size={18} />
-          </Button>
           <Button
             className={`${stylesGraph.changeGraphButton}`}
             onClick={handleGraphChange}
