@@ -35,8 +35,29 @@ export async function GET(request: NextRequest) {
         );
 
         if (foundKPI2) {
-          newKPI.secundaryValue = foundKPI2[key];
           newKPI.secundaryTitle = foundKPI2.KPI;
+          newKPI.secundaryValue = foundKPI2[key];
+
+          if (card.secondaryKey === "iofc_litro_%") {
+            // CALCULO MARGEM SOBRE ALIMENTAÇÃO COM BASE NO PREÇO DO LEITE
+
+            // PARSE % VALUE IN TO DECIMAL
+            const percentValueToDecimal = foundKPI2[key] / 100;
+            const decimalValue = parseFloat(percentValueToDecimal.toFixed(2));
+            const foundKPIMilkPrice = data.find(
+              (kpi: any) => kpi.key === "preco_leite",
+            );
+
+            if (foundKPIMilkPrice) {
+              // DIVISION OF DECIMAL VALUE WITH MILK PRICE, PARSE DECIMAL IN TO %
+              const decimalValueByMilkPrice =
+                decimalValue / foundKPIMilkPrice[key];
+              const decimalValueToPercent = decimalValueByMilkPrice * 100;
+              const value = parseFloat(decimalValueToPercent.toFixed(2));
+
+              newKPI.secundaryValue = `${foundKPI2[key]}% - ${value}%`;
+            }
+          }
         }
       }
 
