@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Cell,
   Label,
+  LabelList,
   Legend,
   ResponsiveContainer,
   XAxis,
@@ -124,6 +125,17 @@ export default function Page() {
               {data?.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
+              <LabelList
+                dataKey="value"
+                position="top"
+                fill="black"
+                formatter={(value: any) =>
+                  value.toLocaleString("pt-BR", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  })
+                }
+              />
             </Bar>
           </BarChart>
         </ChartContainer>
