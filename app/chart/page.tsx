@@ -8,7 +8,6 @@ import {
   Cell,
   Legend,
   ResponsiveContainer,
-  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -25,7 +24,11 @@ import {
   ChartConfig,
 } from "@/components/ui/chart";
 
-const chartConfig = {} satisfies ChartConfig;
+const chartConfig = {
+  value: {
+    label: "Valor",
+  },
+} satisfies ChartConfig;
 
 export default function Page() {
   const chartRef = useRef(null);
@@ -105,7 +108,6 @@ export default function Page() {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" tickFormatter={formatTickDateDay} />
             <YAxis />
-            <Tooltip />
             <Legend content={renderLegend} />
             <ChartTooltip
               cursor={false}
