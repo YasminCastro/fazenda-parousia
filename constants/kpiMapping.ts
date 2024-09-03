@@ -70,4 +70,6 @@ const kpiMapping: IKpiMapping[] = [
   },
 ];
 
+export const kpiAvaregeProduction = "Media_Producao";
+
 export default kpiMapping;

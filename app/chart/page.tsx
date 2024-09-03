@@ -9,6 +9,8 @@ import {
   Label,
   LabelList,
   Legend,
+  Line,
+  LineChart,
   ResponsiveContainer,
   XAxis,
   YAxis,
@@ -35,7 +37,8 @@ const chartConfig = {
 export default function Page() {
   const chartRef = useRef(null);
   const { date } = useFilterContext();
-  const [data, setData] = useState<any[]>();
+  const [production, setProduction] = useState<any[]>();
+  const [average, setAverage] = useState<any[]>();
 
   useEffect(() => {
     const fetchDataAndDownloadChart = async () => {
@@ -47,17 +50,18 @@ export default function Page() {
         const response = await axios.get(
           `/api/production-chart?${params.toString()}`,
         );
-        setData(response.data);
+        setProduction(response.data.production);
+        setAverage(response.data.average);
 
         setTimeout(async () => {
-          // if (chartRef && chartRef.current) {
-          //   const canvas = await html2canvas(chartRef.current);
-          //   const imgData = canvas.toDataURL("image/png");
-          //   const link = document.createElement("a");
-          //   link.href = imgData;
-          //   link.download = `producao-${date && date.from ? format(date?.from, "MM-yyyy") : ""}.png`;
-          //   link.click();
-          // }
+          if (chartRef && chartRef.current) {
+            const canvas = await html2canvas(chartRef.current);
+            const imgData = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.href = imgData;
+            link.download = `producao-${date && date.from ? format(date?.from, "MM-yyyy") : ""}.png`;
+            link.click();
+          }
         }, 2000);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -68,7 +72,7 @@ export default function Page() {
   }, []);
 
   const uniqueTypes = Array.from(
-    new Map(data?.map((item) => [item.type, item.color])).entries(),
+    new Map(production?.map((item) => [item.type, item.color])).entries(),
   );
 
   const renderLegend = () => {
@@ -96,13 +100,49 @@ export default function Page() {
       <h1 className="text-center text-2xl font-bold">
         Produção média e diária
       </h1>
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="98.5%" height="60px">
+        <ChartContainer config={chartConfig} className="w-full">
+          <LineChart
+            accessibilityLayer
+            width={500}
+            height={300}
+            data={average}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" hide />
+            <YAxis
+              domain={[
+                (dataMin: number) => Math.floor(dataMin),
+                (dataMax: number) => Math.ceil(dataMax),
+              ]}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Line type="monotone" dataKey="value" stroke="black">
+              <LabelList
+                dataKey="value"
+                position="insideBottomLeft"
+                fill="black"
+              />
+            </Line>
+          </LineChart>
+        </ChartContainer>
+      </ResponsiveContainer>
+      <ResponsiveContainer width="100%" height="85%">
         <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
           <BarChart
             accessibilityLayer
             width={500}
             height={300}
-            data={data}
+            data={production}
             margin={{
               top: 5,
               right: 30,
@@ -122,10 +162,10 @@ export default function Page() {
             <Legend content={renderLegend} />
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+              content={<ChartTooltipContent hideLabel />}
             />
             <Bar dataKey="value">
-              {data?.map((entry, index) => (
+              {production?.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
               <LabelList
