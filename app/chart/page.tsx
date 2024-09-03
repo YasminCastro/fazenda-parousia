@@ -6,6 +6,7 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
+  Label,
   Legend,
   ResponsiveContainer,
   XAxis,
@@ -48,14 +49,14 @@ export default function Page() {
         setData(response.data);
 
         setTimeout(async () => {
-          if (chartRef && chartRef.current) {
-            const canvas = await html2canvas(chartRef.current);
-            const imgData = canvas.toDataURL("image/png");
-            const link = document.createElement("a");
-            link.href = imgData;
-            link.download = `producao-${date && date.from ? format(date?.from, "MM-yyyy") : ""}.png`;
-            link.click();
-          }
+          // if (chartRef && chartRef.current) {
+          //   const canvas = await html2canvas(chartRef.current);
+          //   const imgData = canvas.toDataURL("image/png");
+          //   const link = document.createElement("a");
+          //   link.href = imgData;
+          //   link.download = `producao-${date && date.from ? format(date?.from, "MM-yyyy") : ""}.png`;
+          //   link.click();
+          // }
         }, 2000);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -107,7 +108,13 @@ export default function Page() {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" tickFormatter={formatTickDateDay} />
-            <YAxis />
+            <YAxis>
+              <Label
+                value="Produção total (lt)"
+                position="insideLeft"
+                angle={-90}
+              />
+            </YAxis>
             <Legend content={renderLegend} />
             <ChartTooltip
               cursor={false}
