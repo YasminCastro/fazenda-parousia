@@ -46,8 +46,7 @@ export default function Header() {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-
-        {/* <ChartDownload /> */}
+        <ChartDownload />
       </div>
     </div>
   );

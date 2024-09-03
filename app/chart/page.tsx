@@ -18,6 +18,15 @@ import axios from "axios";
 import { format } from "date-fns";
 import { formatTickDateDay } from "@/utils/formatXAxis";
 
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  ChartConfig,
+} from "@/components/ui/chart";
+
+const chartConfig = {} satisfies ChartConfig;
+
 export default function Page() {
   const chartRef = useRef(null);
   const { date } = useFilterContext();
@@ -80,28 +89,35 @@ export default function Page() {
   return (
     <div ref={chartRef} className="h-full w-full p-14">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tickFormatter={formatTickDateDay} />
-          <YAxis />
-          <Tooltip />
-          <Legend content={renderLegend} />
-          <Bar dataKey="value">
-            {data?.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
-            ))}
-          </Bar>
-        </BarChart>
+        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+          <BarChart
+            accessibilityLayer
+            width={500}
+            height={300}
+            data={data}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" tickFormatter={formatTickDateDay} />
+            <YAxis />
+            <Tooltip />
+            <Legend content={renderLegend} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dashed" />}
+            />
+            <Bar dataKey="value">
+              {data?.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ChartContainer>
       </ResponsiveContainer>
     </div>
   );
