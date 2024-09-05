@@ -2,7 +2,7 @@ import kpiMapping, { IKpiMapping } from "@/constants/kpiMapping";
 import { language } from "@/constants/projectLanguage";
 import api from "@/lib/api";
 import getPercentValueByMilk from "@/utils/getPercentValueByMilk";
-import { format, subDays } from "date-fns";
+import { format, parse, subDays } from "date-fns";
 import { NextRequest } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -63,7 +63,8 @@ export async function GET(request: NextRequest) {
     }
 
     let toastMessage = null;
-    const dateMessage = format(date, "dd/MM/yyyy");
+    const rawDate = parse(date, "yyyy-MM-dd", new Date());
+    const dateMessage = format(rawDate, "dd/MM/yyyy");
     if (cardsDontHaveValue >= 8) {
       toastMessage = {
         variant: "destructive",
