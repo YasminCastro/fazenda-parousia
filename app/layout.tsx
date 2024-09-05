@@ -6,6 +6,7 @@ import { FilterProvider } from "@/providers/FilterContext";
 import { DataProvider } from "@/providers/DataContext";
 import SideBar from "@/components/Global/SideBar";
 import TopBar from "@/components/Global/TopBar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
+        <Toaster />
         <SidebarProvider>
           <FilterProvider>
             <DataProvider>

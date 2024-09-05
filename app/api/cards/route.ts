@@ -21,6 +21,7 @@ export async function GET(request: NextRequest) {
     const { data } = await api.get(`/data/${language}/${date}`);
 
     let dashboardCards = [];
+    let cardsDontHaveValue = 0;
 
     for (let card of kpiMapping) {
       let newKPI: IKpiMapping = { ...card };
@@ -54,10 +55,33 @@ export async function GET(request: NextRequest) {
         }
       }
 
+      if (!newKPI.value) {
+        cardsDontHaveValue += 1;
+      }
+
       dashboardCards.push(newKPI);
     }
 
-    return Response.json(dashboardCards);
+    let toastMessage = null;
+    const dateMessage = format(date, "dd/MM/yyyy");
+    if (cardsDontHaveValue >= 8) {
+      toastMessage = {
+        variant: "destructive",
+        title: "Ops! Não há dados disponíveis",
+        description: `Não encontramos dados para o dia  ${dateMessage}.`,
+      };
+    } else if (cardsDontHaveValue > 4) {
+      toastMessage = {
+        variant: "default",
+        title: "Alguns dados não foram encontrados",
+        description: `Parte das informações para o dia ${dateMessage} está indisponível.`,
+      };
+    }
+
+    return Response.json({
+      dashboardCards,
+      toastMessage,
+    });
   } catch (error: any) {
     return Response.json({ message: error.message }, { status: 500 });
   }

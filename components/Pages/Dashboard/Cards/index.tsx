@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/tooltip";
 import Card from "./Card";
 import { IKpiMapping } from "@/constants/kpiMapping";
+import { toast } from "@/hooks/use-toast";
 
 const cardIcons = [
   { icon: <DollarSign color="#8280ff" size={36} />, color: "#e4e4ff" },
@@ -55,10 +56,14 @@ export default function Cards() {
         });
 
         const response = await axios.get(`/api/cards?${params.toString()}`);
-        setParsedDate(
-          date && date.from ? format(date?.from, "dd/MM/yyyy") : "",
-        );
-        setData(response.data);
+        const selectedDate =
+          date && date.from ? format(date?.from, "dd/MM/yyyy") : "";
+        setParsedDate(selectedDate);
+        setData(response.data.dashboardCards);
+
+        if (response.data.toastMessage) {
+          toast(response.data.toastMessage);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
