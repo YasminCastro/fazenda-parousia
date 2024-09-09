@@ -35,7 +35,14 @@ export default function Card({ loading, data, icon, outsideColor }: IProps) {
     );
   }
 
-  const { title, value, secondaryKey, secundaryTitle, secundaryValue } = data;
+  const {
+    title,
+    value,
+    secondaryKey,
+    secundaryTitle,
+    secundaryValue,
+    tertiaryValue,
+  } = data;
 
   return (
     <ShadcnCard className={styles.cardContainer}>
@@ -44,7 +51,7 @@ export default function Card({ loading, data, icon, outsideColor }: IProps) {
           <div className="grid-row-2 grid h-full">
             <CardDescription>{title}</CardDescription>
             <p className={`${secondaryKey ? "text-xl" : "text-3xl"} font-bold`}>
-              {value}
+              {tertiaryValue ? `${value} (${tertiaryValue}%)` : value}
             </p>
           </div>
           {secondaryKey && (

@@ -2,10 +2,13 @@ export interface IKpiMapping {
   id: number;
   key: string;
   secondaryKey?: string;
+  tertiaryKey?: string;
   value?: number;
   title?: string;
   secundaryValue?: number | string;
+  tertiaryValue?: number | string;
   secundaryTitle?: string;
+  tertiaryTitle?: string;
   chartType: string;
   secundaryChartType?: string;
   labelY: string;
@@ -22,7 +25,8 @@ const kpiMapping: IKpiMapping[] = [
   {
     id: 1,
     key: "Cow Feed Cost",
-    secondaryKey: "(%) Feed Cost/Lt",
+    secondaryKey: "Cow Feed Cost",
+    tertiaryKey: "(%) Feed Cost/Lt",
     chartType: "composed",
     secundaryChartType: "bar",
     labelY: "R$",
@@ -31,7 +35,8 @@ const kpiMapping: IKpiMapping[] = [
   {
     id: 2,
     key: "IoFC / vaca",
-    secondaryKey: "iofc_litro_%",
+    secondaryKey: "IoFC / vaca",
+    tertiaryKey: "iofc_litro_%",
     chartType: "composed",
     secundaryChartType: "bar",
     labelY: "R$",

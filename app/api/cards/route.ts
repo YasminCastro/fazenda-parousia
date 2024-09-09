@@ -1,7 +1,6 @@
 import kpiMapping, { IKpiMapping } from "@/constants/kpiMapping";
 import { language } from "@/constants/projectLanguage";
 import api from "@/lib/api";
-import getPercentValueByMilk from "@/utils/getPercentValueByMilk";
 import { format, parse, subDays } from "date-fns";
 import { NextRequest } from "next/server";
 
@@ -39,19 +38,15 @@ export async function GET(request: NextRequest) {
         if (foundKPI2) {
           newKPI.secundaryTitle = foundKPI2.KPI;
           newKPI.secundaryValue = foundKPI2[key];
+        }
+      }
 
-          if (
-            card.secondaryKey === "iofc_litro_%" ||
-            card.secondaryKey === "(%) Feed Cost/Lt"
-          ) {
-            const milkValuePercent = getPercentValueByMilk(
-              foundKPI2[key],
-              key,
-              data,
-            );
+      if (card.tertiaryKey) {
+        const foundKPI3 = data.find((kpi: any) => kpi.key === card.tertiaryKey);
 
-            newKPI.secundaryValue = `${foundKPI2[key]}% - ${milkValuePercent}%`;
-          }
+        if (foundKPI3) {
+          newKPI.tertiaryTitle = foundKPI3.KPI;
+          newKPI.tertiaryValue = foundKPI3[key];
         }
       }
 
