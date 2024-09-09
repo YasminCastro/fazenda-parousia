@@ -5,6 +5,7 @@ import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import BarChartMastite from "./BarChartMastite";
 import ComposedChart from "./ComposedChart";
+import { LineChart } from "recharts";
 
 export default function Charts() {
   const { selectedCardIndex } = useFilterContext();

@@ -25,7 +25,7 @@ const kpiMapping: IKpiMapping[] = [
   {
     id: 1,
     key: "Cow Feed Cost",
-    secondaryKey: "Cow Feed Cost",
+    secondaryKey: "Feed Cost/Lt",
     tertiaryKey: "(%) Feed Cost/Lt",
     chartType: "composed",
     secundaryChartType: "bar",
@@ -35,7 +35,7 @@ const kpiMapping: IKpiMapping[] = [
   {
     id: 2,
     key: "IoFC / vaca",
-    secondaryKey: "IoFC / vaca",
+    secondaryKey: "IoFC / litro",
     tertiaryKey: "iofc_litro_%",
     chartType: "composed",
     secundaryChartType: "bar",
@@ -44,7 +44,7 @@ const kpiMapping: IKpiMapping[] = [
   },
   {
     id: 3,
-    key: "custo",
+    key: "roi",
     chartType: "bar",
     labelY: "Retorno em %",
   },
