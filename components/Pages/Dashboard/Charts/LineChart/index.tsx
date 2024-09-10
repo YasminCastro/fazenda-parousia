@@ -63,7 +63,7 @@ export default function LineChart({ data }: IProps) {
           </div>
           <div className={`${stylesGraph.graphWrapper}`}>
             {isStackedChart ? (
-              <StackedChart data={data.data} isStackedChart={true} />
+              <StackedChart data={data.data} isStackedChart={false} />
             ) : (
               <Chart data={data.data} />
             )}
