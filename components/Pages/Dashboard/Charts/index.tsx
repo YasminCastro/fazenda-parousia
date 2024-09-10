@@ -12,24 +12,28 @@ export default function Charts() {
 
   useEffect(() => {}, [selectedCardIndex]);
 
-  return (
-    <>
-      {selectedCardIndex === 0 && chartData.data && (
-        <LineChart data={chartData} />
-      )}
-      {selectedCardIndex === 1 && <ComposedChart data={chartData} />}
-      {selectedCardIndex === 2 && <ComposedChart data={chartData} />}
-      {selectedCardIndex === 3 && chartData.data && (
-        <LineChart data={chartData} />
-      )}
-      {selectedCardIndex === 4 && chartData.data && (
-        <LineChart data={chartData} />
-      )}
-      {selectedCardIndex === 5 && <PieAndLineChart data={chartData} />}
-      {selectedCardIndex === 6 && chartData.data && (
-        <LineChart data={chartData} />
-      )}
-      {selectedCardIndex === 7 && <BarChartMastite data={chartData} />}
-    </>
-  );
+  if (chartData) {
+    return (
+      <>
+        {selectedCardIndex === 0 && chartData.data && (
+          <LineChart data={chartData} />
+        )}
+        {selectedCardIndex === 1 && <ComposedChart data={chartData} />}
+        {selectedCardIndex === 2 && <ComposedChart data={chartData} />}
+        {selectedCardIndex === 3 && chartData.data && (
+          <LineChart data={chartData} />
+        )}
+        {selectedCardIndex === 4 && chartData.data && (
+          <LineChart data={chartData} />
+        )}
+        {selectedCardIndex === 5 && <PieAndLineChart data={chartData} />}
+        {selectedCardIndex === 6 && chartData.data && (
+          <LineChart data={chartData} />
+        )}
+        {selectedCardIndex === 7 && <BarChartMastite data={chartData} />}
+      </>
+    );
+  }
+
+  return <></>;
 }

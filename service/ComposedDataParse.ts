@@ -24,7 +24,7 @@ export default function ComposedDataParse(
   batch: string,
   index: number,
 ) {
-  const apiKey = kpiMapping[index].key;
+  const apiKey = kpiMapping[index].tertiaryKey;
   const apiKey2 = kpiMapping[index].secondaryKey;
 
   let leftSideChartData = [];

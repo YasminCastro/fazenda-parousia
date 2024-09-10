@@ -34,7 +34,6 @@ export default function Chart({ data }: IProps) {
   const batchInfo = batches.find((batch) => batch.value === selectedBatch);
 
   const minValue = Math.min(...data.map((item) => item.value));
-
   const minDomain = minValue - minValue * 0.2;
 
   return (
