@@ -1,6 +1,11 @@
 import { useFilterContext } from "@/providers/FilterContext";
 import { getBarColorByName } from "@/utils/getGraphColors";
-import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie as PieRecharts,
+  Cell,
+} from "recharts";
 
 import {
   ChartContainer,
@@ -15,7 +20,7 @@ interface IProps {
   data: any[];
 }
 
-export default function Chart({ data }: IProps) {
+export default function Pie({ data }: IProps) {
   const { batches } = useFilterContext();
 
   const totalValue = data.reduce((acc, entry) => acc + entry.value, 0);
@@ -67,7 +72,7 @@ export default function Chart({ data }: IProps) {
         className="mx-auto aspect-square max-h-[250px] pb-0 [&_.recharts-pie-label-text]:fill-foreground"
       >
         <PieChart>
-          <Pie
+          <PieRecharts
             dataKey="value"
             data={data}
             cx="50%"
@@ -82,7 +87,7 @@ export default function Chart({ data }: IProps) {
                 fill={getBarColorByName(batches, entry.key)}
               />
             ))}
-          </Pie>
+          </PieRecharts>
           <ChartTooltip
             cursor={false}
             content={<ChartTooltipContent indicator="dashed" />}

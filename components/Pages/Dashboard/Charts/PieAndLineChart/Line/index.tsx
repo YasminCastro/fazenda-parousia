@@ -1,18 +1,8 @@
-import kpiMapping from "@/constants/kpiMapping";
-import { IMilkRevenue } from "@/interfaces/Graphs/milkRevenue";
 import { useFilterContext } from "@/providers/FilterContext";
-import { formatTickDate } from "@/utils/formatXAxis";
 import { getBarColorByName } from "@/utils/getGraphColors";
 import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-} from "@/components/ui/chart";
-import {
   LineChart,
-  Line,
+  Line as LineRecharts,
   Brush,
   XAxis,
   YAxis,
@@ -21,13 +11,23 @@ import {
   Label,
   LabelList,
 } from "recharts";
+
+import {
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { chartConfig } from "@/constants/chartConfig";
+import kpiMapping from "@/constants/kpiMapping";
+import { formatTickDate } from "@/utils/formatXAxis";
 
 interface IProps {
   data: any[];
 }
 
-export default function Chart({ data }: IProps) {
+export default function Line({ data }: IProps) {
   const { batches, selectedBatch, selectedCardIndex } = useFilterContext();
   const label = kpiMapping[selectedCardIndex].labelY;
 
@@ -73,7 +73,7 @@ export default function Chart({ data }: IProps) {
                 return;
               }
               return (
-                <Line
+                <LineRecharts
                   dataKey={item.key}
                   name={item.label}
                   fill={item.color}
@@ -83,7 +83,7 @@ export default function Chart({ data }: IProps) {
               );
             })
           ) : (
-            <Line
+            <LineRecharts
               dataKey="value"
               fill={
                 (batchInfo && batchInfo.color) ||
@@ -95,7 +95,7 @@ export default function Chart({ data }: IProps) {
               }
             >
               <LabelList dataKey="value" position="bottom" fill="black" />
-            </Line>
+            </LineRecharts>
           )}
         </LineChart>
       </ChartContainer>

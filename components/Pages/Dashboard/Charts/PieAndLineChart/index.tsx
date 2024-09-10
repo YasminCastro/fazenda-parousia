@@ -2,17 +2,18 @@ import { Card } from "@/components/ui/card";
 import stylesGraph from "../styles.module.css";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import Chart from "./Chart";
+import Pie from "./Pie";
 import { useFilterContext } from "@/providers/FilterContext";
 import { useRef } from "react";
 import html2canvas from "html2canvas";
 import { format } from "date-fns";
+import Line from "./Line";
 
 interface IProps {
   data: any;
 }
 
-export default function PieChart({ data }: IProps) {
+export default function PieAndLineChart({ data }: IProps) {
   const { date } = useFilterContext();
   const chartRef = useRef(null);
 
@@ -48,8 +49,11 @@ export default function PieChart({ data }: IProps) {
               </Button>
             </div>
           </div>
-          <div className={`${stylesGraph.graphWrapper}`}>
-            <Chart data={data.data} />
+          <div
+            className={`${stylesGraph.graphWrapper} grid grid-cols-[2fr_1fr]`}
+          >
+            {data.lineData && <Line data={data.lineData} />}
+            {data.pieData && <Pie data={data.pieData} />}
           </div>
         </>
       )}

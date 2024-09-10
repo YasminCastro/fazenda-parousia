@@ -57,7 +57,7 @@ const kpiMapping: IKpiMapping[] = [
   {
     id: 5,
     key: "Animais",
-    chartType: "pie",
+    chartType: "pieAndLine",
     labelY: "",
   },
   {

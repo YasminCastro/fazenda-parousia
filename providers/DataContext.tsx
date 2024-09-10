@@ -14,8 +14,8 @@ import MastiteDataParse from "@/service/MastiteDataParse";
 import MilkPrice from "@/service/GetMilkPrice";
 import kpiMapping from "@/constants/kpiMapping";
 import BarChartData from "@/service/BarChartData";
-import PieChartData from "@/service/PieChartData";
 import ComposedDataParse from "@/service/ComposedDataParse";
+import PieAndLineData from "@/service/PieAndLineData";
 
 export interface BatchCombobox {
   value: string;
@@ -32,7 +32,7 @@ const DataContext = createContext({} as IValue);
 export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [rawData, setRawData] = useState([]);
+  const [rawData, setRawData] = useState([]) as any[];
   const { selectedCardIndex, date, selectedBatch } = useFilterContext();
 
   const [milkPrice, setMilkPrice] = useState<number>(0);
@@ -101,12 +101,8 @@ export const DataProvider: React.FC<{ children?: React.ReactNode }> = ({
         case "bar":
           dataFound = BarChartData(rawData, selectedBatch, selectedCardIndex);
           break;
-        case "pie":
-          dataFound = PieChartData(
-            rawData[rawData.length - 1],
-            selectedBatch,
-            selectedCardIndex,
-          );
+        case "pieAndLine":
+          dataFound = PieAndLineData(rawData, selectedBatch, selectedCardIndex);
           break;
       }
     }
