@@ -17,14 +17,16 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Label,
-  ComposedChart,
-  Line,
+  BarChart,
+  LabelList,
 } from "recharts";
 
 import stylesGraph from "./styles.module.css";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import html2canvas from "html2canvas";
+import { useDataContext } from "@/providers/DataContext";
+import { getBarColorByName } from "@/utils/getGraphColors";
 
 interface IRightCartConfig {
   percentColor: string;
@@ -39,11 +41,10 @@ interface IProps {
 }
 
 export default function RightChart({ data, rightChartConfig }: IProps) {
-  const { selectedBatch, selectedCardIndex } = useFilterContext();
-  const label = kpiMapping[selectedCardIndex].secundaryLabelY;
+  const { selectedBatch, selectedCardIndex, batches } = useFilterContext();
+  const { milkPrice } = useDataContext();
 
-  if (data.key === "IoFC / vaca") {
-  }
+  const label = kpiMapping[selectedCardIndex].secundaryLabelY;
 
   const handleDownloadChart = async () => {
     if (rightChartConfig.ref && rightChartConfig.ref.current) {
@@ -59,15 +60,11 @@ export default function RightChart({ data, rightChartConfig }: IProps) {
 
   const chartConfig = {
     percent: {
-      label: "% sobre alimentação",
+      label: data.title,
       color: rightChartConfig.percentColor,
     },
-    percentByMilkPrice: {
-      label: "% sobre alimentação pelo valor do leite",
-      color: rightChartConfig.percentByMilkColor,
-    },
   } satisfies ChartConfig;
-
+  const batchInfo = batches.find((batch) => batch.value === selectedBatch);
   return (
     <div className="h-80 w-full">
       <div className="mx-6 mt-1 flex justify-between">
@@ -83,7 +80,7 @@ export default function RightChart({ data, rightChartConfig }: IProps) {
       </div>
       <ResponsiveContainer width="100%" height="100%">
         <ChartContainer config={chartConfig} className="w-full">
-          <ComposedChart
+          <BarChart
             accessibilityLayer
             data={data.data}
             width={500}
@@ -98,7 +95,7 @@ export default function RightChart({ data, rightChartConfig }: IProps) {
             <CartesianGrid strokeDasharray="3 3" />
             <Brush dataKey="date" height={20} />
             <XAxis dataKey="date" tickFormatter={formatTickDate} scale="band" />
-            <YAxis>
+            <YAxis domain={[0, milkPrice]}>
               <Label value={label} position="insideLeft" angle={-90} />
             </YAxis>
             {selectedBatch === "all" && (
@@ -115,17 +112,15 @@ export default function RightChart({ data, rightChartConfig }: IProps) {
 
             <Bar
               dataKey="percent"
-              name="% sobre alimentação"
               barSize={20}
-              fill={rightChartConfig.percentColor}
-            />
-            <Line
-              type="monotone"
-              dataKey="percentByMilkPrice"
-              name="% sobre alimentação pelo valor do leite"
-              stroke={rightChartConfig.percentByMilkColor}
-            />
-          </ComposedChart>
+              fill={
+                (batchInfo && batchInfo.color) ||
+                getBarColorByName(batches, selectedBatch)
+              }
+            >
+              <LabelList dataKey="percent" position="top" fill="black" />
+            </Bar>
+          </BarChart>
         </ChartContainer>
       </ResponsiveContainer>
     </div>

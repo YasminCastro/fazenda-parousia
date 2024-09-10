@@ -15,10 +15,7 @@ export default function Header() {
   const { milkPrice } = useDataContext();
   const { date } = useFilterContext();
 
-  const formattedMilkPrice = milkPrice.toLocaleString("pt-BR", {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-  });
+  const formattedMilkPrice = milkPrice.toLocaleString("pt-BR");
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-col gap-3">

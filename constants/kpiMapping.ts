@@ -29,8 +29,8 @@ const kpiMapping: IKpiMapping[] = [
     tertiaryKey: "(%) Feed Cost/Lt",
     chartType: "composed",
     secundaryChartType: "bar",
-    labelY: "R$",
-    secundaryLabelY: "%",
+    labelY: "%",
+    secundaryLabelY: "R$",
   },
   {
     id: 2,
@@ -39,8 +39,8 @@ const kpiMapping: IKpiMapping[] = [
     tertiaryKey: "iofc_litro_%",
     chartType: "composed",
     secundaryChartType: "bar",
-    labelY: "R$",
-    secundaryLabelY: "%",
+    labelY: "%",
+    secundaryLabelY: "R$",
   },
   {
     id: 3,
