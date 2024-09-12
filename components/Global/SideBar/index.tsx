@@ -4,12 +4,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Gauge, Menu, X } from "lucide-react";
 import { useSidebarContext } from "@/providers/SidebarContext";
+import { PiCow } from "react-icons/pi";
 
 const sidebarItems = [
   {
     name: "Desempenho",
     href: "/",
     icon: Gauge,
+  },
+  {
+    name: "Desempenho Animal",
+    href: "/animal-performance",
+    icon: PiCow,
   },
 ];
 
@@ -48,7 +54,7 @@ export default function SideBar() {
                 href={href}
               >
                 <span>
-                  <Icon />
+                  <Icon size={24} />
                 </span>
                 <span className={`ml-2 ${isCollapsed ? "hidden" : "block"}`}>
                   {name}
