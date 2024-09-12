@@ -1,4 +1,5 @@
 import { SelectBatch } from "@/components/Global/SelectBatch/Index";
+import { SelectAnimal } from "./SelectAnimal";
 
 export default function Header() {
   return (
@@ -7,6 +8,7 @@ export default function Header() {
         <h1 className="text-3xl font-bold">Performance do animal</h1>
         <div className="flex gap-2">
           <SelectBatch />
+          <SelectAnimal />
         </div>
       </div>
     </div>
