@@ -19,7 +19,6 @@ import {
   CartesianGrid,
   ResponsiveContainer,
   Label,
-  LabelList,
 } from "recharts";
 import { chartConfig } from "@/constants/chartConfig";
 
@@ -92,9 +91,7 @@ export default function Chart({ data }: IProps) {
                 (batchInfo && batchInfo.color) ||
                 getBarColorByName(batches, selectedBatch)
               }
-            >
-              <LabelList dataKey="value" position="bottom" fill="black" />
-            </Line>
+            ></Line>
           )}
         </LineChart>
       </ChartContainer>

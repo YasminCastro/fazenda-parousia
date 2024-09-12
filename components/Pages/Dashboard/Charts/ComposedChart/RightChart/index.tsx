@@ -18,7 +18,6 @@ import {
   ResponsiveContainer,
   Label,
   BarChart,
-  LabelList,
 } from "recharts";
 
 import stylesGraph from "./styles.module.css";
@@ -117,9 +116,7 @@ export default function RightChart({ data, rightChartConfig }: IProps) {
                 (batchInfo && batchInfo.color) ||
                 getBarColorByName(batches, selectedBatch)
               }
-            >
-              <LabelList dataKey="percent" position="top" fill="black" />
-            </Bar>
+            ></Bar>
           </BarChart>
         </ChartContainer>
       </ResponsiveContainer>

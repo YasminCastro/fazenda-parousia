@@ -20,7 +20,6 @@ import {
   Label,
   LineChart,
   Line,
-  LabelList,
 } from "recharts";
 import { chartConfig } from "@/constants/chartConfig";
 
@@ -117,9 +116,7 @@ export default function LeftChart({ data }: IProps) {
                     getBarColorByName(batches, selectedBatch)
                   }
                   // stackId={isStackedChart ? "a" : undefined}
-                >
-                  <LabelList dataKey="value" position="top" fill="black" />
-                </Bar>
+                ></Bar>
               )}
             </BarChart>
           ) : (
@@ -179,9 +176,7 @@ export default function LeftChart({ data }: IProps) {
                     (batchInfo && batchInfo.color) ||
                     getBarColorByName(batches, selectedBatch)
                   }
-                >
-                  <LabelList dataKey="value" position="bottom" fill="black" />
-                </Line>
+                ></Line>
               )}
             </LineChart>
           )}
