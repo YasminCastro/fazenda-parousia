@@ -15,6 +15,11 @@ export default function Charts() {
   if (chartData) {
     return (
       <>
+
+        {/* {selectedCardIndex === 0 && chartData.data && (
+          <LineChart data={chartData} />
+        )} */}
+
         {selectedCardIndex === 0 && chartData.data && (
           <LineChart data={chartData} />
         )}
