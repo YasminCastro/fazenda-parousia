@@ -1,5 +1,4 @@
 import { useDataContext } from "@/providers/DataContext";
-import { ComboboxHeader } from "./Combobox";
 import { DatePicker } from "@/components/Global/DatePicker";
 import ChartDownload from "@/components/Global/ChartDownload/Index";
 import {
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useFilterContext } from "@/providers/FilterContext";
 import { format } from "date-fns";
+import { SelectBatch } from "@/components/Global/SelectBatch/Index";
 
 export default function Header() {
   const { milkPrice } = useDataContext();
@@ -23,7 +23,7 @@ export default function Header() {
           Desempenho zootécnico e econômico
         </h1>
         <div className="flex gap-2">
-          <ComboboxHeader />
+          <SelectBatch />
           <DatePicker />
         </div>
       </div>

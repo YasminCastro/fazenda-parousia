@@ -21,7 +21,7 @@ import {
 import { useState } from "react";
 import { useFilterContext } from "@/providers/FilterContext";
 
-export function ComboboxHeader() {
+export function SelectBatch() {
   const [open, setOpen] = useState(false);
 
   const { batches, setSelectedBatch, selectedBatch } = useFilterContext();
