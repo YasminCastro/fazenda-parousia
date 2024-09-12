@@ -18,9 +18,21 @@ export interface IKpiMapping {
 const kpiMapping: IKpiMapping[] = [
   {
     id: 0,
-    key: "Receita do Leite",
+    key: "Receita do Leite/ vaca",
     chartType: "bar",
     labelY: "Valor em reais (R$)",
+    // secondaryKey: "Receita do Leite/ vaca",
+
+    // id: 0,
+    // key: "Receita do Leite",
+    // secondaryKey: "Receita do Leite/ vaca",
+    // // tertiaryKey: "(%) Feed Cost/Lt",
+    // chartType: "composed",
+    // // secundaryChartType: "bar",
+    // labelY: "Valor em reais (R$)",
+    // // secundaryLabelY: "Valor em reais (R$)",
+
+
   },
   {
     id: 1,
