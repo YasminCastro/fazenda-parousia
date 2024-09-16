@@ -17,22 +17,83 @@ import {
 } from "recharts";
 
 const data = [
-  { index: 10000, red: 1643, blue: 790 },
-  { index: 1666, red: 182, blue: 42 },
-  { index: 625, red: 56, blue: 11 },
-  // Calculation of line of best fit is not included in this demo
-  { index: 300, redLine: 0 },
-  { index: 10000, redLine: 1522 },
-  { index: 600, blueLine: 0 },
-  { index: 10000, blueLine: 678 },
+  {
+    daysInMilk: 0,
+    firstLactationLine: 30,
+    secondLactationLine: 40,
+    thirdLactationLine: 50,
+  },
+  {
+    daysInMilk: 25, //dias (obrigatório)
+    firstLactationScatter: 34, //ponto no gráfico scatter para 1° lactação (opcional)
+    secondLactationScatter: 50, //ponto no gráfico scatter para 2° lactação (opcional)
+    thirdLactationScatter: 60, //ponto no gráfico scatter para 3° lactação (opcional)
+    firstLactationLine: 30, // ponto no gráfico linha para 1° lactação (obrigatório)
+    secondLactationLine: 40, // ponto no gráfico linha para 2° lactação (obrigatório)
+    thirdLactationLine: 50, // ponto no gráfico linha para 2° lactação (obrigatório)
+  },
+  {
+    daysInMilk: 50,
+    firstLactationScatter: 42,
+    secondLactationScatter: 48,
+    firstLactationLine: 45,
+    secondLactationLine: 50,
+    thirdLactationLine: 55,
+  },
+  {
+    daysInMilk: 100,
+    thirdLactationScatter: 58,
+    firstLactationLine: 50,
+    secondLactationLine: 55,
+    thirdLactationLine: 58,
+  },
+  {
+    daysInMilk: 150,
+    firstLactationScatter: 46,
+    secondLactationScatter: 50,
+    thirdLactationScatter: 55,
+    firstLactationLine: 48,
+    secondLactationLine: 52,
+    thirdLactationLine: 55,
+  },
+  {
+    daysInMilk: 200,
+    firstLactationScatter: 40,
+    secondLactationScatter: 45,
+    thirdLactationScatter: 50,
+    firstLactationLine: 42,
+    secondLactationLine: 48,
+    thirdLactationLine: 50,
+  },
+  {
+    daysInMilk: 250,
+    firstLactationScatter: 35,
+    secondLactationScatter: 40,
+    thirdLactationScatter: 45,
+    firstLactationLine: 35,
+    secondLactationLine: 42,
+    thirdLactationLine: 45,
+  },
+  {
+    daysInMilk: 300,
+    firstLactationScatter: 28,
+    secondLactationScatter: 35,
+    thirdLactationScatter: 40,
+    firstLactationLine: 30,
+    secondLactationLine: 38,
+    thirdLactationLine: 40,
+  },
 ];
 
 const chartConfig = {
-  red: {
-    label: "red",
+  firstLactationScatter: {
+    label: "1º lactation",
   },
-  blue: {
-    label: "blue",
+  secondLactationScatter: {
+    label: "2º lactation",
+  },
+  thirdLactationScatter: {
+    label: ">= 3º lactation",
   },
 } satisfies ChartConfig;
 
@@ -55,41 +116,63 @@ export default function AnimalChart() {
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
-              dataKey="index"
+              dataKey="daysInMilk"
               type="number"
               label={{
-                value: "Index",
+                value: "Days in milk",
                 position: "insideBottomRight",
                 offset: 0,
               }}
             />
             <YAxis
-              unit="ms"
               type="number"
-              label={{ value: "Time", angle: -90, position: "insideLeft" }}
+              label={{
+                value: "Milk production (kg)",
+                angle: -90,
+                position: "insideLeft",
+              }}
+              domain={["auto", "auto"]}
             />
             <Legend />
 
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
+            <Scatter
+              name="1º lactation"
+              dataKey="firstLactationScatter"
+              fill="blue"
             />
-
-            <Scatter name="red" dataKey="red" fill="red" />
-            <Scatter name="blue" dataKey="blue" fill="blue" />
+            <Scatter
+              name="2º lactation"
+              dataKey="secondLactationScatter"
+              fill="red"
+            />
+            <Scatter
+              name=">= 3º lactation"
+              dataKey="thirdLactationScatter"
+              fill="brown"
+            />
             <Line
-              dataKey="blueLine"
+              dataKey="firstLactationLine"
               stroke="blue"
               dot={false}
               activeDot={false}
               legendType="none"
+              type="monotone"
             />
             <Line
-              dataKey="redLine"
+              dataKey="secondLactationLine"
               stroke="red"
               dot={false}
               activeDot={false}
               legendType="none"
+              type="monotone"
+            />
+            <Line
+              dataKey="thirdLactationLine"
+              stroke="brown"
+              dot={false}
+              activeDot={false}
+              legendType="none"
+              type="monotone"
             />
           </ComposedChart>
         </ChartContainer>
