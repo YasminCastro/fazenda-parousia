@@ -7,11 +7,13 @@ import Header from "@/components/Pages/AnimalPerformance/Header";
 
 export default function Page() {
   return (
-    <div className="m-8 space-y-5">
+    <div className="m-8">
       <Header />
-      <AnimalInfo />
-      <AnimalTimeline />
-      <AnimalChart />
+      <div className="flex flex-col gap-10">
+        <AnimalInfo />
+        <AnimalTimeline />
+        {/* <AnimalChart /> */}
+      </div>
     </div>
   );
 }
