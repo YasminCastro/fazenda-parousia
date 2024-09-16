@@ -8,11 +8,11 @@ import Header from "@/components/Pages/AnimalPerformance/Header";
 
 export default function Page() {
   return (
-    <div className="m-8">
+    <div className="m-8 min-h-[70vh]">
       <Header />
-      <div className="flex flex-col gap-6">
+      <div className="flex h-[70vh] flex-col gap-6">
         <AnimalInfo />
-        <div className="mx-20 grid grid-cols-[1fr_3fr]">
+        <div className="mx-20 grid flex-grow grid-cols-[1fr_3fr]">
           <AnimalTimeline />
           <div className="flex flex-col items-center gap-2">
             <AnimalChart />
