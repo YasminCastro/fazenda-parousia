@@ -5,8 +5,22 @@ import AnimalChartInfo from "@/components/Pages/AnimalPerformance/AnimalChartInf
 import AnimalInfo from "@/components/Pages/AnimalPerformance/AnimalInfo";
 import AnimalTimeline from "@/components/Pages/AnimalPerformance/AnimalTimeline";
 import Header from "@/components/Pages/AnimalPerformance/Header";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Page() {
+  const [] = useState();
+  useEffect(() => {
+    const fetchAnimalData = async () => {
+      try {
+        const response = await axios.get(`/api/animal-performance`);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchAnimalData();
+  }, []);
   return (
     <div className="m-8 min-h-[70vh]">
       <Header />
