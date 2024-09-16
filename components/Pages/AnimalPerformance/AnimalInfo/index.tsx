@@ -9,7 +9,7 @@ export default function AnimalInfo() {
   };
 
   return (
-    <div className="flex justify-center gap-5 text-3xl">
+    <div className="flex justify-center gap-5 text-2xl">
       <TextDetail title="Lactação" description="2°" />
       <TextDetail title="DEL" description="135" />
       <TextDetail title="Produção" description="24kg" />

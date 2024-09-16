@@ -38,64 +38,62 @@ const chartConfig = {
 
 export default function AnimalChart() {
   return (
-    <div className="flex justify-center">
-      <Card className="h-full w-1/2 rounded-3xl p-3">
-        <ResponsiveContainer width="100%" height="100%">
-          <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
-            <ComposedChart
-              accessibilityLayer
-              data={data}
-              width={500}
-              height={300}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
+    <Card className="h-full w-full rounded-3xl p-3">
+      <ResponsiveContainer width="100%" height="100%">
+        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+          <ComposedChart
+            accessibilityLayer
+            data={data}
+            width={500}
+            height={300}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="index"
+              type="number"
+              label={{
+                value: "Index",
+                position: "insideBottomRight",
+                offset: 0,
               }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="index"
-                type="number"
-                label={{
-                  value: "Index",
-                  position: "insideBottomRight",
-                  offset: 0,
-                }}
-              />
-              <YAxis
-                unit="ms"
-                type="number"
-                label={{ value: "Time", angle: -90, position: "insideLeft" }}
-              />
-              <Legend />
+            />
+            <YAxis
+              unit="ms"
+              type="number"
+              label={{ value: "Time", angle: -90, position: "insideLeft" }}
+            />
+            <Legend />
 
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent indicator="dashed" />}
-              />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="dashed" />}
+            />
 
-              <Scatter name="red" dataKey="red" fill="red" />
-              <Scatter name="blue" dataKey="blue" fill="blue" />
-              <Line
-                dataKey="blueLine"
-                stroke="blue"
-                dot={false}
-                activeDot={false}
-                legendType="none"
-              />
-              <Line
-                dataKey="redLine"
-                stroke="red"
-                dot={false}
-                activeDot={false}
-                legendType="none"
-              />
-            </ComposedChart>
-          </ChartContainer>
-        </ResponsiveContainer>
-      </Card>
-    </div>
+            <Scatter name="red" dataKey="red" fill="red" />
+            <Scatter name="blue" dataKey="blue" fill="blue" />
+            <Line
+              dataKey="blueLine"
+              stroke="blue"
+              dot={false}
+              activeDot={false}
+              legendType="none"
+            />
+            <Line
+              dataKey="redLine"
+              stroke="red"
+              dot={false}
+              activeDot={false}
+              legendType="none"
+            />
+          </ComposedChart>
+        </ChartContainer>
+      </ResponsiveContainer>
+    </Card>
   );
 }
