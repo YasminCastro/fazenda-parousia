@@ -14,9 +14,9 @@ export default function Page() {
         <AnimalInfo />
         <div className="mx-20 grid grid-cols-[1fr_3fr]">
           <AnimalTimeline />
-          <div className="flex flex-col items-center">
-            <AnimalChartInfo />
+          <div className="flex flex-col items-center gap-2">
             <AnimalChart />
+            <AnimalChartInfo />
           </div>
         </div>
       </div>
